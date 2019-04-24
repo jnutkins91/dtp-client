@@ -1,0 +1,25 @@
+<nb-card>
+    <nb-card-header>
+        FORUM
+    </nb-card-header>
+    <nb-card-body>
+        <p>Welcome to The DTP forum!</p>
+    </nb-card-body>
+</nb-card>
+
+<div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+    <nb-card status="success" *ngIf="loading">
+        <nb-card-header></nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card status="success" *ngFor="let topic of topics" (click)="onClickTopic(topic.id)">
+        <nb-card-header>{{ topic.title }}</nb-card-header>
+        <nb-card-body>
+            {{ topic.description }}
+        </nb-card-body>
+    </nb-card>
+
+</div>

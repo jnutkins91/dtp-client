@@ -1,0 +1,27 @@
+<button type="button" class="btn btn-outline-primary btn-icon" style="margin-bottom: 1em;" (click)="backClicked()">
+    <i class="nb-layout-centre nb-arrow-thin-left"></i>
+</button>
+
+<div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+    <nb-card *ngIf="loading">
+        <nb-card-header></nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngFor="let thread of threads">
+        <nb-card-header>{{ thread.title }}</nb-card-header>
+
+        <nb-card-body>
+            <nb-user [picture]="thread.picture" [name]="thread.username" title="4.8" style="margin-bottom: 2em;">
+            </nb-user>
+            <p>{{ thread.body }}</p>
+        </nb-card-body>
+        <nb-card-footer>
+            <span>10 Comments</span>
+            <span style="float: right;">19th April 2019, 23:19</span>
+        </nb-card-footer>
+    </nb-card>
+
+</div>

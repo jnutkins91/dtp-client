@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-6">
+        <nb-card>
+            <nb-card-header>CONTACT DETAILS</nb-card-header>
+            <nb-card-body style="height: 28em;">
+                <h6>Address</h6>
+                <p>34 New House</p>
+                <p>67-68 Hatton Garden</p>
+                <p>London</p>
+                <p>EC1N 8JY</p>
+                <p>UK</p>
+                <h6 style="padding-top: 1vh;">Phone Number</h6>
+                <p>(+44) 0207 206 2521</p>
+                <h6 style="padding-top: 1vh;">Investor E-Mail</h6>
+                <p>
+                    <a href="mailto:test@test.com?Subject=Investment" target="_top">test@test.com</a>
+                </p>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-md-6">
+        <nb-card>
+            <nb-card-header>LOCATION</nb-card-header>
+            <nb-card-body style="height: 28em;">
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                </agm-map>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
+
+<nb-card>
+    <nb-card-header>CONTACT THE DTP TEAM</nb-card-header>
+    <nb-card-body>
+        <form #contactUsForm="ngForm">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email" required [(ngModel)]="contactForm.email"
+                    name="email">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Message" required [(ngModel)]="contactForm.body"
+                    name="body"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success" (click)="showToast('top-right', 'success')">Submit</button>
+        </form>
+    </nb-card-body>
+</nb-card>
