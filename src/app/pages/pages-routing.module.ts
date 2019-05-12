@@ -11,6 +11,7 @@ import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { ForumComponent } from './forum/forum.component';
 import { ThreadComponent } from './forum/thread/thread.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { CommentComponent } from './forum/comment/comment.component';
 
 const routes: Routes = [{
   path: '',
@@ -32,6 +33,10 @@ const routes: Routes = [{
   {
     path: 'forum/thread',
     component: ThreadComponent
+  },
+  {
+    path: 'forum/comment',
+    component: CommentComponent
   },
   {
     path: 'my-account',

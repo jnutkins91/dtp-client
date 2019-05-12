@@ -1,6 +1,14 @@
-<button type="button" class="btn btn-outline-primary btn-icon" style="margin-bottom: 1em;" (click)="backClicked()">
-    <i class="nb-layout-centre nb-arrow-thin-left"></i>
-</button>
+<div style="margin-bottom: 0.5em;">
+
+    <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;" (click)="backClicked()">
+        <i class="nb-layout-right nb-arrow-thin-left"></i>
+    </button>
+
+    <button type="button" class="btn btn-success btn-icon" style="margin-left: 0.5em; float: right;" (click)="newThreadClicked()">
+        <i class="nb-layout-right nb-compose"></i>
+    </button>
+
+</div>
 
 <div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
 
@@ -10,7 +18,7 @@
         </nb-card-body>
     </nb-card>
 
-    <nb-card *ngFor="let thread of threads">
+    <nb-card *ngFor="let thread of threads" (click)="onClickThread(thread.id)">
         <nb-card-header>{{ thread.title }}</nb-card-header>
 
         <nb-card-body>
@@ -20,7 +28,7 @@
         </nb-card-body>
         <nb-card-footer>
             <span>10 Comments</span>
-            <span style="float: right;">19th April 2019, 23:19</span>
+            <span style="float: right;">{{ thread.creation_time | date:'medium' }}</span>
         </nb-card-footer>
     </nb-card>
 

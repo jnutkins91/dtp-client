@@ -53,6 +53,9 @@ import { SecurityCamerasService } from './mock/security-cameras.service';
 import { MockDataModule } from './mock/mock-data.module';
 
 import { ForumService } from './services/forum.service';
+import { DTPUserService } from './services/dtp_user.service';
+
+import { environment } from '../../environments/environment';
 
 const DATA_SERVICES = [
   { provide: UserData, useClass: UserService },
@@ -91,7 +94,7 @@ export const NB_CORE_PROVIDERS = [
     strategies: [
       NbPasswordAuthStrategy.setup({
         name: 'email',
-        baseEndpoint: 'https://localhost:44388/api',
+        baseEndpoint: environment.apiUrl + '/api',
         login: {
           // ...
           endpoint: '/auth',
@@ -185,6 +188,7 @@ export const NB_CORE_PROVIDERS = [
   PlayerService,
   StateService,
   ForumService,
+  DTPUserService
 ];
 
 @NgModule({

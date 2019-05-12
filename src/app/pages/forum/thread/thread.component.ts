@@ -15,7 +15,8 @@ export class ThreadComponent implements OnInit {
 
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
-    private _location: Location) {
+    private _location: Location,
+    private router: Router) {
 
   }
 
@@ -43,5 +44,15 @@ export class ThreadComponent implements OnInit {
 
   backClicked() {
     this._location.back();
+  }
+
+  newThreadClicked() {
+    alert("New Thread Clicked!");
+  }
+
+  onClickThread(id: number) {
+
+    // this.router.navigate(['thread', id]);
+    this.router.navigate(['../comment', { threadId: id }], { relativeTo: this.route });
   }
 }

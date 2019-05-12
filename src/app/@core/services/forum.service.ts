@@ -17,4 +17,8 @@ export class ForumService {
   getThreads(id: number): Observable<any> {
     return this.http.get(environment.apiUrl + "/api/forum/threads/" + id);
   }
+
+  getComments(id: number): Observable<any> {
+    return this.http.get(environment.apiUrl + "/api/forum/comments/" + id);
+  }
 }
