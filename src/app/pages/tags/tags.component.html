@@ -1,0 +1,43 @@
+<nb-card>
+    <nb-card-body>
+        <input #searchTerm type="text" style="width: 100%;" nbInput (keyup.enter)="showValue(searchTerm.value)" placeholder="Search">
+    </nb-card-body>
+</nb-card>
+
+<div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+    <nb-card *ngIf="loading">
+        <nb-card-header></nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="tags?.tags.length == 0">
+        <nb-card-body>
+            <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
+            <p>We didn't find anything here...</p>
+        </nb-card-body>
+    </nb-card>
+
+
+
+    <div class="row">
+
+        <div class="col-md-2" style="padding: 0px;"
+            *ngFor="let option of tags?.tags | paginate: { itemsPerPage: 24, currentPage: p, totalItems: tags?.totalTags }">
+
+            <nb-card (click)="onClick_Tag(option.id, option.name)">
+                <nb-card-header style="background-color: #BC0547; color: #ffffff">{{ option.name }}</nb-card-header>
+
+                <nb-card-body>
+                    {{ option.description }}
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+    </div>
+
+    <pagination-controls (pageChange)="p = $event" [maxSize]="40" (pageChange)="onPageChange($event)">
+    </pagination-controls>
+
+</div>

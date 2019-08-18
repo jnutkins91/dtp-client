@@ -16,7 +16,7 @@
     </nb-card>
 
     <nb-card status="success" *ngFor="let topic of topics" (click)="onClickTopic(topic.id)">
-        <nb-card-header>{{ topic.title }}</nb-card-header>
+        <nb-card-header>{{ topic.title | uppercase }}</nb-card-header>
         <nb-card-body>
             {{ topic.description }}
         </nb-card-body>

@@ -13,6 +13,6 @@ import { CommentComponent } from './comment/comment.component';
     ForumComponent,
     ThreadComponent,
     CommentComponent
-  ],
+  ]
 })
 export class ForumModule { }

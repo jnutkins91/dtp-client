@@ -10,9 +10,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { NewThreadDialogComponent } from './pages/forum/thread/newThread-dialog.component';
+import { NewCommentDialogComponent } from './pages/forum/comment/newComment-dialog.component';
+import { NewMessageDialogComponent } from './pages/direct-messages/replies/newMessage-dialog.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NewThreadDialogComponent,
+    NewMessageDialogComponent,
+    NewCommentDialogComponent 
   ],
   imports: [
     BrowserModule,
@@ -22,7 +29,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
-    CoreModule.forRoot(),
+    CoreModule.forRoot()
+  ],
+  entryComponents: [
+    NewThreadDialogComponent,
+    NewMessageDialogComponent,
+    NewCommentDialogComponent
   ],
   bootstrap: [AppComponent],
   providers: [

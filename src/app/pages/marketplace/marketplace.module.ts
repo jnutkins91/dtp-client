@@ -4,6 +4,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { MarketplaceComponent } from './marketplace.component';
+import { MarketplaceDetailComponent } from './marketplace-detail/marketplace-detail.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { MarketplaceComponent } from './marketplace.component';
     Ng2SmartTableModule
   ],
   declarations: [
-    MarketplaceComponent
+    MarketplaceComponent,
+    MarketplaceDetailComponent
   ],
 })
 export class MarketplaceModule { }

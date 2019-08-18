@@ -15,15 +15,21 @@
                     <nb-card-header>ACCOUNT DETAILS</nb-card-header>
                     <nb-card-body>
                         <div class="input-group">
-                            <input type="text" nbInput fullWidth placeholder="Username" value="{{ theUser.username }}">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Username" value="{{ theUser?.username }}" 
+                            disabled>
                         </div>
                         <div class="input-group">
-                            <input type="email" nbInput fullWidth placeholder="Email" value="{{ theUser.email }}" disabled>
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="E-Mail" value="{{ theUser?.email }}"
+                                disabled>
                         </div>
                         <div class="input-group">
-                            <input type="email" nbInput fullWidth placeholder="Mobile" disabled>
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="WALLET ID" value="{{ theUser?.wallet_id }}" 
+                            disabled>
                         </div>
-                        <button nbButton status="success" style="margin-right: 1em;">Save</button>
+                        <div class="input-group">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Mobile (ENABLE 2-FACTOR AUTHENTICATION)" value="{{ theUser?.mobile }}"
+                                disabled>
+                        </div>
                     </nb-card-body>
                 </nb-card>
             </div>
@@ -31,8 +37,7 @@
                 <nb-card>
                     <nb-card-header>EDIT IMAGE</nb-card-header>
                     <nb-card-body class="imgContainer">
-                        <img class="userImg" src="{{ theUser.picture }}" alt="User Image" height="200"
-                            width="200">
+                        <img class="userImg" src="{{ theUser?.picture }}" alt="User Image" height="200" width="200">
                     </nb-card-body>
                 </nb-card>
             </div>
@@ -44,41 +49,76 @@
             </nb-card-body>
         </nb-card>
 
-        <nb-card>
-            <nb-card-header>WALLET DETAILS</nb-card-header>
-            <nb-card-body>
-                <div class="input-group">
-                    <input type="text" nbInput fullWidth placeholder="WALLET ID" disabled />
-                </div>
-            </nb-card-body>
-        </nb-card>
+        <div class="row teamContainer">
+            <div class="col-md-9" style="margin-bottom: 1em;">
 
-        <nb-card>
-            <nb-card-header>PREFERENCES</nb-card-header>
-            <nb-card-body>
-                <h6>Timezone:</h6>
-                <nb-select placeholder="Select Timezone" [(selected)]="selectedItem">
-                    <nb-option value="gmt">GMT</nb-option>
-                </nb-select>
-                <h6 style="margin-top: 1em;">E-Mail Notifications:</h6>
-                <div class="row">
-                    <nb-checkbox status="success" class="col-md-3">News</nb-checkbox>
-                    <nb-checkbox status="success" class="col-md-3">Deposit</nb-checkbox>
-                    <nb-checkbox status="success" class="col-md-3">Receipt</nb-checkbox>
-                    <nb-checkbox status="success" class="col-md-3">Warnings</nb-checkbox>
-                </div>
+                <nb-card>
+                    <nb-card-header>PREFERENCES</nb-card-header>
+                    <nb-card-body>
+                        <h6>Timezone:</h6>
+                        <nb-select placeholder="Select Timezone" [(selected)]="selectedItem">
+                            <nb-option value="nst">New Zealand Standard Time (GMT+12:00)</nb-option>
+                            <nb-option value="sst">Solomon Standard Time (GMT+11:00)</nb-option>
+                            <nb-option value="aet">Australia Eastern Time (GMT+10:00)</nb-option>
+                            <nb-option value="act">Australia Central Time (GMT+9:30)</nb-option>
+                            <nb-option value="jst">Japan Standard Time (GMT+9:00)</nb-option>
+                            <nb-option value="ctt">China Taiwan Time (GMT+8:00)</nb-option>
+                            <nb-option value="vst">Vietnam Standard Time (GMT+7:00)</nb-option>
+                            <nb-option value="bst">Bangladesh Standard Time (GMT+6:00)</nb-option>
+                            <nb-option value="ist">India Standard Time (GMT+5:30)</nb-option>
+                            <nb-option value="plt">Pakistan Lahore Time (GMT+5:00)</nb-option>
+                            <nb-option value="net">Near East Time (GMT+4:00)</nb-option>
+                            <nb-option value="met">Middle East Time (GMT+3:30)</nb-option>
+                            <nb-option value="eat">Eastern African Time (GMT+3:00)</nb-option>
+                            <nb-option value="art">(Arabic) Egypt Standard Time (GMT+2:00)</nb-option>
+                            <nb-option value="eet">Eastern European Time (GMT+2:00)</nb-option>
+                            <nb-option value="ect">European Central Time (GMT+1:00)</nb-option>
+                            <nb-option value="gmt">Greenwich Mean Time (GMT)</nb-option>
+                            <nb-option value="utc">Universal Coordinated Time (UTC)</nb-option>
+                            <nb-option value="cat">Central African Time (GMT-1:00)</nb-option>
+                            <nb-option value="bet">Brazil Eastern Time (GMT-3:00)</nb-option>
+                            <nb-option value="ast">Argentina Standard Time (GMT-3:00)</nb-option>
+                            <nb-option value="cnt">Canada Newfoundland Time (GMT-3:30)</nb-option>
+                            <nb-option value="prt">Puerto Rico and US Virgin Islands Time (GMT-4:00)</nb-option>
+                            <nb-option value="iet">Indiana Eastern Standard Time (GMT-5:00)</nb-option>
+                            <nb-option value="est">Eastern Standard Time (GMT-5:00)</nb-option>
+                            <nb-option value="cst">Central Standard Time (GMT-6:00)</nb-option>
+                            <nb-option value="mst">Mountain Standard Time (GMT-7:00)</nb-option>
+                            <nb-option value="pnt">Phoenix Standard Time (GMT-7:00)</nb-option>
+                            <nb-option value="pst">Pacific Standard Time (GMT-8:00)</nb-option>
+                            <nb-option value="ast">Alaska Standard Time (GMT-9:00)</nb-option>
+                            <nb-option value="hst">Hawaii Standard Time (GMT-10:00)</nb-option>
+                            <nb-option value="mit">Midway Islands Time (GMT-11:00)</nb-option>
+                        </nb-select>
+                        <h6 style="margin-top: 1em;">E-Mail Notifications:</h6>
+                        <div class="row">
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.news_pref">News</nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.deposit_pref">Deposit</nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.receipt_pref">Receipt</nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.warnings_pref">Warnings</nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.comments_pref">Comments</nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.newdm_pref">New DMs</nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.new_contract_pref">New Contract</nb-checkbox>
+                        </div>
+                        <button nbButton status="success" style="margin-right: 1em;" (click)="saveClicked()">Save</button>
 
-            </nb-card-body>
-        </nb-card>
+                    </nb-card-body>
+                </nb-card>
 
-        <nb-card>
-            <nb-card-header>DANGER</nb-card-header>
-            <nb-card-body>
-                <button nbButton status="warning" style="width: 100%; margin-bottom: 1em;"
-                    (click)="chagePasswordClicked()">Change Password</button>
-                <button nbButton status="danger" style="width: 100%;">Delete Account</button>
-            </nb-card-body>
-        </nb-card>
+            </div>
+            <div class="col-md-3" style="margin-bottom: 1em;">
+
+                <nb-card>
+                    <nb-card-header>DANGER</nb-card-header>
+                    <nb-card-body>
+                        <button nbButton status="warning" style="width: 100%; margin-bottom: 1em;"
+                            (click)="changePasswordClicked()">Change Password</button>
+                        <button nbButton status="danger" style="width: 100%;">Delete Account</button>
+                    </nb-card-body>
+                </nb-card>
+
+            </div>
+        </div>
 
     </div>
 

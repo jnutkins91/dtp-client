@@ -54,6 +54,9 @@ import { MockDataModule } from './mock/mock-data.module';
 
 import { ForumService } from './services/forum.service';
 import { DTPUserService } from './services/dtp_user.service';
+import { TagService } from './services/tag.service';
+import { ContractService } from './services/contract.service';
+import { ConversationService } from './services/conversation.service';
 
 import { environment } from '../../environments/environment';
 
@@ -98,6 +101,16 @@ export const NB_CORE_PROVIDERS = [
         login: {
           // ...
           endpoint: '/auth',
+        },
+        logout: {
+          alwaysFail: false,
+          endpoint: '',
+          redirect: {
+            success: '/',
+            failure: null,
+          },
+          defaultErrors: ['Something went wrong, please try again.'],
+          defaultMessages: ['You have been successfully logged out.']
         },
         register: {
           // ...
@@ -146,7 +159,7 @@ export const NB_CORE_PROVIDERS = [
       },
       logout: {
         redirectDelay: 500,
-        strategy: 'email',
+        strategy: 'email'
       },
       validation: {
         password: {
@@ -188,7 +201,10 @@ export const NB_CORE_PROVIDERS = [
   PlayerService,
   StateService,
   ForumService,
-  DTPUserService
+  TagService,
+  DTPUserService,
+  ContractService,
+  ConversationService
 ];
 
 @NgModule({

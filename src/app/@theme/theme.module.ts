@@ -57,7 +57,7 @@ import {
   RoundPipe,
   TimingPipe,
   NumberWithCommasPipe,
-  EvaIconsPipe,
+  EvaIconsPipe
 } from './pipes';
 import {
   OneColumnLayoutComponent,
@@ -66,7 +66,9 @@ import {
   TwoColumnsLayoutComponent,
 } from './layouts';
 
-import { COSMIC_THEME } from './styles/theme.cosmic';
+import { CORPORATE_THEME } from './styles/theme.corporate';
+import { ContractStatus } from './pipes/contract-status.pipe';
+import { ContractStatusColor } from './pipes/contract-status-color.pipe';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -133,6 +135,8 @@ const PIPES = [
   TimingPipe,
   NumberWithCommasPipe,
   EvaIconsPipe,
+  ContractStatus,
+  ContractStatusColor
 ];
 
 const NB_THEME_PROVIDERS = [
@@ -140,7 +144,7 @@ const NB_THEME_PROVIDERS = [
     {
       name: 'corporate',
     },
-    [ COSMIC_THEME ],
+    [ CORPORATE_THEME ],
   ).providers,
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,

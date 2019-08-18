@@ -4,7 +4,9 @@
         <i class="nb-layout-right nb-arrow-thin-left"></i>
     </button>
 
-    <button type="button" class="btn btn-success btn-icon" style="margin-left: 0.5em; float: right;" (click)="newThreadClicked()">
+    <span style="margin-left: 1em; color: black; font-size: 1.5em;">{{ threads?.topic.title }}</span>
+
+    <button type="button" class="btn btn-success btn-icon" style="margin-left: 0.5em; float: right;" (click)="newThreadClicked()" *ngIf="(user | json) != '{}'">
         <i class="nb-layout-right nb-compose"></i>
     </button>
 
@@ -18,7 +20,14 @@
         </nb-card-body>
     </nb-card>
 
-    <nb-card *ngFor="let thread of threads" (click)="onClickThread(thread.id)">
+    <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="threads?.dt_thread_lines.length == 0">
+        <nb-card-body>
+            <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
+            <p>We didn't find anything here...</p>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card *ngFor="let thread of threads?.dt_thread_lines" (click)="onClickThread(thread.id)">
         <nb-card-header>{{ thread.title }}</nb-card-header>
 
         <nb-card-body>
@@ -27,7 +36,7 @@
             <p>{{ thread.body }}</p>
         </nb-card-body>
         <nb-card-footer>
-            <span>10 Comments</span>
+            <span>{{ thread.comment_count }} Comments</span>
             <span style="float: right;">{{ thread.creation_time | date:'medium' }}</span>
         </nb-card-footer>
     </nb-card>

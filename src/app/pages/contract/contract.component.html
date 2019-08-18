@@ -1,0 +1,48 @@
+<div style="margin-bottom: 0.5em;">
+
+    <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;"
+        (click)="backClicked()">
+        <i class="nb-layout-right nb-arrow-thin-left"></i>
+    </button>
+
+    <span style="margin-left: 1em; color: black; font-size: 1.5em;">Contracts tagged '{{ tagName }}'</span>
+
+    <button type="button" class="btn btn-success" style="margin-left: 0.5em; float: right;">
+        Create
+    </button>
+
+</div>
+
+
+<div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+    <nb-card *ngIf="loading">
+        <nb-card-header></nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="contracts?.length == 0">
+        <nb-card-body>
+            <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
+            <p>We didn't find anything here...</p>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of contracts">
+        <nb-card-header>
+            {{ option.name }}
+
+            <span style="float: right;">v{{ option.version }}</span>
+        </nb-card-header>
+
+        <nb-card-body style="display: table-cell; vertical-align: middle;">
+            {{ option.description }}
+        </nb-card-body>
+
+        <nb-alert status="{{ option.status | contractStatusColor }}"
+            style="float: right; text-align: center; margin-bottom: 0;">{{ option.status | contractStatus }}</nb-alert>
+
+    </nb-card>
+
+</div>

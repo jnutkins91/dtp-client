@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { SmartTableData } from '../../@core/data/smart-table';
+import { Router, ActivatedRoute } from '@angular/router';
+import { tag } from '../../@core/data/tag';
 
 @Component({
   selector: 'marketplace',
+  styleUrls: ['./marketplace.component.scss'],
   templateUrl: './marketplace.component.html',
 })
-export class MarketplaceComponent {
+export class MarketplaceComponent implements OnInit {
 
   settings = {
     // add: {
@@ -62,8 +65,29 @@ export class MarketplaceComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData) {
+  constructor(
+    private service: SmartTableData,
+    private router: Router,
+    private route: ActivatedRoute) {
+
     const data = this.service.getData();
     this.source.load(data);
+  }
+
+  selectedDataType: boolean;
+
+  loading = false;
+  tags: Array<tag>;
+
+  ngOnInit() {
+
+    this.selectedDataType = false;
+
+    console.log(this.selectedDataType);
+  }
+
+  onUserRowSelect(event): void {
+    console.log(event);
+    this.router.navigate(['/pages/marketplace/marketplace-detail', { }], { relativeTo: this.route });
   }
 }

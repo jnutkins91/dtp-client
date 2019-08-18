@@ -2,11 +2,6 @@
 
 @include nb-install-component() {
 
-  /deep/ agm-map {
-    width: 100%;
-    height: nb-theme(card-height-small);
-  }
-
   .full-width {
     flex: 1;
     min-width: 220px;
@@ -24,6 +19,21 @@
   nb-card.inline-form-card nb-card-body {
     padding-bottom: 0;
   }
-
   
+  :host {
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .list {
+    max-width: 550px;
+    margin: auto;
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }
 }

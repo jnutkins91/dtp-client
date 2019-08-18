@@ -13,4 +13,23 @@ export class DTPUserService {
   getUserData(id: number): Observable<any> {
     return this.http.get(environment.apiUrl + "/api/user/" + id);
   }
+
+  getOtherUserData(id: number): Observable<any> {
+    return this.http.get(environment.apiUrl + "/api/user/other/" + id);
+  }
+
+  getAllUsers(page: number, searchTerm: string): Observable<any> {
+
+    var userSearch = {
+
+      page: page,
+      searchTerm: searchTerm
+    }
+
+    return this.http.post(environment.apiUrl + "/api/user/all/", userSearch);
+  }
+
+  updateUserData(user: any): Observable<any> {
+    return this.http.post(environment.apiUrl + "/api/user", user);
+  }
 }

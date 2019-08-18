@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 
 export interface forum_topic {
   id: number;
-  topic: string;
+  title: string;
   description: string;
   creation_time: string;
   modification_time: string;

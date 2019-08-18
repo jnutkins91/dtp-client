@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 
 import { ThemeModule } from '../../@theme/theme.module';
-import { AboutComponent } from './about.component';
+import { ContractComponent } from './contract.component';
 
 @NgModule({
   imports: [
     ThemeModule
   ],
   declarations: [
-    AboutComponent
+    ContractComponent
   ],
 })
-export class AboutModule {
-
- }
+export class ContractModule { }

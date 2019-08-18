@@ -1,0 +1,72 @@
+<div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+    <nb-card status="success" *ngIf="loading">
+        <nb-card-header></nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+
+    <div>
+        <div class="row">
+            <div class="col-md-9">
+                <nb-card>
+                    <nb-card-header>{{ theUser?.username }}</nb-card-header>
+                    <nb-card-body>
+                        <button nbButton status="primary" style="width: 100%;" [disabled]="!loggedIn" (click)="onClick_SendMessage()">Send Message</button>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+            <div class="col-md-3">
+                <nb-card style="background: transparent; border: none;">
+                    <nb-card-body class="imgContainer">
+                        <img class="userImg" src="{{ theUser?.picture }}" alt="User Image" height="100" width="100">
+                    </nb-card-body>
+                </nb-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div style="margin-bottom: 0.5em;">
+
+    <span style="margin-left: 1em; color: black; font-size: 1.5em;">{{ theUser?.username }}'s Contracts:</span>
+
+</div>
+
+
+<div [nbSpinner]="contractsLoading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+    <nb-card *ngIf="contractsLoading">
+        <nb-card-header></nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="contracts?.length == 0">
+        <nb-card-body>
+            <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
+            <p>We didn't find anything here...</p>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of contracts">
+        <nb-card-header>
+            {{ option.name }}
+
+            <span style="float: right;">v{{ option.version }}</span>
+        </nb-card-header>
+
+        <nb-card-body style="display: table-cell; vertical-align: middle;">
+            {{ option.description }}
+        </nb-card-body>
+
+        <nb-alert status="{{ option.status | contractStatusColor }}" style="float: right; text-align: center; margin-bottom: 0;">{{ option.status | contractStatus }}</nb-alert>
+
+    </nb-card>
+
+</div>

@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NbDialogService } from '@nebular/theme';
 import { Location } from '@angular/common';
 import { forum_comment } from '../../../@core/data/forum_comment';
 import { ForumService } from '../../../@core/services/forum.service';
+import { NewCommentDialogComponent } from './newComment-dialog.component';
+import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
+import { forum_thread } from '../../../@core/data/forum_thread';
 
 @Component({
   selector: 'comment',
@@ -13,15 +17,33 @@ export class CommentComponent implements OnInit {
   threadId: number;
   sub: any;
 
+  user = {};
+
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
-    private _location: Location) {
+    private _location: Location,
+    private dialogService: NbDialogService,
+    private cd: ChangeDetectorRef,
+    private authService: NbAuthService) {
+
+      this.authService.onTokenChange()
+      .subscribe((token: NbAuthJWTToken) => {
+
+        if (token.isValid()) {
+          console.log("Token:");
+          console.log(token.getPayload());
+          this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
+          console.log("User:");
+          console.log(this.user);
+        }
+
+      });
 
   }
 
   loading = false;
   comments:  {
-    title: '',
+    thread: any,
     dt_comment_lines: Array<forum_comment>
   };
 
@@ -44,8 +66,21 @@ export class CommentComponent implements OnInit {
         () => this.loading = false)
   }
 
-  newThreadClicked() {
-    alert("New Thread Clicked!");
+  newCommentClicked() {
+
+    //this.loading = true;
+
+    //alert("New Thread Clicked!");
+    this.dialogService.open(NewCommentDialogComponent, { context: { id: this.threadId } })
+      .onClose.subscribe(newComment =>
+
+        this.forumService.newComment(newComment)
+          .subscribe(
+
+            (data) => this.comments = data,
+            err => console.error('Observer got an error: ' + err),
+            () => this.loading = false)
+      );
   }
 
   backClicked() {
