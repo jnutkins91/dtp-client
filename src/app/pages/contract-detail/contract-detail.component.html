@@ -1,40 +1,81 @@
-<div style="margin-bottom: 0.5em;">
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
 
-  <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;" (click)="backClicked()">
-    <i class="nb-layout-right nb-arrow-thin-left"></i>
+  <span style="color: black; font-size: 1.5em;">{{ contract?.name }}</span>
+
+  <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #BC0547" (click)="testClicked()"
+    *ngIf="user.id == contract?.miner_id">
+    Publish
   </button>
 
-  <span style="margin-left: 1em; color: black; font-size: 1.5em;">{{ contract.name }}</span>
-
-  <button type="button" class="btn btn-info" style="margin-left: 0.5em; float: right;" (click)="testClicked()"
-  *ngIf="user.id == contract.miner_id">
+  <button type="button" class="btn btn-info" style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;" (click)="testClicked()"
+    *ngIf="user.id == contract?.miner_id">
     Test
   </button>
 
-  <button type="button" class="btn btn-warning" style="margin-left: 0.5em; float: right;" (click)="editClicked()"
-  *ngIf="user.id == contract.miner_id">
+  <button type="button" class="btn btn-warning" style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;" (click)="editClicked()"
+    *ngIf="user.id == contract?.miner_id">
     Edit
   </button>
 
   <button type="button" class="btn btn-success" style="margin-left: 0.5em; float: right;" (click)="purchaseClicked()"
-  *ngIf="user.id != contract.miner_id">
+    *ngIf="user.id != contract?.miner_id">
     Purchase
   </button>
 
 </div>
 
+
+<!-- <div style="margin-bottom: 0.5em;">
+
+  <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;" (click)="backClicked()">
+    <i class="nb-layout-right nb-arrow-thin-left"></i>
+  </button>
+
+  <span style="margin-left: 1em; color: black; font-size: 1.5em;">{{ contract?.name }}</span>
+
+  <button type="button" class="btn btn-info" style="margin-left: 0.5em; float: right;" (click)="testClicked()"
+    *ngIf="user.id == contract?.miner_id">
+    Test
+  </button>
+
+  <button type="button" class="btn btn-warning" style="margin-left: 0.5em; float: right;" (click)="editClicked()"
+    *ngIf="user.id == contract?.miner_id">
+    Edit
+  </button>
+
+  <button type="button" class="btn btn-success" style="margin-left: 0.5em; float: right;" (click)="purchaseClicked()"
+    *ngIf="user.id != contract?.miner_id">
+    Purchase
+  </button>
+
+</div> -->
+
 <nb-card>
 
   <nb-card-header>
     Description
-    <span style="float: right;">v{{ contract.version }}</span>
+    <span style="float: right;">v{{ contract?.version }}</span>
   </nb-card-header>
 
   <nb-card-body>
 
-    {{ contract.description }}
+    {{ contract?.description }}
 
   </nb-card-body>
+
+  <nb-card-footer>
+
+    <div class="tag" *ngFor="let option of contract?.tags">
+      {{ option?.name }}
+    </div>
+
+    <nb-alert status="{{ contract?.status | contractStatusColor }}"
+      style="float: right; text-align: center; margin-bottom: 0;">{{ contract?.status | contractStatus }}
+    </nb-alert>
+
+  </nb-card-footer>
+
 </nb-card>
 
 
@@ -42,10 +83,16 @@
 
 
 
-
 <div style="margin-bottom: 0.5em;">
 
-  <span style="margin-left: 1em; color: black; font-size: 1.5em;">Comments</span>
+  <span style="margin-left: 1em; color: black; font-size: 1.5em;">
+    Comments
+  </span>
+
+  <button type="button" class="btn btn-success btn-icon" style="float: right; background-color: #BC0547;" (click)="newCommentClicked()"
+    *ngIf="(user | json) != '{}'">
+    <i class="nb-layout-right nb-compose"></i>
+  </button>
 
 </div>
 
@@ -53,28 +100,28 @@
 <div [nbSpinner]="commentsLoading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
 
   <nb-card *ngIf="commentsLoading">
-      <nb-card-header></nb-card-header>
-      <nb-card-body>
-      </nb-card-body>
+    <nb-card-header></nb-card-header>
+    <nb-card-body>
+    </nb-card-body>
   </nb-card>
 
   <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="contract_comments?.length == 0">
     <nb-card-body>
-        <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
-        <p>We didn't find anything here...</p>
+      <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
+      <p>We didn't find anything here...</p>
     </nb-card-body>
-</nb-card>
+  </nb-card>
 
-<nb-card *ngFor="let comment of contract_comments">
+  <nb-card *ngFor="let comment of contract_comments">
 
     <nb-card-body>
-        <nb-user [picture]="comment.picture" [name]="comment.username" title="4.8" style="margin-bottom: 2em;">
-        </nb-user>
-        <p>{{ comment.body }}</p>
+      <nb-user [picture]="comment.picture" [name]="comment.username" title="4.8" style="margin-bottom: 2em;">
+      </nb-user>
+      <p>{{ comment.body }}</p>
     </nb-card-body>
     <nb-card-footer>
-        <span style="float: right;">{{ comment.creation_time | date:'medium' }}</span>
+      <span style="float: right;">{{ comment.creation_time | date:'medium' }}</span>
     </nb-card-footer>
-</nb-card>
+  </nb-card>
 
 </div>

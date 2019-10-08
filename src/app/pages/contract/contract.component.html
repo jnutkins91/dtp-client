@@ -1,18 +1,14 @@
-<div style="margin-bottom: 0.5em;">
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
 
-    <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;"
-        (click)="backClicked()">
-        <i class="nb-layout-right nb-arrow-thin-left"></i>
-    </button>
-
-    <span style="margin-left: 1em; color: black; font-size: 1.5em;">Contracts tagged '{{ tagName }}'</span>
+    <span style="color: black; font-size: 1.5em; display:table-cell;
+    vertical-align:middle;">Contracts tagged '{{ tagName }}'</span>
 
     <button type="button" class="btn btn-success" style="margin-left: 0.5em; float: right;">
         Create
     </button>
 
 </div>
-
 
 <div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
 

@@ -1,13 +1,27 @@
 import { of as observableOf, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 
 @Injectable()
 export class ConversationService {
 
-  constructor(private http: HttpClient) {
+  token: string;
 
+  constructor(private http: HttpClient,
+    private authService: NbAuthService) {
+
+    this.authService.onTokenChange()
+      .subscribe((token: NbAuthJWTToken) => {
+
+        if (token.isValid()) {
+          console.log("Token:");
+          console.log(token.getPayload());
+          this.token = token.getValue();
+        }
+
+      });
   }
 
   //  GET
@@ -17,7 +31,15 @@ export class ConversationService {
   }
 
   getConversation(conversationId: number): Observable<any> {
-    return this.http.get(environment.apiUrl + "/api/conversation/conversation/" + conversationId);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + this.token
+      })
+    };
+
+    return this.http.get(environment.apiUrl + "/api/conversation/conversation/" + conversationId, httpOptions);
   }
 
   //  POST

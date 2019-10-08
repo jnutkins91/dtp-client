@@ -9,5 +9,5 @@ export interface contract_offer_comment {
 }
 
 export abstract class ContractOfferCommentData {
-  abstract getThreads(): Observable<contract_offer_comment[]>;
+  abstract getContractComments(): Observable<contract_offer_comment[]>;
 }

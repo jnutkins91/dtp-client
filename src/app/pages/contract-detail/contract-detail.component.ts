@@ -42,7 +42,6 @@ export class ContractDetailComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.getContract(history.state.itemId);
     this.getContractComments(history.state.itemId);
   }
@@ -71,10 +70,10 @@ export class ContractDetailComponent implements OnInit {
     this.contractService.getContractComments(id)
       .subscribe(
 
-        (data: Array<contract_offer_comment>) => {
+        (comment_data: Array<contract_offer_comment>) => {
 
-          this.contract_comments = data;
-          console.log(this.contract);
+          this.contract_comments = comment_data;
+          console.log(this.contract_comments);
         },
         err => console.error('Observer got an error: ' + err),
         () => this.commentsLoading = false);
@@ -86,7 +85,7 @@ export class ContractDetailComponent implements OnInit {
   }
 
   purchaseClicked(id: number) {
-    this.router.navigateByUrl('/pages/contract-purchase', { state: { itemId: id }});
+    this.router.navigateByUrl('/pages/contract-purchase', { state: { itemId: id }, replaceUrl: true});
   }
 
   editClicked(id: number) {

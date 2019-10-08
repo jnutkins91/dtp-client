@@ -1,16 +1,9 @@
-<div style="margin-bottom: 0.5em;">
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
 
-    <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;"
-        (click)="backClicked()">
-        <i class="nb-layout-right nb-arrow-thin-left"></i>
-    </button>
-
-    <span style="margin-left: 1em; color: black; font-size: 1.5em;">Create a New Contract</span>
-
-    <!-- <button type="button" class="btn btn-success btn-icon" style="margin-left: 0.5em; float: right;" (click)="newContractClicked()">
-        <i class="nb-layout-right nb-compose"></i>
-    </button> -->
-
+    <span style="color: black; font-size: 1.5em; display:table-cell;
+    vertical-align:middle;">Create a New Contract</span>
+    
 </div>
 
 <nb-card>
@@ -23,21 +16,29 @@
       </div>
 
       <div class="form-group" style="margin-bottom: 2em;">
-        <input type="text" class="form-control" id="descriptionInput" placeholder="Description">
+        <input type="text" class="form-control" id="descriptionInput" placeholder="Description"
+          formControlName="contract_description">
       </div>
+
+      <h6 for="exampleInputPassword1">Tags</h6>
+      <div class="form-group" style="margin-bottom: 2em;">
+        <tag-input class="form-control" formControlName="contract_tags" [maxItems]='5' theme='bootstrap'></tag-input>
+      </div>
+
+
 
       <h6 for="exampleInputPassword1">Data Type</h6>
       <div class="row" style="margin-bottom: 2em;">
         <div class="form-check">
           <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" name="dataTypeRadios" checked>
+            <input type="radio" class="custom-control-input" value="raw" formControlName="data_type" checked>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Raw</span>
           </label>
         </div>
         <div class="form-check">
           <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" name="dataTypeRadios">
+            <input type="radio" class="custom-control-input" value="processed" formControlName="data_type">
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Processed</span>
           </label>
@@ -48,25 +49,61 @@
       <div class="row" style="margin-bottom: 1em; padding-left: 1.5em;">
 
         <div class="form-group">
-          <nb-checkbox>JSON</nb-checkbox>
+          <nb-checkbox formControlName="data_format_json">JSON</nb-checkbox>
         </div>
 
         <div class="form-group">
-          <nb-checkbox>XML</nb-checkbox>
+          <nb-checkbox formControlName="data_format_xml">XML</nb-checkbox>
         </div>
 
         <div class="form-group">
-          <nb-checkbox>CSV</nb-checkbox>
+          <nb-checkbox formControlName="data_format_csv">CSV</nb-checkbox>
         </div>
 
         <div class="form-group">
-          <nb-checkbox>XLSX</nb-checkbox>
+          <nb-checkbox formControlName="data_format_xlsx">XLSX</nb-checkbox>
         </div>
 
         <div class="form-group">
-          <nb-checkbox>Plain Text</nb-checkbox>
+          <nb-checkbox formControlName="data_format_plaintext">Plain Text</nb-checkbox>
         </div>
       </div>
+
+      <label for="exampleInputEmail1">Timezone</label>
+      <nb-select placeholder="Select Timezone" [(selected)]="selectedItem">
+        <nb-option value="nst">New Zealand Standard Time (GMT+12:00)</nb-option>
+        <nb-option value="sst">Solomon Standard Time (GMT+11:00)</nb-option>
+        <nb-option value="aet">Australia Eastern Time (GMT+10:00)</nb-option>
+        <nb-option value="act">Australia Central Time (GMT+9:30)</nb-option>
+        <nb-option value="jst">Japan Standard Time (GMT+9:00)</nb-option>
+        <nb-option value="ctt">China Taiwan Time (GMT+8:00)</nb-option>
+        <nb-option value="vst">Vietnam Standard Time (GMT+7:00)</nb-option>
+        <nb-option value="bst">Bangladesh Standard Time (GMT+6:00)</nb-option>
+        <nb-option value="ist">India Standard Time (GMT+5:30)</nb-option>
+        <nb-option value="plt">Pakistan Lahore Time (GMT+5:00)</nb-option>
+        <nb-option value="net">Near East Time (GMT+4:00)</nb-option>
+        <nb-option value="met">Middle East Time (GMT+3:30)</nb-option>
+        <nb-option value="eat">Eastern African Time (GMT+3:00)</nb-option>
+        <nb-option value="art">(Arabic) Egypt Standard Time (GMT+2:00)</nb-option>
+        <nb-option value="eet">Eastern European Time (GMT+2:00)</nb-option>
+        <nb-option value="ect">European Central Time (GMT+1:00)</nb-option>
+        <nb-option value="gmt">Greenwich Mean Time (GMT)</nb-option>
+        <nb-option value="utc">Universal Coordinated Time (UTC)</nb-option>
+        <nb-option value="cat">Central African Time (GMT-1:00)</nb-option>
+        <nb-option value="bet">Brazil Eastern Time (GMT-3:00)</nb-option>
+        <nb-option value="ast">Argentina Standard Time (GMT-3:00)</nb-option>
+        <nb-option value="cnt">Canada Newfoundland Time (GMT-3:30)</nb-option>
+        <nb-option value="prt">Puerto Rico and US Virgin Islands Time (GMT-4:00)</nb-option>
+        <nb-option value="iet">Indiana Eastern Standard Time (GMT-5:00)</nb-option>
+        <nb-option value="est">Eastern Standard Time (GMT-5:00)</nb-option>
+        <nb-option value="cst">Central Standard Time (GMT-6:00)</nb-option>
+        <nb-option value="mst">Mountain Standard Time (GMT-7:00)</nb-option>
+        <nb-option value="pnt">Phoenix Standard Time (GMT-7:00)</nb-option>
+        <nb-option value="pst">Pacific Standard Time (GMT-8:00)</nb-option>
+        <nb-option value="ast">Alaska Standard Time (GMT-9:00)</nb-option>
+        <nb-option value="hst">Hawaii Standard Time (GMT-10:00)</nb-option>
+        <nb-option value="mit">Midway Islands Time (GMT-11:00)</nb-option>
+      </nb-select>
 
       <div class="row">
 
@@ -74,8 +111,9 @@
           <nb-card>
             <nb-card-header>Start Date</nb-card-header>
             <nb-card-body>
-              <input nbInput placeholder="Start Date" [nbDatepicker]="startDatePicker" style="width: 100%;">
-              <nb-datepicker #startDatePicker></nb-datepicker>
+              <input nbInput placeholder="Start Date" [nbDatepicker]="startdatecontrol" [formControl]="startDateControl"
+                style="width: 100%;">
+              <nb-datepicker #startdatecontrol></nb-datepicker>
             </nb-card-body>
           </nb-card>
         </div>
@@ -84,8 +122,9 @@
           <nb-card>
             <nb-card-header>End Date</nb-card-header>
             <nb-card-body>
-              <input nbInput placeholder="End Date" [nbDatepicker]="endDatePicker" style="width: 100%;">
-              <nb-datepicker #endDatePicker></nb-datepicker>
+              <input nbInput placeholder="End Date" [nbDatepicker]="enddatecontrol" [formControl]="endDateControl"
+                style="width: 100%;">
+              <nb-datepicker #enddatecontrol></nb-datepicker>
             </nb-card-body>
           </nb-card>
         </div>
@@ -97,17 +136,18 @@
         <nb-card-body>
 
           <div class="form-group" style="margin-bottom: 1em;">
-            <input type="text" class="form-control" id="directoryInput" placeholder="Directory">
+            <input type="text" class="form-control" id="directoryInput" placeholder="Directory"
+              formControlName="location_directory">
           </div>
 
-          <div class="form-group">
-            <input type="text" class="form-control" id="apiEndPointInput" placeholder="API End-Point">
-          </div>
+          <!-- <div class="form-group">
+            <input type="text" class="form-control" id="apiEndPointInput" placeholder="API End-Point" formControlName="location_api_endpoint">
+          </div> -->
 
         </nb-card-body>
       </nb-card>
 
-      <nb-card>
+      <!-- <nb-card>
         <nb-card-header>Authorization Info</nb-card-header>
         <nb-card-body>
 
@@ -195,7 +235,7 @@
           </div>
 
         </nb-card-body>
-      </nb-card>
+      </nb-card> -->
 
 
 
@@ -205,24 +245,27 @@
 
           <div class="form-group">
             <label for="exampleInputEmail1">Username</label>
-            <input type="text" class="form-control" id="usernameInput" placeholder="Username">
+            <input type="text" class="form-control" id="usernameInput" placeholder="Username"
+              formControlName="username">
           </div>
 
           <div class="form-group">
             <label for="exampleInputEmail1">Password</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+            <input type="password" class="form-control" id="passwordInput" placeholder="Password"
+              formControlName="password">
           </div>
 
           <div class="form-group">
             <label for="exampleInputEmail1">Confirm Password</label>
-            <input type="password" class="form-control" id="passwordConfirmInput" placeholder="Confirm Password">
+            <input type="password" class="form-control" id="passwordConfirmInput" placeholder="Confirm Password"
+              formControlName="passwordConfirm">
           </div>
 
         </nb-card-body>
       </nb-card>
 
 
-      <nb-card>
+      <!-- <nb-card>
         <nb-card-header>OAuth</nb-card-header>
         <nb-card-body>
 
@@ -237,35 +280,37 @@
           </div>
 
         </nb-card-body>
-      </nb-card>
+      </nb-card> -->
 
       <nb-card>
         <nb-card-header>Transaction Info</nb-card-header>
         <nb-card-body>
 
           <div class="form-group">
-            <nb-checkbox>Use My Primary Wallet</nb-checkbox>
+            <nb-checkbox formControlName="use_primary_wallet">Use My Primary Wallet</nb-checkbox>
           </div>
 
           <div class="form-group">
-            <nb-checkbox>Fixed Currency</nb-checkbox>
+            <nb-checkbox formControlName="fixed_currency">Fixed Currency</nb-checkbox>
           </div>
 
-          <label for="exampleInputPassword1">Currency</label>
-          <nb-select placeholder="Selected Currency" [(selected)]="selectedCurrency" style="margin-bottom: 1em;">
+          <div class="form-group" *ngIf="!isCurrency()">
+            <label for="exampleInputPassword1">Token Rate</label>
+            <input type="number" step="0.01" class="form-control" id="tokenRateInput" placeholder="Token Rate"
+              formControlName="token_rate">
+          </div>
+
+          <label for="exampleInputPassword1" *ngIf="isCurrency()">Currency</label>
+          <nb-select placeholder="Selected Currency" [(selected)]="selectedCurrency" *ngIf="isCurrency()">
             <nb-option value="usd">United States Dollar</nb-option>
             <nb-option value="gbp">British Pound</nb-option>
             <nb-option value="eur">Euro</nb-option>
           </nb-select>
 
-          <div class="form-group">
-            <label for="exampleInputPassword1">Token Rate</label>
-            <input type="number" class="form-control" id="tokenRateInput" placeholder="Token Rate">
-          </div>
-
-          <div class="form-group">
+          <div class="form-group" *ngIf="isCurrency()">
             <label for="exampleInputPassword1">Currency Rate</label>
-            <input type="number" class="form-control" id="currencyRateInput" placeholder="Currency Rate">
+            <input type="number" step="0.01" class="form-control" id="currencyRateInput" placeholder="Currency Rate" 
+              formControlName="currency_rate">
           </div>
 
         </nb-card-body>

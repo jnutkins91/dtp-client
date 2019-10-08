@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { NbDialogService } from '@nebular/theme';
 import { forum_thread } from '../../../@core/data/forum_thread';
 import { ForumService } from '../../../@core/services/forum.service';
@@ -23,7 +22,6 @@ export class ThreadComponent implements OnInit {
 
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
-    private _location: Location,
     private router: Router,
     private dialogService: NbDialogService,
     private cd: ChangeDetectorRef,
@@ -71,10 +69,6 @@ export class ThreadComponent implements OnInit {
           this.loading = false;     
         }
       );
-  }
-
-  backClicked() {
-    this._location.back();
   }
 
   newThreadClicked() {

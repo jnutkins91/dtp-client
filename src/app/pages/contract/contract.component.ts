@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 
 import { ContractService } from '../../@core/services/contract.service';
 
@@ -13,8 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ContractComponent implements OnInit {
 
-  constructor(private _location: Location,
-    private router: Router,
+  constructor(private router: Router,
     private contractService: ContractService) {
       
   }
@@ -49,9 +47,5 @@ export class ContractComponent implements OnInit {
 
   onClick_Contract(id: string) {
     this.router.navigateByUrl('/pages/contract-detail', { state: { itemId: id }});
-  }
-
-  backClicked() {
-    this._location.back();
   }
 }

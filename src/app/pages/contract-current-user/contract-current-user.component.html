@@ -1,17 +1,26 @@
-<div style="margin-bottom: 0.5em;">
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
 
-    <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;"
-        (click)="backClicked()">
-        <i class="nb-layout-right nb-arrow-thin-left"></i>
-    </button>
+    <span style="color: black; font-size: 1.5em; display:table-cell;
+    vertical-align:middle;">Data Hub</span>
 
-    <span style="margin-left: 1em; color: black; font-size: 1.5em;">Data Hub</span>
-
-    <button type="button" class="btn btn-success" style="margin-left: 0.5em; float: right;" (click)="newContractClicked()">
+    <button type="button" class="btn btn-success" style="float: right;" (click)="newContractClicked()">
         Create
     </button>
 
 </div>
+
+
+<!-- <div style="margin-bottom: 0.5em;">
+
+    <span style="margin-left: 1em; color: black; font-size: 1.5em;">Data Hub</span>
+
+    <button type="button" class="btn btn-success" style="margin-left: 0.5em; float: right;"
+        (click)="newContractClicked()">
+        Create
+    </button>
+
+</div> -->
 
 <div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
 
@@ -35,7 +44,10 @@
             </nb-card>
 
             <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of offers">
-                <nb-card-header>
+
+
+
+                <nb-card-header style="position: relative">
                     {{ option.name }}
 
                     <span style="float: right;">v{{ option.version }}</span>

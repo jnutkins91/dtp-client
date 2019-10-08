@@ -1,12 +1,11 @@
-<div style="margin-bottom: 0.5em;">
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
 
-    <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;" (click)="backClicked()">
-        <i class="nb-layout-right nb-arrow-thin-left"></i>
-    </button>
+    <span style="color: black; font-size: 1.5em; display:table-cell;
+    vertical-align:middle;">{{ threads?.topic.title }}</span>
 
-    <span style="margin-left: 1em; color: black; font-size: 1.5em;">{{ threads?.topic.title }}</span>
-
-    <button type="button" class="btn btn-success btn-icon" style="margin-left: 0.5em; float: right;" (click)="newThreadClicked()" *ngIf="(user | json) != '{}'">
+    <button type="button" class="btn btn-success btn-icon" style="float: right; background-color: #BC0547;"
+        (click)="newThreadClicked()" *ngIf="(user | json) != '{}'">
         <i class="nb-layout-right nb-compose"></i>
     </button>
 
@@ -20,7 +19,8 @@
         </nb-card-body>
     </nb-card>
 
-    <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="threads?.dt_thread_lines.length == 0">
+    <nb-card style="text-align: center; background: transparent; border: none;"
+        *ngIf="threads?.dt_thread_lines.length == 0">
         <nb-card-body>
             <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
             <p>We didn't find anything here...</p>

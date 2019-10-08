@@ -19,6 +19,7 @@ import { ContractCreateModule } from './contract-create/contract-create.module';
 import { ContractDetailModule } from './contract-detail/contract-detail.module';
 import { ContractCurrentUserModule } from './contract-current-user/contract-current-user.module';
 import { ContractPurchaseModule } from './contract-purchase/contract-purchase.module';
+import { FAQModule } from './faq/faq.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -43,7 +44,8 @@ const PAGES_COMPONENTS = [
     ContractCreateModule,
     ContractDetailModule,
     ContractCurrentUserModule,
-    ContractPurchaseModule
+    ContractPurchaseModule,
+    FAQModule
   ],
   declarations: [
     ...PAGES_COMPONENTS

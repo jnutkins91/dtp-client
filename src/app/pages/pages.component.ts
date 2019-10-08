@@ -46,6 +46,11 @@ export class PagesComponent {
       title: 'Forum',
       icon: 'nb-lightbulb',
       link: '/pages/forum',
+    },
+    {
+      title: 'FAQ',
+      icon: 'nb-help',
+      link: '/pages/faq',
     }
     // ,
     // {

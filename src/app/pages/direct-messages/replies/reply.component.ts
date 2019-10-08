@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 
 import { ConversationService } from '../../../@core/services/conversation.service';
 import { ActivatedRoute } from '@angular/router';
-import { NbDialogService } from '@nebular/theme';
-import { NewMessageDialogComponent } from './newMessage-dialog.component';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
+import { dtp_user } from '../../../@core/data/dtp_user';
 
 @Component({
   selector: 'replies',
@@ -15,8 +13,6 @@ import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 export class RepliesComponent implements OnInit {
 
   constructor(private conversationService: ConversationService,
-    private _location: Location,
-    private dialogService: NbDialogService,
     private route: ActivatedRoute,
     private authService: NbAuthService) {
 
@@ -40,7 +36,7 @@ export class RepliesComponent implements OnInit {
   conversation: any;
   conversationId: number;
 
-  user = {};
+  user: dtp_user;
 
   ngOnInit() {
 
@@ -66,24 +62,20 @@ export class RepliesComponent implements OnInit {
       );
   }
 
-  newMessageClicked() {
+  sendMessage(event: any) {
 
-    //this.loading = true;
+    var newMessage = {
+      conversation_id: this.conversationId,
+      user_id: this.user.id,
+      reply: event.message,
+      message_to_id: 8
+    };
 
-    //alert("New Thread Clicked!");
-    this.dialogService.open(NewMessageDialogComponent, { context: { conversationId: this.conversationId, userId: this.user['id'] } })
-      .onClose.subscribe(newMessage =>
-
-        this.conversationService.newMessage(newMessage)
+    this.conversationService.newMessage(newMessage)
           .subscribe(
 
             (data) => this.conversation = data,
             err => console.error('Observer got an error: ' + err),
             () => this.loading = false)
-      );
-  }
-
-  backClicked() {
-    this._location.back();
   }
 }

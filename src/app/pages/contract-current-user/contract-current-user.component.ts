@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 
 import { ContractService } from '../../@core/services/contract.service';
 
@@ -13,8 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ContractCurrentUserComponent implements OnInit {
 
-  constructor(private _location: Location,
-    private router: Router,
+  constructor(private router: Router,
     private contractService: ContractService) {
       
   }
@@ -26,15 +24,14 @@ export class ContractCurrentUserComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(history.state.itemId);
-    this.getContracts(history.state.itemId);
+    this.getContracts();
   }
 
-  getContracts(id: string) {
+  getContracts() {
 
     this.loading = true;
 
-    this.contractService.getContractByUser(id)
+    this.contractService.getMyContracts()
       .subscribe(
 
         (data: contract[]) => {
@@ -49,10 +46,6 @@ export class ContractCurrentUserComponent implements OnInit {
 
   onClick_Contract(id: string) {
     this.router.navigateByUrl('/pages/contract-detail', { state: { itemId: id }});
-  }
-
-  backClicked() {
-    this._location.back();
   }
 
   newContractClicked() {

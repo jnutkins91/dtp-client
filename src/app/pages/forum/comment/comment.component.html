@@ -1,20 +1,9 @@
-<div style="margin-bottom: 0.5em;">
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
 
-    <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;"
-        (click)="backClicked()">
-        <i class="nb-layout-right nb-arrow-thin-left"></i>
-    </button>
-
-    <span style="margin-left: 1em; color: black; font-size: 1.5em;">{{ comments?.thread.title }}</span>
-
-    <button type="button" class="btn btn-success btn-icon" style="margin-left: 0.5em; float: right;"
-        (click)="newCommentClicked()"
-        *ngIf="(user | json) != '{}'">
-        <i class="nb-layout-right nb-compose"></i>
-    </button>
+    <span style="color: black; font-size: 1.5em;">{{ comments?.thread.title }}</span>
 
 </div>
-
 
 <div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
 
@@ -24,12 +13,13 @@
         </nb-card-body>
     </nb-card>
 
-    
+
     <nb-card *ngIf="comments?.thread" style="border-width: 1em;">
         <!-- <nb-card-header>{{ thread.title }}</nb-card-header> -->
 
         <nb-card-body>
-            <nb-user [picture]="comments?.thread.picture" [name]="comments?.thread.username" title="4.8" style="margin-bottom: 2em;">
+            <nb-user [picture]="comments?.thread.picture" [name]="comments?.thread.username" title="4.8"
+                style="margin-bottom: 2em;">
             </nb-user>
             <p>{{ comments?.thread.body }}</p>
         </nb-card-body>
@@ -38,9 +28,28 @@
         </nb-card-footer>
     </nb-card>
 
-    <h5>Comments</h5>
+    <div style="margin-bottom: 0.5em;">
 
-    <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="comments?.dt_comment_lines.length == 0">
+        <span style="margin-left: 1em; color: black; font-size: 1.5em;">
+            Comments
+        </span>
+
+        <button type="button" class="btn btn-success btn-icon" style="float: right; background-color: #BC0547;"
+            (click)="newCommentClicked()" *ngIf="(user | json) != '{}'">
+            <i class="nb-layout-right nb-compose"></i>
+        </button>
+
+    </div>
+
+    <!-- <h5>Comments</h5>
+
+    <button type="button" class="btn btn-success btn-icon" style="float: right; background-color: #BC0547;"
+        (click)="newCommentClicked()" *ngIf="(user | json) != '{}'">
+        <i class="nb-layout-right nb-compose"></i>
+    </button> -->
+
+    <nb-card style="text-align: center; background: transparent; border: none;"
+        *ngIf="comments?.dt_comment_lines.length == 0">
         <nb-card-body>
             <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
             <p>We didn't find anything here...</p>

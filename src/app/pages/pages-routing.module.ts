@@ -22,6 +22,7 @@ import { ContractCreateComponent } from './contract-create/contract-create.compo
 import { ContractDetailComponent } from './contract-detail/contract-detail.component';
 import { ContractCurrentUserComponent } from './contract-current-user/contract-current-user.component';
 import { ContractPurchaseComponent } from './contract-purchase/contract-purchase.component';
+import { FAQComponent } from './faq/faq.component';
 
 const routes: Routes = [{
   path: '',
@@ -39,6 +40,9 @@ const routes: Routes = [{
   },{
     path: 'forum/thread',
     component: ThreadComponent
+  },{
+    path: 'forum/comment',
+    component: CommentComponent
   },{
     path: 'tags',
     component: TagsComponent
@@ -64,8 +68,11 @@ const routes: Routes = [{
     path: 'user-profile',
     component: UserProfileComponent
   },{
-    path: 'forum/comment',
-    component: CommentComponent
+    path: 'user-profile',
+    component: UserProfileComponent
+  },{
+    path: 'faq',
+    component: FAQComponent
   },{
     path: 'marketplace/marketplace-detail',
     component: MarketplaceDetailComponent

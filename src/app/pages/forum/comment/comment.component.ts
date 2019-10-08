@@ -1,12 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { Location } from '@angular/common';
 import { forum_comment } from '../../../@core/data/forum_comment';
 import { ForumService } from '../../../@core/services/forum.service';
 import { NewCommentDialogComponent } from './newComment-dialog.component';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
-import { forum_thread } from '../../../@core/data/forum_thread';
 
 @Component({
   selector: 'comment',
@@ -21,9 +20,7 @@ export class CommentComponent implements OnInit {
 
   constructor(private forumService: ForumService,
     private route: ActivatedRoute,
-    private _location: Location,
     private dialogService: NbDialogService,
-    private cd: ChangeDetectorRef,
     private authService: NbAuthService) {
 
       this.authService.onTokenChange()
@@ -81,9 +78,5 @@ export class CommentComponent implements OnInit {
             err => console.error('Observer got an error: ' + err),
             () => this.loading = false)
       );
-  }
-
-  backClicked() {
-    this._location.back();
   }
 }
