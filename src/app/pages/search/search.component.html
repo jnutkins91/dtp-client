@@ -1,5 +1,38 @@
-<nb-card>
-    <nb-card-header>Search</nb-card-header>
+<!-- <nb-card>
+    <nb-card-header>{{ searchTerm }}</nb-card-header>
     <nb-card-body>
     </nb-card-body>
-</nb-card>
+</nb-card> -->
+
+
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
+
+    <span style="color: black; font-size: 1.5em; display:table-cell;
+    vertical-align:middle;">Search Results: {{ searchTerm }}</span>
+
+</div>
+
+<div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+    <nb-card *ngIf="loading">
+        <nb-card-header></nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-tabset fullWidth>
+        <nb-tab tabTitle="Contract Offers">
+
+        </nb-tab>
+
+        <nb-tab tabTitle="Users">
+
+        </nb-tab>
+
+        <nb-tab tabTitle="Tags">
+ 
+        </nb-tab>
+    </nb-tabset>
+
+</div>

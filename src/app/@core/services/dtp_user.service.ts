@@ -1,14 +1,28 @@
-import { of as observableOf,  Observable } from 'rxjs';
+import { of as observableOf, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 
 @Injectable()
 export class DTPUserService {
 
-    constructor(private http:HttpClient) {
+  token: string;
 
-    }
+  constructor(private http: HttpClient,
+    private authService: NbAuthService) {
+
+    this.authService.onTokenChange()
+      .subscribe((token: NbAuthJWTToken) => {
+
+        if (token.isValid()) {
+          console.log("Token:");
+          console.log(token.getPayload());
+          this.token = token.getValue();
+        }
+
+      });
+  }
 
   getUserData(id: number): Observable<any> {
     return this.http.get(environment.apiUrl + "/api/user/" + id);
@@ -31,5 +45,17 @@ export class DTPUserService {
 
   updateUserData(user: any): Observable<any> {
     return this.http.post(environment.apiUrl + "/api/user", user);
+  }
+
+  updateUserImage(formData: FormData): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type':  'multipart/form-data',
+        'Authorization': 'Bearer ' + this.token
+      })
+    };
+
+    return this.http.post(environment.apiUrl + "/api/user/image", formData, httpOptions);
   }
 }

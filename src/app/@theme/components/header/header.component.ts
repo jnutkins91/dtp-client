@@ -39,8 +39,7 @@ export class HeaderComponent implements OnInit {
       .subscribe((data: any) => {
        
         this.value = data.term;
-        console.log(this.value);
-        this.router.navigate(['/pages/search', { }], { relativeTo: this.route });
+        this.router.navigate(['/pages/search/'] , { queryParams: { searchTerm: this.value, relativeTo: this.route } });
       })
 
     this.authService.onTokenChange()

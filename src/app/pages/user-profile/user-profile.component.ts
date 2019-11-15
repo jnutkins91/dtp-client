@@ -80,6 +80,11 @@ export class UserProfileComponent implements OnInit {
         () => this.loading = false)
   }
 
+  reportUserClicked() {
+    
+    alert("Report User Clicked!");
+  }
+
   getContracts(id: string) {
 
     this.contractsLoading = true;
@@ -151,6 +156,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   onClick_Contract(id: string) {
-    this.router.navigateByUrl('/pages/contract', { state: { itemId: id, tagName: '' } });
+    this.router.navigateByUrl('/pages/contract-detail', { state: { itemId: id } });
   }
 }

@@ -15,19 +15,20 @@
                     <nb-card-header>ACCOUNT DETAILS</nb-card-header>
                     <nb-card-body>
                         <div class="input-group">
-                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Username" value="{{ theUser?.username }}" 
-                            disabled>
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Username"
+                                value="{{ theUser?.username }}" disabled>
                         </div>
                         <div class="input-group">
-                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="E-Mail" value="{{ theUser?.email }}"
-                                disabled>
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="E-Mail"
+                                value="{{ theUser?.email }}" disabled>
                         </div>
                         <div class="input-group">
-                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="WALLET ID" value="{{ theUser?.wallet_id }}" 
-                            disabled>
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="WALLET ID"
+                                value="{{ theUser?.wallet_id }}" disabled>
                         </div>
                         <div class="input-group">
-                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Mobile (ENABLE 2-FACTOR AUTHENTICATION)" value="{{ theUser?.mobile }}"
+                            <input style="color: grey;" type="text" nbInput fullWidth
+                                placeholder="Mobile (ENABLE 2-FACTOR AUTHENTICATION)" value="{{ theUser?.mobile }}"
                                 disabled>
                         </div>
                     </nb-card-body>
@@ -37,25 +38,98 @@
                 <nb-card>
                     <nb-card-header>EDIT IMAGE</nb-card-header>
                     <nb-card-body class="imgContainer">
-                        <img class="userImg" src="{{ theUser?.picture }}" alt="User Image" height="200" width="200">
+                        <img class="userImg" src="{{ theUser?.picture }}" (click)="editImage()" alt="User Image"
+                            height="200" width="200">
                     </nb-card-body>
                 </nb-card>
             </div>
         </div>
 
-        <nb-card>
-            <nb-card-body>
-                <button nbButton status="primary" style="width: 100%;">Enable 2-Factor Authentication</button>
-            </nb-card-body>
-        </nb-card>
 
-        <div class="row teamContainer">
-            <div class="col-md-9" style="margin-bottom: 1em;">
+        <div class="row">
+
+            <div class="col-md-9">
 
                 <nb-card>
-                    <nb-card-header>PREFERENCES</nb-card-header>
+                    <nb-card-header>ADDRESS
+                    </nb-card-header>
                     <nb-card-body>
-                        <h6>Timezone:</h6>
+                        <div class="input-group">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Address Line 1"
+                            [(ngModel)]="theUser.address_line_1">
+                        </div>
+                        <div class="input-group">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Address Line 2"
+                            [(ngModel)]="theUser.address_line_2">
+                        </div>
+                        <div class="input-group">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Address Line 3"
+                            [(ngModel)]="theUser.address_line_3">
+                        </div>
+                        <div class="input-group">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="ZIP/Postal Code"
+                            [(ngModel)]="theUser.postal_code">
+                        </div>
+                        <div class="input-group">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="City" [(ngModel)]="theUser.city">
+                        </div>
+                        <div class="input-group">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="State/County"
+                            [(ngModel)]="theUser.state_county">
+                        </div>
+                        <div class="input-group">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Country" [(ngModel)]="theUser.country">
+                        </div>
+                    </nb-card-body>
+                    
+                </nb-card>
+            </div>
+
+            <div class="col-md-3" style="margin-bottom: 1em;">
+
+                <nb-card>
+                    <nb-card-header style="padding-bottom: 0px;">WALLET BALANCE</nb-card-header>
+                    <nb-card-body>
+                        <span style="font-size: 3rem; font-weight: 300;">Ϸ{{ theUser?.wallet?.balance }}</span>
+                    </nb-card-body>
+                </nb-card>
+
+                <nb-card>
+                    <nb-card-header style="padding-bottom: 0px;">2-FACTOR AUTHENTICATION</nb-card-header>
+                    <nb-card-body>
+                        <button nbButton status="success" style="width: 100%;">Enable</button>
+                    </nb-card-body>
+                </nb-card>
+
+                <nb-card>
+                    <nb-card-header style="padding-bottom: 0px;">DANGER</nb-card-header>
+                    <nb-card-body>
+                        <button nbButton status="warning" style="width: 100%; margin-bottom: 1em;"
+                            (click)="changePasswordClicked()">Change Password</button>
+                        <button nbButton status="danger" style="width: 100%;">Delete Account</button>
+                    </nb-card-body>
+                </nb-card>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="row teamContainer">
+            <div class="col-md-12" style="margin-bottom: 1em;">
+
+                <nb-card>
+                    <nb-card-header>BIO & PREFERENCES</nb-card-header>
+                    <nb-card-body>
+
+                        <h6>Bio</h6>
+                        <div class="input-group">
+                            <input style="color: grey;" type="text" nbInput fullWidth placeholder="Bio"
+                                [(ngModel)]="theUser.bio">
+                        </div>
+
+                        <h6>Timezone</h6>
                         <nb-select placeholder="Select Timezone" [(selected)]="selectedItem">
                             <nb-option value="nst">New Zealand Standard Time (GMT+12:00)</nb-option>
                             <nb-option value="sst">Solomon Standard Time (GMT+11:00)</nb-option>
@@ -90,36 +164,42 @@
                             <nb-option value="hst">Hawaii Standard Time (GMT-10:00)</nb-option>
                             <nb-option value="mit">Midway Islands Time (GMT-11:00)</nb-option>
                         </nb-select>
-                        <h6 style="margin-top: 1em;">E-Mail Notifications:</h6>
+                        <h6 style="margin-top: 1em;">E-Mail Notifications</h6>
                         <div class="row">
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.news_pref">News</nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.deposit_pref">Deposit</nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.receipt_pref">Receipt</nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.warnings_pref">Warnings</nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.comments_pref">Comments</nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.newdm_pref">New DMs</nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.new_contract_pref">New Contract</nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.news_pref">News
+                            </nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.deposit_pref">
+                                Deposit
+                            </nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.receipt_pref">
+                                Receipt
+                            </nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.warnings_pref">
+                                Warnings
+                            </nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.comments_pref">
+                                Comments
+                            </nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.newdm_pref">New DMs
+                            </nb-checkbox>
+                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.new_contract_pref">
+                                New
+                                Contract</nb-checkbox>
                         </div>
-                        <button nbButton status="success" style="margin-right: 1em;" (click)="saveClicked()">Save</button>
 
                     </nb-card-body>
                 </nb-card>
 
-            </div>
-            <div class="col-md-3" style="margin-bottom: 1em;">
-
-                <nb-card>
-                    <nb-card-header>DANGER</nb-card-header>
-                    <nb-card-body>
-                        <button nbButton status="warning" style="width: 100%; margin-bottom: 1em;"
-                            (click)="changePasswordClicked()">Change Password</button>
-                        <button nbButton status="danger" style="width: 100%;">Delete Account</button>
-                    </nb-card-body>
-                </nb-card>
+                <button nbButton status="success" style="margin-right: 1em; width: 100%;"
+                            (click)="saveClicked()">Save</button>
 
             </div>
+
         </div>
 
     </div>
+
+    <input #userImageInput type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".jpg,.png,.jpeg"
+        style="display: none;">
 
 </div>

@@ -14,20 +14,10 @@
         </nb-card-body>
     </nb-card>
 
-    <nb-chat title="Joe Bloggs" status="success" size="large">
+    <nb-chat title="{{ conversation?.username }}" status="success" size="large">
         <nb-chat-message *ngFor="let reply of conversation?.replies" [type]="text" [message]="reply.reply" [reply]="reply.user_id == user.id"
             [sender]="reply.username" [date]="reply.creation_time" [avatar]="reply.picture">
         </nb-chat-message>
         <nb-chat-form (send)="sendMessage($event)" [dropFiles]="false"></nb-chat-form>
     </nb-chat>
-
-    <!-- <nb-card *ngFor="let reply of conversation?.replies">
-
-        <nb-card-body>
-            <nb-user [picture]="reply.picture" [name]="reply.username" title="4.8" style="margin-bottom: 2em;">
-            </nb-user>
-            <p>{{ reply.reply }}</p>
-        </nb-card-body>
-    </nb-card> -->
-
 </div>

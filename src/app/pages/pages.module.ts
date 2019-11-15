@@ -16,6 +16,7 @@ import { TagsModule } from './tags/tags.module';
 import { ContractModule } from './contract/contract.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { ContractCreateModule } from './contract-create/contract-create.module';
+import { ContractEditModule } from './contract-edit/contract-edit.module';
 import { ContractDetailModule } from './contract-detail/contract-detail.module';
 import { ContractCurrentUserModule } from './contract-current-user/contract-current-user.module';
 import { ContractPurchaseModule } from './contract-purchase/contract-purchase.module';
@@ -42,6 +43,7 @@ const PAGES_COMPONENTS = [
     ContractModule,
     UserProfileModule,
     ContractCreateModule,
+    ContractEditModule,
     ContractDetailModule,
     ContractCurrentUserModule,
     ContractPurchaseModule,

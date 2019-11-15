@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { dtp_user } from '../../@core/data/dtp_user';
 import { contract_offer_comment } from '../../@core/data/contract_offer_comment';
+import { NewContractCommentDialogComponent } from './newContractComment-dialog.component';
+import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
+import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 
 @Component({
   selector: 'contract-detail',
@@ -17,9 +20,11 @@ export class ContractDetailComponent implements OnInit {
   constructor(private _location: Location,
     private router: Router,
     private authService: NbAuthService,
-    private contractService: ContractService) {
+    private dialogService: NbDialogService,
+    private contractService: ContractService,
+    private toastrService: NbToastrService) {
 
-      this.authService.onTokenChange()
+    this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
@@ -85,15 +90,91 @@ export class ContractDetailComponent implements OnInit {
   }
 
   purchaseClicked(id: number) {
-    this.router.navigateByUrl('/pages/contract-purchase', { state: { itemId: id }, replaceUrl: true});
+    this.router.navigateByUrl('/pages/contract-purchase', { state: { itemId: id }, replaceUrl: true });
   }
 
   editClicked(id: number) {
-    alert("Edit Clicked");
+    this.router.navigateByUrl('/pages/contract-edit');
   }
 
   testClicked(id: number) {
     alert("Test Clicked");
   }
 
+  activateClicked(id: number) {
+    alert("Activate Clicked");
+  }
+
+  suspendClicked(id: number) {
+
+    this.loading = true;
+
+    this.contractService.suspendContract(id)
+      .subscribe(
+
+        (data) => {
+
+          this.contract = data;
+          this.loading = false;
+        }, //this.theUser = data,
+        err => console.error('Observer got an error: ' + err),
+        () => this.loading = false);
+  }
+
+  newCommentClicked(id: number) {
+
+    this.dialogService.open(NewContractCommentDialogComponent, { context: { contractId: this.contract.id, userId: this.user["id"] } })
+      .onClose.subscribe(newMessage =>
+
+        this.contractService.newContractComment(newMessage)
+          .subscribe(
+
+            (data) => {
+
+              this.contract_comments = data;
+              this.showToast_Success();
+            },
+            err => {
+              this.showToast_Error();
+              console.error('Observer got an error: ' + err)
+            },
+            () => this.loading = false)
+      );
+  }
+
+  private showToast_Success() {
+
+    const config = {
+      status: NbToastStatus.SUCCESS,
+      destroyByClick: false,
+      duration: 2000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: false,
+    };
+
+    //this.index += 1;
+    this.toastrService.show(
+      '',
+      'Commented!',
+      config);
+  }
+
+  private showToast_Error() {
+
+    const config = {
+      status: NbToastStatus.DANGER,
+      destroyByClick: false,
+      duration: 2000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: false,
+    };
+
+    //this.index += 1;
+    this.toastrService.show(
+      '',
+      'Failed to comment!',
+      config);
+  }
 }

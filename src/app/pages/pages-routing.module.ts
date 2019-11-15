@@ -23,6 +23,7 @@ import { ContractDetailComponent } from './contract-detail/contract-detail.compo
 import { ContractCurrentUserComponent } from './contract-current-user/contract-current-user.component';
 import { ContractPurchaseComponent } from './contract-purchase/contract-purchase.component';
 import { FAQComponent } from './faq/faq.component';
+import { ContractEditComponent } from './contract-edit/contract-edit.component';
 
 const routes: Routes = [{
   path: '',
@@ -49,6 +50,9 @@ const routes: Routes = [{
   },{
     path: 'contract-create',
     component: ContractCreateComponent
+  },{
+    path: 'contract-edit',
+    component: ContractEditComponent
   },{
     path: 'contract-purchase',
     component: ContractPurchaseComponent

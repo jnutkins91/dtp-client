@@ -13,13 +13,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NewThreadDialogComponent } from './pages/forum/thread/newThread-dialog.component';
 import { NewCommentDialogComponent } from './pages/forum/comment/newComment-dialog.component';
 import { NewMessageDialogComponent } from './pages/direct-messages/replies/newMessage-dialog.component';
+import { NewContractCommentDialogComponent } from './pages/contract-detail/newContractComment-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewThreadDialogComponent,
     NewMessageDialogComponent,
-    NewCommentDialogComponent 
+    NewCommentDialogComponent,
+    NewContractCommentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { NewMessageDialogComponent } from './pages/direct-messages/replies/newMe
   entryComponents: [
     NewThreadDialogComponent,
     NewMessageDialogComponent,
+    NewContractCommentDialogComponent,
     NewCommentDialogComponent
   ],
   bootstrap: [AppComponent],

@@ -27,7 +27,7 @@ export class ContractService {
   //  GET
 
   getContract(id: string): Observable<any> {
-    return this.http.get(environment.apiUrl + "/api/contract/" + id);
+    return this.http.get(environment.apiUrl + "/api/contractoffer/" + id);
   }
 
   getContractComments(id: string): Observable<any> {
@@ -35,12 +35,12 @@ export class ContractService {
   }
 
   getContractByTag(id: string): Observable<any> {
-    return this.http.get(environment.apiUrl + "/api/contract/tag/" + id);
+    return this.http.get(environment.apiUrl + "/api/contractoffer/tag/" + id);
   }
 
   getContractByUser(id: string): Observable<any> {
 
-    return this.http.get(environment.apiUrl + "/api/contract/user/" + id);
+    return this.http.get(environment.apiUrl + "/api/contractoffer/user/" + id);
   }
 
   getMyContracts(): Observable<any> {
@@ -52,12 +52,28 @@ export class ContractService {
       })
     };
 
-    return this.http.get(environment.apiUrl + "/api/contract/user", httpOptions);
+    return this.http.get(environment.apiUrl + "/api/contractoffer/user", httpOptions);
   }
 
   //  POST
 
   newContractOffer(contract: any): Observable<any> {
-    return this.http.post(environment.apiUrl + "/api/contract/", contract);
+    return this.http.post(environment.apiUrl + "/api/contractoffer/", contract);
   }
+
+  newContractComment(contract_comment: any): Observable<any> {
+    return this.http.post(environment.apiUrl + "/api/contractoffercomment", contract_comment);
+  }
+
+  suspendContract(contractId: number): Observable<any> {
+
+    const httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + this.token
+        })
+    };
+
+    return this.http.post(environment.apiUrl + "/api/contractoffer/suspend", contractId, httpOptions);
+}
 }

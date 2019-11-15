@@ -3,9 +3,14 @@ display:table;">
 
   <span style="color: black; font-size: 1.5em;">{{ contract?.name }}</span>
 
-  <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #BC0547" (click)="testClicked()"
-    *ngIf="user.id == contract?.miner_id">
-    Publish
+  <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #BC0547" (click)="activateClicked()"
+    *ngIf="user.id == contract?.miner_id && (contract?.status == 0 || contract?.status == 2)">
+    Activate
+  </button>
+
+  <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #ff6b83" (click)="suspendClicked(contract?.id)"
+    *ngIf="user.id == contract?.miner_id && contract?.status == 1">
+    Suspend
   </button>
 
   <button type="button" class="btn btn-info" style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;" (click)="testClicked()"
@@ -14,12 +19,12 @@ display:table;">
   </button>
 
   <button type="button" class="btn btn-warning" style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;" (click)="editClicked()"
-    *ngIf="user.id == contract?.miner_id">
+    *ngIf="user.id == contract?.miner_id && contract?.status == 0">
     Edit
   </button>
 
   <button type="button" class="btn btn-success" style="margin-left: 0.5em; float: right;" (click)="purchaseClicked()"
-    *ngIf="user.id != contract?.miner_id">
+    *ngIf="user.id != contract?.miner_id && contract?.status == 1">
     Purchase
   </button>
 
@@ -83,14 +88,13 @@ display:table;">
 
 
 
-<div style="margin-bottom: 0.5em;">
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
 
-  <span style="margin-left: 1em; color: black; font-size: 1.5em;">
-    Comments
-  </span>
+  <span style="color: black; font-size: 1.5em;">Comments</span>
 
-  <button type="button" class="btn btn-success btn-icon" style="float: right; background-color: #BC0547;" (click)="newCommentClicked()"
-    *ngIf="(user | json) != '{}'">
+  <button type="button" class="btn btn-primary btn-icon" style="margin-left: 0.5em; float: right; background-color: #BC0547" (click)="newCommentClicked()"
+  *ngIf="(user | json) != '{}'">
     <i class="nb-layout-right nb-compose"></i>
   </button>
 

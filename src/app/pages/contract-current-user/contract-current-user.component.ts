@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ContractService } from '../../@core/services/contract.service';
+import { ContractRequestService } from '../../@core/services/contractrequest.service';
 
 import { contract } from '../../@core/data/contract';
 import { Router } from '@angular/router';
@@ -13,8 +14,9 @@ import { Router } from '@angular/router';
 export class ContractCurrentUserComponent implements OnInit {
 
   constructor(private router: Router,
-    private contractService: ContractService) {
-      
+    private contractService: ContractService,
+    private contractRequestService: ContractRequestService) {
+
   }
 
   loading = false;
@@ -25,6 +27,7 @@ export class ContractCurrentUserComponent implements OnInit {
   ngOnInit() {
 
     this.getContracts();
+    this.getContractRequests();
   }
 
   getContracts() {
@@ -41,14 +44,68 @@ export class ContractCurrentUserComponent implements OnInit {
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
-    
+
+  }
+
+  getContractRequests() {
+
+    this.loading = true;
+
+    this.contractRequestService.getMyContractRequests()
+      .subscribe(
+
+        (data: contract[]) => {
+
+          this.requests = data;
+          console.log(this.requests);
+        },
+        err => console.error('Observer got an error: ' + err),
+        () => this.loading = false);
+
   }
 
   onClick_Contract(id: string) {
-    this.router.navigateByUrl('/pages/contract-detail', { state: { itemId: id }});
+    this.router.navigateByUrl('/pages/contract-detail', { state: { itemId: id } });
   }
 
   newContractClicked() {
     this.router.navigateByUrl('/pages/contract-create');
+  }
+
+  acceptContractRequest(id: number) {
+
+    this.loading = true;
+
+    this.contractRequestService.acceptRequest(id)
+      .subscribe(
+
+        (data) => {
+
+          this.requests = data;
+          this.loading = false
+        },
+        err => {
+          debugger;
+          alert(err.error);
+          this.loading = false;
+        },
+        () => this.loading = false);
+  }
+
+  rejectContractRequest(id: number) {
+
+    this.loading = true;
+
+    this.contractRequestService.rejectRequest(id)
+      .subscribe(
+
+        (data) => {
+
+          this.requests = data;
+          alert("Rejected Success!");
+          this.loading = false;
+        }, //this.theUser = data,
+        err => console.error('Observer got an error: ' + err),
+        () => this.loading = false);
   }
 }

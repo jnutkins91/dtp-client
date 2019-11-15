@@ -7,11 +7,11 @@ import { dtp_user } from '../../@core/data/dtp_user';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'contract-create',
-  styleUrls: ['./contract-create.component.scss'],
-  templateUrl: './contract-create.component.html',
+  selector: 'contract-edit',
+  styleUrls: ['./contract-edit.component.scss'],
+  templateUrl: './contract-edit.component.html',
 })
-export class ContractCreateComponent {
+export class ContractEditComponent {
 
   selectedCurrency: any;
   selectedTimezone: any;
