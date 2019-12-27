@@ -1,3 +1,5 @@
+import { wallet } from './wallet';
+
 export interface dtp_user {
   id: number;
   email: string;
@@ -20,4 +22,5 @@ export interface dtp_user {
   comments_pref: boolean;
   newdm_pref: boolean;
   new_contract_pref: boolean;
+  wallet: wallet;
 }

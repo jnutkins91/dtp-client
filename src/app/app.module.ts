@@ -11,6 +11,7 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NewThreadDialogComponent } from './pages/forum/thread/newThread-dialog.component';
+import { ShowcaseDialogComponent } from './pages/modal-overlays/dialog/showcase-dialog/showcase-dialog.component';
 import { NewCommentDialogComponent } from './pages/forum/comment/newComment-dialog.component';
 import { NewMessageDialogComponent } from './pages/direct-messages/replies/newMessage-dialog.component';
 import { NewContractCommentDialogComponent } from './pages/contract-detail/newContractComment-dialog.component';
@@ -19,6 +20,7 @@ import { NewContractCommentDialogComponent } from './pages/contract-detail/newCo
   declarations: [
     AppComponent,
     NewThreadDialogComponent,
+    ShowcaseDialogComponent,
     NewMessageDialogComponent,
     NewCommentDialogComponent,
     NewContractCommentDialogComponent
@@ -35,6 +37,7 @@ import { NewContractCommentDialogComponent } from './pages/contract-detail/newCo
   ],
   entryComponents: [
     NewThreadDialogComponent,
+    ShowcaseDialogComponent,
     NewMessageDialogComponent,
     NewContractCommentDialogComponent,
     NewCommentDialogComponent

@@ -22,9 +22,9 @@ export class PagesComponent {
 
   MENU_ITEMS: NbMenuItem[] = [
     {
-      title: 'Dashboard',
+      title: 'Home',
       icon: 'nb-bar-chart',
-      link: '/pages/dashboard',
+      link: '/pages/home',
     },
     {
       title: 'Data',
@@ -43,14 +43,14 @@ export class PagesComponent {
       ],
     },
     {
+      title: 'Groups',
+      icon: 'nb-grid-b-outline',
+      link: '/pages/faq',
+    },
+    {
       title: 'Forum',
       icon: 'nb-lightbulb',
       link: '/pages/forum',
-    },
-    {
-      title: 'FAQ',
-      icon: 'nb-help',
-      link: '/pages/faq',
     }
     // ,
     // {

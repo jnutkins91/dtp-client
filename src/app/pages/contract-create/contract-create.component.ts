@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Location, DatePipe } from '@angular/common';
 import { ContractService } from '../../@core/services/contract.service';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { dtp_user } from '../../@core/data/dtp_user';
 import { Router, ActivatedRoute } from '@angular/router';
+import { contract } from '../../@core/data/contract';
+import { ShowcaseDialogComponent } from '../modal-overlays/dialog/showcase-dialog/showcase-dialog.component';
+import { NbDialogService } from '@nebular/theme';
 
 @Component({
   selector: 'contract-create',
@@ -17,6 +20,18 @@ export class ContractCreateComponent {
   selectedTimezone: any;
 
   user: dtp_user;
+  contract: contract;
+  passwordConfirm: string;
+  data_type = "raw";
+  limit_contracts = false;
+
+  loading = false;
+
+  inputItemNgModel;
+  textareaItemNgModel;
+  inputItemFormControl = new FormControl();
+
+  newContractOfferForm: FormGroup;
 
   constructor(private _location: Location,
     private formBuilder: FormBuilder,
@@ -24,35 +39,17 @@ export class ContractCreateComponent {
     private contractService: ContractService,
     private router: Router,
     private route: ActivatedRoute,
-    public datepipe: DatePipe) {
+    public datepipe: DatePipe,
+    private dialogService: NbDialogService) {
+
+    this.contract = {} as contract;
+
+    this.contract.token_rate = 0;
+    this.contract.currency_rate = 0;
+    this.contract.contract_limit = 0;
 
     this.selectedCurrency = "usd";
     this.selectedTimezone = "gmt";
-
-    this.newContractOfferForm = formBuilder.group({
-      contract_name: this.contract_name,
-      contract_description: this.contract_description,
-      startDateControl: this.startDateControl,
-      endDateControl: this.endDateControl,
-      contract_tags: this.contract_tags,
-      data_format_xlsx: this.data_format_xlsx,
-      data_format_json: this.data_format_json,
-      data_format_xml: this.data_format_xml,
-      data_format_csv: this.data_format_csv,
-      data_format_plaintext: this.data_format_plaintext,
-      data_type: this.data_type,
-      use_primary_wallet: [1],
-      fixed_currency: this.fixed_currency,
-      username: this.username,
-      password: this.password,
-      passwordConfirm: this.passwordConfirm,
-      location_directory: this.location_directory,
-      // location_api_endpoint: this.location_api_endpoint,
-      limit_contracts: this.limit_contracts,
-      contract_limit: this.contract_limit,
-      token_rate: this.token_rate,
-      currency_rate: this.currency_rate
-    });
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
@@ -66,41 +63,57 @@ export class ContractCreateComponent {
         }
 
       });
+
+    this.newContractOfferForm = new FormGroup({
+      'contract_name': new FormControl(this.contract.name, [
+        Validators.required,
+        Validators.minLength(10)
+      ]),
+      'description': new FormControl(this.contract.description, [
+        Validators.required,
+        Validators.minLength(25)
+      ]),
+      'contract_tags': new FormControl(this.contract.tags),
+
+      'data_type': new FormControl(this.contract.data_type),
+
+      'data_format_xlsx': new FormControl(this.contract.data_format_xlsx),
+      'data_format_json': new FormControl(this.contract.data_format_json),
+      'data_format_xml': new FormControl(this.contract.data_format_xml),
+      'data_format_csv': new FormControl(this.contract.data_format_csv),
+      'data_format_plain_text': new FormControl(this.contract.data_format_plain_text),
+
+
+      'startDateControl': new FormControl(this.contract.startdate, [
+        Validators.required
+      ]),
+      'endDateControl': new FormControl(this.contract.enddate, [
+        Validators.required
+      ]),
+      'use_primary_wallet': new FormControl(this.contract.use_primary_wallet),
+      'fixed_currency': new FormControl(this.contract.fixed_currency),
+      'username': new FormControl(this.contract.username, [
+        Validators.required
+      ]),
+      'location_directory': new FormControl(this.contract.location_directory),
+
+      'password': new FormControl(this.contract.password, [
+        Validators.required
+      ]),
+      'passwordConfirm': new FormControl(this.contract.passwordConfirm, [
+        Validators.required
+      ]),
+
+      'limit_contracts': new FormControl(),
+      'contract_limit': new FormControl(this.contract.contract_limit),
+
+      'timezone': new FormControl(this.contract.timezone),
+
+      'token_rate': new FormControl(this.contract.token_rate),
+      'currency_rate': new FormControl(this.contract.currency_rate)
+
+    });
   }
-
-  loading = false;
-
-  inputItemNgModel;
-  textareaItemNgModel;
-  inputItemFormControl = new FormControl();
-
-  private newContractOfferForm: FormGroup;
-  contract_name = new FormControl();
-  contract_description = new FormControl();
-  contract_tags = new FormControl();
-  startDateControl = new FormControl();
-  endDateControl = new FormControl();
-  data_format_xlsx = new FormControl();
-  data_format_json = new FormControl();
-  data_format_xml = new FormControl();
-  data_format_csv = new FormControl();
-  data_format_plaintext = new FormControl();
-  data_type = new FormControl();
-
-  use_primary_wallet = new FormControl();
-  fixed_currency = new FormControl();
-  username = new FormControl();
-  location_directory = new FormControl();
-  // location_api_endpoint = new FormControl();
-
-  password = new FormControl();
-  passwordConfirm = new FormControl();
-
-  limit_contracts = new FormControl();
-  contract_limit = new FormControl();
-
-  token_rate = new FormControl();
-  currency_rate = new FormControl();
 
   backClicked() {
     this._location.back();
@@ -108,27 +121,41 @@ export class ContractCreateComponent {
 
   isCurrency() {
 
-    return this.newContractOfferForm.get('fixed_currency').value || false;
+    return this.contract.fixed_currency || false;
   }
 
   limitContracts() {
 
-    return this.newContractOfferForm.get('limit_contracts').value || false;
+    return this.limit_contracts || false;
   }
 
   create() {
 
-    //  alert(this.newContractOfferForm.get('data_type').value);
+    if (this.contract.password != this.contract.passwordConfirm) {
 
-    if (this.newContractOfferForm.get('password').value != this.newContractOfferForm.get('passwordConfirm').value) {
+      this.dialogService.open(ShowcaseDialogComponent, {
+        context: {
+          title: 'Passwords Don\'t Match',
+        },
+      });
 
-      alert("Passwords don't match!");
       return;
     }
 
     var tagsToSend = [];
     var count = 0;
-    for (let entry of this.newContractOfferForm.get('contract_tags').value) {
+    
+    if (this.contract.tags === undefined || this.contract.tags.length === 0) {
+      this.dialogService.open(ShowcaseDialogComponent, {
+        context: {
+          title: 'Contract\'s Require Atleast 1 Tag',
+        },
+      });
+
+      return;
+    }
+
+    for (let entry of this.contract.tags) {
 
       var newTag = {
         id: count,
@@ -140,45 +167,69 @@ export class ContractCreateComponent {
 
       count++;
     }
+    
+    if (this.contract.startdate === undefined || this.contract.enddate === undefined) {
+      this.dialogService.open(ShowcaseDialogComponent, {
+        context: {
+          title: 'Contract\'s Require a Start and End Date',
+        },
+      });
 
-    var dataType = 0;
-    if (this.newContractOfferForm.get('data_type').value == 'processed')
-      dataType = 1;
+      return;
+    }
+
+    if (this.contract.data_format_csv === false 
+      && this.contract.data_format_json === false
+      && this.contract.data_format_plain_text === false
+      && this.contract.data_format_xlsx === false
+      && this.contract.data_format_xml === false) {
+      this.dialogService.open(ShowcaseDialogComponent, {
+        context: {
+          title: 'Contract\'s Require Atleast 1 Data Format',
+        },
+      });
+
+      return;
+    }
+
+    var local_data_type = 0;
+    if (this.data_type == "processed")
+      local_data_type = 1;
 
     var newContract = {
 
-      name: this.newContractOfferForm.get('contract_name').value,
-      description: this.newContractOfferForm.get('contract_description').value,
+      name: this.contract.name,
+      description: this.contract.description,
       miner_id: this.user.id,
       version: 1,
       status: 0,
       wallet_id: 1,
-      data_type: dataType,
-      data_format_xlsx: this.newContractOfferForm.get('data_format_xlsx').value || false,
-      data_format_json: this.newContractOfferForm.get('data_format_json').value || false,
-      data_format_xml: this.newContractOfferForm.get('data_format_xml').value || false,
-      data_format_csv: this.newContractOfferForm.get('data_format_csv').value || false,
-      data_format_plain_text: this.newContractOfferForm.get('data_format_plaintext').value || false,
+      data_type: local_data_type,
+      data_format_xlsx: this.contract.data_format_xlsx,
+      data_format_json: this.contract.data_format_json,
+      data_format_xml: this.contract.data_format_xml,
+      data_format_csv: this.contract.data_format_csv,
+      data_format_plain_text: this.contract.data_format_plain_text,
 
-      use_primary_wallet: this.newContractOfferForm.get('use_primary_wallet').value || false,
-      fixed_currency: this.newContractOfferForm.get('fixed_currency').value || false,
-      location_directory: this.newContractOfferForm.get('location_directory').value,
+      use_primary_wallet: this.contract.use_primary_wallet,
+      fixed_currency: this.contract.fixed_currency,
+      location_directory: this.contract.location_directory,
       location_api_endpoint: '',
-      username: this.newContractOfferForm.get('username').value, 
+      username: this.contract.username,
 
-      password: this.newContractOfferForm.get('password').value,
+      password: this.contract.password,
 
-      contract_limit: this.newContractOfferForm.get('contract_limit').value,
-      
-      token_rate: this.newContractOfferForm.get('token_rate').value,
-      currency_rate: this.newContractOfferForm.get('currency_rate').value,
+      contract_limit: this.contract.contract_limit,
 
-      startdate: this.newContractOfferForm.get('startDateControl').value,
-      enddate: this.newContractOfferForm.get('endDateControl').value,
+      token_rate: this.contract.token_rate,
+      currency_rate: this.contract.currency_rate,
 
-      currency: this.selectedCurrency,
-      timezone: this.selectedTimezone,
-      
+      startdate: this.contract.startdate,
+      enddate: this.contract.enddate,
+
+      currency: this.contract.currency,
+      timezone: this.contract.timezone,
+
       tags: tagsToSend
     }
 
@@ -188,7 +239,7 @@ export class ContractCreateComponent {
       .subscribe(
 
         (data) => {
-          this.router.navigateByUrl('/pages/contract-detail', { replaceUrl: true, state: { itemId: data['id'] }});
+          this.router.navigateByUrl('/pages/contract-detail', { replaceUrl: true, state: { itemId: data['id'] } });
         }, //this.theUser = data,
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);

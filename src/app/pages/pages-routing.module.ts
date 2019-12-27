@@ -15,6 +15,7 @@ import { SearchComponent } from './search/search.component';
 import { MarketplaceDetailComponent } from './marketplace/marketplace-detail/marketplace-detail.component';
 import { UsersComponent } from './users/users.component';
 import { TagsComponent } from './tags/tags.component';
+import { HomePageComponent } from './homepage/homepage.component';
 import { ContractComponent } from './contract/contract.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RepliesComponent } from './direct-messages/replies/reply.component';
@@ -32,101 +33,137 @@ const routes: Routes = [{
     {
     path: 'marketplace',
     component: MarketplaceComponent
-  },{
+  },
+  {
     path: 'forum',
     component: ForumComponent
-  },{
+  },
+  {
     path: 'users',
     component: UsersComponent
-  },{
+  },
+  {
     path: 'forum/thread',
     component: ThreadComponent
-  },{
+  },
+  {
     path: 'forum/comment',
     component: CommentComponent
-  },{
+  },
+  {
     path: 'tags',
     component: TagsComponent
-  },{
+  },
+  {
+    path: 'home',
+    component: HomePageComponent
+  },
+  {
     path: 'contract-create',
     component: ContractCreateComponent
-  },{
+  },
+  {
     path: 'contract-edit',
     component: ContractEditComponent
-  },{
+  },
+  {
     path: 'contract-purchase',
     component: ContractPurchaseComponent
-  },{
+  },
+  {
     path: 'contract-detail',
     component: ContractDetailComponent
-  },{
+  },
+  {
     path: 'contract-current-user',
     component: ContractCurrentUserComponent
-  },{
+  },
+  {
     path: 'contract',
     component: ContractComponent
-  },{
+  },
+  {
     path: 'replies',
     component: RepliesComponent
-  },{
+  },
+  {
     path: 'user-profile',
     component: UserProfileComponent
-  },{
+  },
+  {
     path: 'user-profile',
     component: UserProfileComponent
-  },{
+  },
+  {
     path: 'faq',
     component: FAQComponent
-  },{
+  },
+  {
     path: 'marketplace/marketplace-detail',
     component: MarketplaceDetailComponent
-  },{
+  },
+  {
     path: 'my-account',
     component: MyAccountComponent
-  },{
+  },
+  {
     path: 'direct-messages',
     component: DirectMessagesComponent
-  },{
+  },
+  {
     path: 'search',
     component: SearchComponent
-  },{
+  },
+  {
     path: 'dashboard',
     component: ECommerceComponent,
-  },{
+  },
+  {
     path: 'iot-dashboard',
     component: DashboardComponent,
-  },{
+  },
+  {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
-  },{
+  },
+  {
     path: 'modal-overlays',
     loadChildren: './modal-overlays/modal-overlays.module#ModalOverlaysModule',
-  },{
+  },
+  {
     path: 'extra-components',
     loadChildren: './extra-components/extra-components.module#ExtraComponentsModule',
-  },{
+  },
+  {
     path: 'bootstrap',
     loadChildren: './bootstrap/bootstrap.module#BootstrapModule',
-  }, {
+  }, 
+  {
     path: 'maps',
     loadChildren: './maps/maps.module#MapsModule',
-  }, {
+  }, 
+  {
     path: 'charts',
     loadChildren: './charts/charts.module#ChartsModule',
-  }, {
+  }, 
+  {
     path: 'editors',
     loadChildren: './editors/editors.module#EditorsModule',
-  }, {
+  }, 
+  {
     path: 'forms',
     loadChildren: './forms/forms.module#FormsModule',
-  }, {
+  }, 
+  {
     path: 'miscellaneous',
     loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
-  }, {
+  }, 
+  {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full',
-  }, {
+  }, 
+  {
     path: '**',
     component: NotFoundComponent,
   }],

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ContractService } from '../../@core/services/contract.service';
 import { contract } from '../../@core/data/contract';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { dtp_user } from '../../@core/data/dtp_user';
 import { contract_offer_comment } from '../../@core/data/contract_offer_comment';
@@ -22,7 +22,8 @@ export class ContractDetailComponent implements OnInit {
     private authService: NbAuthService,
     private dialogService: NbDialogService,
     private contractService: ContractService,
-    private toastrService: NbToastrService) {
+    private toastrService: NbToastrService,
+    private route: ActivatedRoute) {
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
@@ -43,13 +44,14 @@ export class ContractDetailComponent implements OnInit {
   commentsLoading = false;
   contract: contract;
   contract_comments: Array<contract_offer_comment>;
-  //itemId: any;
 
   ngOnInit() {
 
     this.getContract(history.state.itemId);
     this.getContractComments(history.state.itemId);
   }
+
+  searchTerm: string;
 
   getContract(id: string) {
 
@@ -94,7 +96,7 @@ export class ContractDetailComponent implements OnInit {
   }
 
   editClicked(id: number) {
-    this.router.navigateByUrl('/pages/contract-edit');
+    this.router.navigate(['/pages/contract-edit'] , { queryParams: { id: id, relativeTo: this.route } });
   }
 
   testClicked(id: number) {

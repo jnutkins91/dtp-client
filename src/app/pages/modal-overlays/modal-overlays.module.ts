@@ -7,7 +7,7 @@ import { ModalOverlaysRoutingModule } from './modal-overlays-routing.module';
 // components
 import { ModalOverlaysComponent } from './modal-overlays.component';
 import { DialogComponent } from './dialog/dialog.component';
-import { ShowcaseDialogComponent } from './dialog/showcase-dialog/showcase-dialog.component';
+// import { ShowcaseDialogComponent } from './dialog/showcase-dialog/showcase-dialog.component';
 import { NbDialogModule, NbWindowModule } from '@nebular/theme';
 import { DialogNamePromptComponent } from './dialog/dialog-name-prompt/dialog-name-prompt.component';
 import { WindowComponent } from './window/window.component';
@@ -25,7 +25,7 @@ const COMPONENTS = [
   ModalOverlaysComponent,
   ToastrComponent,
   DialogComponent,
-  ShowcaseDialogComponent,
+  // ShowcaseDialogComponent,
   DialogNamePromptComponent,
   WindowComponent,
   WindowFormComponent,
@@ -37,7 +37,7 @@ const COMPONENTS = [
 ];
 
 const ENTRY_COMPONENTS = [
-  ShowcaseDialogComponent,
+  // ShowcaseDialogComponent,
   DialogNamePromptComponent,
   WindowFormComponent,
   NgxPopoverCardComponent,

@@ -11,10 +11,6 @@
     margin-bottom: 1rem;
   }
 
-  nb-card {
-    border: none;
-  }
-
   .form-inline > * {
     @include nb-ltr(margin, 0 1.5rem 1.5rem 0);
     @include nb-rtl(margin, 0 0 1.5rem 1.5rem);
@@ -23,13 +19,21 @@
   nb-card.inline-form-card nb-card-body {
     padding-bottom: 0;
   }
-
-  .custom-control-indicator::before {
-    background-color: #ba7fec !important;
+  
+  :host {
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   }
- 
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .list {
+    max-width: 550px;
+    margin: auto;
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }
 }
-
-/deep/ .cdk-global-scrollblock {
-  position: static !important;
-  }

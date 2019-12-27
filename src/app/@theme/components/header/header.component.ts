@@ -82,7 +82,7 @@ export class HeaderComponent implements OnInit {
 
   loginClicked() {
 
-    this.router.navigate(['/auth/register', { }], { relativeTo: this.route });
+    this.router.navigate(['/auth/login', { }], { relativeTo: this.route });
   }
 
   toggleSidebar(): boolean {

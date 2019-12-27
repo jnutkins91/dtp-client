@@ -12,6 +12,8 @@ export class SearchComponent {
 
   }
 
+  loading = false;
+
   searchTerm: string;
 
   ngOnInit() {

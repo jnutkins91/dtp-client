@@ -5,6 +5,7 @@ import { ContractService } from '../../@core/services/contract.service';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { dtp_user } from '../../@core/data/dtp_user';
 import { Router, ActivatedRoute } from '@angular/router';
+import { contract } from '../../@core/data/contract';
 
 @Component({
   selector: 'contract-edit',
@@ -17,14 +18,15 @@ export class ContractEditComponent {
   selectedTimezone: any;
 
   user: dtp_user;
+  contract: contract;
 
   constructor(private _location: Location,
     private formBuilder: FormBuilder,
     private authService: NbAuthService,
     private contractService: ContractService,
     private router: Router,
-    private route: ActivatedRoute,
-    public datepipe: DatePipe) {
+    public datepipe: DatePipe,
+    private activatedRoute: ActivatedRoute) {
 
     this.selectedCurrency = "usd";
     this.selectedTimezone = "gmt";
@@ -74,7 +76,7 @@ export class ContractEditComponent {
   textareaItemNgModel;
   inputItemFormControl = new FormControl();
 
-  private newContractOfferForm: FormGroup;
+  newContractOfferForm: FormGroup;
   contract_name = new FormControl();
   contract_description = new FormControl();
   contract_tags = new FormControl();
@@ -101,6 +103,65 @@ export class ContractEditComponent {
 
   token_rate = new FormControl();
   currency_rate = new FormControl();
+
+  itemId: number;
+
+  ngOnInit() {
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.itemId = params['id'];
+
+      this.getContract(this.itemId.toString());
+    });
+  }
+
+  getContract(id: string) {
+
+    this.loading = true;
+
+    this.contractService.getContract(id)
+      .subscribe(
+
+        (data: contract) => {
+
+          this.contract = data;
+          console.log(this.contract);
+
+          this.newContractOfferForm.controls['contract_name'].setValue(this.contract.name);
+          this.newContractOfferForm.controls['contract_description'].setValue(this.contract.description);
+
+          var tagsReceived = [];
+          for (let entry of this.contract['tags']) {
+
+            var newTag = {
+              value: entry['id'],
+              display: entry['name']
+            }
+
+            tagsReceived.push(newTag);
+
+
+          }
+
+          console.log(tagsReceived);
+
+          this.newContractOfferForm.controls['contract_tags'].setValue(tagsReceived);
+
+          if (this.newContractOfferForm.get('data_type').value == 'processed')
+            this.newContractOfferForm.controls['data_type'].setValue('processed');
+          else
+            this.newContractOfferForm.controls['data_type'].setValue('raw');
+
+          this.newContractOfferForm.controls['data_format_xlsx'].setValue(this.contract.data_format_xlsx);
+          this.newContractOfferForm.controls['data_format_json'].setValue(this.contract.data_format_json);
+          this.newContractOfferForm.controls['data_format_xml'].setValue(this.contract.data_format_xml);
+          this.newContractOfferForm.controls['data_format_csv'].setValue(this.contract.data_format_csv);
+          this.newContractOfferForm.controls['data_format_plaintext'].setValue(this.contract.data_format_plain_text);
+        },
+        err => console.error('Observer got an error: ' + err),
+        () => this.loading = false);
+
+  }
 
   backClicked() {
     this._location.back();
@@ -164,12 +225,12 @@ export class ContractEditComponent {
       fixed_currency: this.newContractOfferForm.get('fixed_currency').value || false,
       location_directory: this.newContractOfferForm.get('location_directory').value,
       location_api_endpoint: '',
-      username: this.newContractOfferForm.get('username').value, 
+      username: this.newContractOfferForm.get('username').value,
 
       password: this.newContractOfferForm.get('password').value,
 
       contract_limit: this.newContractOfferForm.get('contract_limit').value,
-      
+
       token_rate: this.newContractOfferForm.get('token_rate').value,
       currency_rate: this.newContractOfferForm.get('currency_rate').value,
 
@@ -178,7 +239,7 @@ export class ContractEditComponent {
 
       currency: this.selectedCurrency,
       timezone: this.selectedTimezone,
-      
+
       tags: tagsToSend
     }
 
@@ -188,7 +249,7 @@ export class ContractEditComponent {
       .subscribe(
 
         (data) => {
-          this.router.navigateByUrl('/pages/contract-detail', { replaceUrl: true, state: { itemId: data['id'] }});
+          this.router.navigateByUrl('/pages/contract-detail', { replaceUrl: true, state: { itemId: data['id'] } });
         }, //this.theUser = data,
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);

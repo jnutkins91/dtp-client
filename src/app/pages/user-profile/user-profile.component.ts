@@ -57,7 +57,7 @@ export class UserProfileComponent implements OnInit {
 
   loading = false;
   contractsLoading = false;
-  user = {};
+  user: dtp_user;
   contracts: any;
 
   ngOnInit() {
@@ -104,7 +104,7 @@ export class UserProfileComponent implements OnInit {
 
   onClick_SendMessage() {
 
-    this.dialogService.open(NewMessageDialogComponent, { context: { conversationId: null, userId: this.user["id"], messageToId: this.theUser.id } })
+    this.dialogService.open(NewMessageDialogComponent, { context: JSON.stringify({ conversationId: null, userId: this.user["id"], messageToId: this.theUser.id }) })
       .onClose.subscribe(newMessage =>
 
         this.conversationService.newMessage(newMessage)

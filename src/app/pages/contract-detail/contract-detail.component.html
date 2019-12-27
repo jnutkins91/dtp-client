@@ -18,7 +18,7 @@ display:table;">
     Test
   </button>
 
-  <button type="button" class="btn btn-warning" style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;" (click)="editClicked()"
+  <button type="button" class="btn btn-warning" style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;" (click)="editClicked(contract?.id)"
     *ngIf="user.id == contract?.miner_id && contract?.status == 0">
     Edit
   </button>

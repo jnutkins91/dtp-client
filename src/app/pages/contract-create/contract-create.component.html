@@ -4,73 +4,107 @@ display:table;">
   <span style="color: black; font-size: 1.5em; display:table-cell;
     vertical-align:middle;">Create a New Contract</span>
 
+  <button style="float: right;" type="submit" class="btn btn-success" (click)="create()"
+    [disabled]="newContractOfferForm.invalid">
+    Create
+  </button>
+
 </div>
 
 <nb-card>
-  <!-- <nb-card-header style="font-size: 1.75rem;">Create a New Contract</nb-card-header> -->
+
   <nb-card-body>
-    <form [formGroup]="newContractOfferForm">
+
+    <form #newContractOfferForm="ngForm">
 
       <div class="form-group">
-        <input type="text" class="form-control" id="name" placeholder="Title" formControlName="contract_name">
+        <input id="contract_name" name="contract_name" class="form-control" required placeholder="Contract Title" type="text"
+          minlength="10" [(ngModel)]="contract.name" #contract_name="ngModel">
       </div>
 
+      <div *ngIf="contract_name.invalid && (contract_name.dirty || contract_name.touched)" class="alert alert-danger">
+        <div *ngIf="contract_name.errors.required">
+          Contract Title is required.
+        </div>
+        <div *ngIf="contract_name.errors.minlength">
+          Contract Title must be at least 10 characters long.
+        </div>
+      </div>
+
+
+
+
+      <div class="form-group">
+        <input id="description" name="description" class="form-control" required placeholder="Contract Description"
+          type="text" minlength="25" [(ngModel)]="contract.description" #description="ngModel">
+      </div>
+
+      <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+        <div *ngIf="description.errors.required">
+          Contract Description is required.
+        </div>
+        <div *ngIf="description.errors.minlength">
+          Contract Description must be at least 25 characters long.
+        </div>
+      </div>
+
+
+
+
+
+      <h6>Tags</h6>
       <div class="form-group" style="margin-bottom: 2em;">
-        <input type="text" class="form-control" id="descriptionInput" placeholder="Description"
-          formControlName="contract_description">
-      </div>
-
-      <h6 for="exampleInputPassword1">Tags</h6>
-      <div class="form-group" style="margin-bottom: 2em;">
-        <tag-input class="form-control" formControlName="contract_tags" [maxItems]='5' theme='bootstrap'></tag-input>
+        <tag-input class="form-control" [maxItems]='5' theme='bootstrap' [(ngModel)]="contract.tags" name="tags"
+          #tags="ngModel">
+        </tag-input>
       </div>
 
 
 
-      <h6 for="exampleInputPassword1">Data Type</h6>
+
+      <h6>Data Type</h6>
       <div class="row" style="margin-bottom: 2em;">
         <div class="form-check">
           <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" value="raw" formControlName="data_type" checked>
+            <input type="radio" class="custom-control-input" value="raw" [(ngModel)]="data_type" name="data_type" checked>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Raw</span>
           </label>
         </div>
         <div class="form-check">
           <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" value="processed" formControlName="data_type">
+            <input type="radio" class="custom-control-input" value="processed" [(ngModel)]="data_type" name="data_type">
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Processed</span>
           </label>
         </div>
       </div>
 
-      <h6 for="exampleInputPassword1">Available Data Formats</h6>
+      <h6>Available Data Formats</h6>
       <div class="row" style="margin-bottom: 1em; padding-left: 1.5em;">
 
         <div class="form-group">
-          <nb-checkbox formControlName="data_format_json">JSON</nb-checkbox>
+          <nb-checkbox name="data_format_json" [(ngModel)]="contract.data_format_json" #name="ngModel">JSON</nb-checkbox>
         </div>
 
         <div class="form-group">
-          <nb-checkbox formControlName="data_format_xml">XML</nb-checkbox>
+          <nb-checkbox name="data_format_xml" [(ngModel)]="contract.data_format_xml" #name="ngModel">XML</nb-checkbox>
         </div>
 
         <div class="form-group">
-          <nb-checkbox formControlName="data_format_csv">CSV</nb-checkbox>
+          <nb-checkbox name="data_format_csv" [(ngModel)]="contract.data_format_csv" #name="ngModel">CSV</nb-checkbox>
         </div>
 
         <div class="form-group">
-          <nb-checkbox formControlName="data_format_xlsx">XLSX</nb-checkbox>
+          <nb-checkbox name="data_format_xlsx" [(ngModel)]="contract.data_format_xlsx" #name="ngModel">XLSX</nb-checkbox>
         </div>
 
         <div class="form-group">
-          <nb-checkbox formControlName="data_format_plaintext">Plain Text</nb-checkbox>
+          <nb-checkbox name="data_format_plain_text" [(ngModel)]="contract.data_format_plain_text" #name="ngModel">Plain Text</nb-checkbox>
         </div>
-      </div>
+      </div>  
 
-      <label for="exampleInputEmail1">Timezone</label>
-      <nb-select placeholder="Select Timezone" [(selected)]="selectedItem">
+      <nb-select placeholder="Select Timezone" [(selected)]="selectedTimezone" name="timezone" [(ngModel)]="contract.timezone" #name="ngModel">
         <nb-option value="nst">New Zealand Standard Time (GMT+12:00)</nb-option>
         <nb-option value="sst">Solomon Standard Time (GMT+11:00)</nb-option>
         <nb-option value="aet">Australia Eastern Time (GMT+10:00)</nb-option>
@@ -111,7 +145,7 @@ display:table;">
           <nb-card>
             <nb-card-header>Start Date</nb-card-header>
             <nb-card-body>
-              <input nbInput placeholder="Start Date" [nbDatepicker]="startdatecontrol" [formControl]="startDateControl"
+              <input nbInput placeholder="Start Date" [nbDatepicker]="startdatecontrol" name="timezone" [(ngModel)]="contract.startdate" #name="ngModel"
                 style="width: 100%;">
               <nb-datepicker #startdatecontrol></nb-datepicker>
             </nb-card-body>
@@ -122,7 +156,7 @@ display:table;">
           <nb-card>
             <nb-card-header>End Date</nb-card-header>
             <nb-card-body>
-              <input nbInput placeholder="End Date" [nbDatepicker]="enddatecontrol" [formControl]="endDateControl"
+              <input nbInput placeholder="End Date" [nbDatepicker]="enddatecontrol" name="timezone" [(ngModel)]="contract.enddate" #name="ngModel"
                 style="width: 100%;">
               <nb-datepicker #enddatecontrol></nb-datepicker>
             </nb-card-body>
@@ -135,182 +169,89 @@ display:table;">
         <nb-card-header>Location</nb-card-header>
         <nb-card-body>
 
-          <div class="form-group" style="margin-bottom: 1em;">
-            <input type="text" class="form-control" id="directoryInput" placeholder="Directory"
-              formControlName="location_directory">
+          <div class="form-group">
+            <input id="location_directory" name="location_directory" class="form-control" required placeholder="Directory Path" type="text"
+             [(ngModel)]="contract.location_directory" #location_directory="ngModel">
           </div>
 
-          <!-- <div class="form-group">
-            <input type="text" class="form-control" id="apiEndPointInput" placeholder="API End-Point" formControlName="location_api_endpoint">
-          </div> -->
+          <div *ngIf="location_directory.invalid && (location_directory.dirty || location_directory.touched)" class="alert alert-danger">
+            <div *ngIf="location_directory.errors.required">
+              Directory Path is required.
+            </div>
+          </div>
 
         </nb-card-body>
       </nb-card>
-
-      <!-- <nb-card>
-        <nb-card-header>Authorization Info</nb-card-header>
-        <nb-card-body>
-
-          <div class="row">
-
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios" checked>
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">None</span>
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">API Key</span>
-              </label>
-            </div>
-
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">Bearer Token</span>
-              </label>
-            </div>
-
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">Basic Auth</span>
-              </label>
-            </div>
-
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">Digest Auth</span>
-              </label>
-            </div>
-
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">OAuth 1.0</span>
-              </label>
-            </div>
-
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">OAuth 2.0</span>
-              </label>
-            </div>
-
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">Hawk Authentication</span>
-              </label>
-            </div>
-
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">AWS Signature</span>
-              </label>
-            </div>
-
-            <div class="form-check">
-              <label class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="authInfoRadios">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">NTLM Authentication</span>
-              </label>
-            </div>
-
-          </div>
-
-        </nb-card-body>
-      </nb-card> -->
-
-
 
       <nb-card>
         <nb-card-header>Basic Authentication</nb-card-header>
         <nb-card-body>
 
           <div class="form-group">
-            <label for="exampleInputEmail1">Username</label>
-            <input type="text" class="form-control" id="usernameInput" placeholder="Username"
-              formControlName="username">
+            <input id="username" name="username" class="form-control" required placeholder="Username" type="text"
+             [(ngModel)]="contract.username" #username="ngModel">
+          </div>
+
+          <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+            <div *ngIf="username.errors.required">
+              Username is required.
+            </div>
           </div>
 
           <div class="form-group">
-            <label for="exampleInputEmail1">Password</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="Password"
-              formControlName="password">
+            <input id="password" name="password" class="form-control" required placeholder="Password" type="password"
+             [(ngModel)]="contract.password" #password="ngModel">
+          </div>
+
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
           </div>
 
           <div class="form-group">
-            <label for="exampleInputEmail1">Confirm Password</label>
-            <input type="password" class="form-control" id="passwordConfirmInput" placeholder="Confirm Password"
-              formControlName="passwordConfirm">
+            <input id="passwordConfirm" name="passwordConfirm" class="form-control" required placeholder="Confirm Password" type="password"
+             [(ngModel)]="contract.passwordConfirm" #passwordConfirm="ngModel">
+          </div>
+
+          <div *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)" class="alert alert-danger">
+            <div *ngIf="passwordConfirm.errors.required">
+              Password Confirm is required.
+            </div>
           </div>
 
         </nb-card-body>
       </nb-card>
-
-
-      <!-- <nb-card>
-        <nb-card-header>OAuth</nb-card-header>
-        <nb-card-body>
-
-          <div class="form-group">
-            <label for="exampleInputEmail1">Token</label>
-            <input type="text" class="form-control" id="tokenInput" placeholder="Token">
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputEmail1">Token Refresh URL</label>
-            <input type="text" class="form-control" id="tokenRefreshUrlInput" placeholder="Token Refresh URL">
-          </div>
-
-        </nb-card-body>
-      </nb-card> -->
 
       <nb-card>
         <nb-card-header>Transaction Info</nb-card-header>
         <nb-card-body>
 
           <div class="form-group">
-            <nb-checkbox formControlName="limit_contracts">Limit Contracts?</nb-checkbox>
+            <nb-checkbox name="limit_contracts" [(ngModel)]="limit_contracts" #name="ngModel">Limit Contracts?</nb-checkbox>
           </div>
 
           <div class="form-group">
             <input type="number" class="form-control" id="contract_limit" placeholder="Contract Limit"
-              formControlName="contract_limit" *ngIf="limitContracts()">
+            name="contract_limit" [(ngModel)]="contract.contract_limit" #name="ngModel" *ngIf="limitContracts()">
           </div>
 
           <div class="form-group">
-            <nb-checkbox formControlName="use_primary_wallet">Use My Primary Wallet</nb-checkbox>
+            <nb-checkbox name="use_primary_wallet" [(ngModel)]="contract.use_primary_wallet" #name="ngModel">Use My Primary Wallet</nb-checkbox>
           </div>
 
           <div class="form-group">
-            <nb-checkbox formControlName="fixed_currency">Fixed Currency</nb-checkbox>
+            <nb-checkbox name="fixed_currency" [(ngModel)]="contract.fixed_currency" #name="ngModel">Fixed Currency</nb-checkbox>
           </div>
 
           <div class="form-group" *ngIf="!isCurrency()">
             <label for="exampleInputPassword1">Token Rate</label>
             <input type="number" step="0.01" class="form-control" id="tokenRateInput" placeholder="Token Rate"
-              formControlName="token_rate">
+            name="token_rate" [(ngModel)]="contract.token_rate" #name="ngModel">
           </div>
 
           <label for="exampleInputPassword1" *ngIf="isCurrency()">Currency</label>
-          <nb-select placeholder="Selected Currency" [(selected)]="selectedCurrency" *ngIf="isCurrency()">
+          <nb-select placeholder="Selected Currency" [(selected)]="selectedCurrency" *ngIf="isCurrency()" name="currency" [(ngModel)]="contract.currency" #name="ngModel">
             <nb-option value="usd">United States Dollar</nb-option>
             <nb-option value="gbp">British Pound</nb-option>
             <nb-option value="eur">Euro</nb-option>
@@ -318,14 +259,12 @@ display:table;">
 
           <div class="form-group" *ngIf="isCurrency()">
             <label for="exampleInputPassword1">Currency Rate</label>
-            <input type="number" step="0.01" class="form-control" id="currencyRateInput" placeholder="Currency Rate"
-              formControlName="currency_rate">
+            <input type="number" step="0.01" class="form-control" id="currencyRateInput" placeholder="Currency Rate" 
+            name="currency_rate" [(ngModel)]="contract.currency_rate" #name="ngModel">
           </div>
 
         </nb-card-body>
       </nb-card>
-
-      <button style="float: right;" type="submit" class="btn btn-success" (click)="create()">Create</button>
 
     </form>
   </nb-card-body>

@@ -13,6 +13,7 @@ import { DirectMessagesModule } from './direct-messages/direct-messages.module';
 import { SearchModule } from './search/search.module';
 import { UsersModule } from './users/users.module';
 import { TagsModule } from './tags/tags.module';
+import { HomePageModule } from './homepage/homepage.module';
 import { ContractModule } from './contract/contract.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { ContractCreateModule } from './contract-create/contract-create.module';
@@ -40,6 +41,7 @@ const PAGES_COMPONENTS = [
     SearchModule,
     UsersModule,
     TagsModule,
+    HomePageModule,
     ContractModule,
     UserProfileModule,
     ContractCreateModule,
