@@ -10,5 +10,6 @@ Steps to deploy:
 6. Run 'gcloud app deploy'.
 
 
-* git add -A && git commit -m "<message>"
+* git add -A
+* git commit -m "<message>"
 * git push

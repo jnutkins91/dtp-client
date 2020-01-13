@@ -14,7 +14,7 @@ export class TagService {
 
   getTags(page: number, searchTerm: string): Observable<any> {
 
-    var tagSearch = {
+    const tagSearch = {
 
       page: page,
       searchTerm: searchTerm

@@ -16,11 +16,8 @@ export class DTPUserService {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
           this.token = token.getValue();
         }
-
       });
   }
 
@@ -34,10 +31,10 @@ export class DTPUserService {
 
   getAllUsers(page: number, searchTerm: string): Observable<any> {
 
-    var userSearch = {
+    const userSearch = {
 
       page: page,
-      searchTerm: searchTerm
+      searchTerm: searchTerm,
     }
 
     return this.http.post(environment.apiUrl + "/api/user/all/", userSearch);
@@ -51,9 +48,9 @@ export class DTPUserService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        // 'Content-Type':  'multipart/form-data',
-        'Authorization': 'Bearer ' + this.token
-      })
+        'Authorization': 'Bearer ' + this.token,
+      }),
+
     };
 
     return this.http.post(environment.apiUrl + "/api/user/image", formData, httpOptions);
