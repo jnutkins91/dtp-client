@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit {
 
   users: {
     totalUsers: 0,
-    users: Array<dtp_user>
+    users: Array<dtp_user>,
   };
 
   ngOnInit() {
@@ -58,18 +58,14 @@ export class UsersComponent implements OnInit {
   }
 
   onPageChange(number: number) {
-    //alert('change to page' + number);
     this.getUsers(number, this.searchTerm);
   }
 
   onClick_User(id: string) {
-    //this.router.navigateByUrl('/pages/user-profile', { state: { itemId: id }});
     this.router.navigate(['./pages/user-profile', { userId: id }]);
   }
 
   onClickUserImg() {
-
-    // this.router.navigate(['thread', id]);
     
   }
 }

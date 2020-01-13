@@ -99,9 +99,9 @@ export class ContractCurrentUserComponent implements OnInit {
         (data) => {
 
           this.requests = data;
-          alert("Rejected Success!");
+          alert('Rejected Success!');
           this.loading = false;
-        }, //this.theUser = data,
+        },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
   }

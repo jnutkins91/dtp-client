@@ -38,7 +38,6 @@ export class ContractCreateComponent {
     private authService: NbAuthService,
     private contractService: ContractService,
     private router: Router,
-    private route: ActivatedRoute,
     public datepipe: DatePipe,
     private dialogService: NbDialogService) {
 

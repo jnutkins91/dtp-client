@@ -24,7 +24,7 @@ export class MyAccountComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: NbAuthService) {
 
-    this.selectedItem = "gmt";
+    this.selectedItem = 'gmt';
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {

@@ -36,7 +36,7 @@ export class CommentComponent implements OnInit {
   loading = false;
   comments:  {
     thread: any,
-    dt_comment_lines: Array<forum_comment>
+    dt_comment_lines: Array<forum_comment>,
   };
 
   ngOnInit() {
@@ -55,7 +55,7 @@ export class CommentComponent implements OnInit {
 
         (data) => this.comments = data,
         err => console.error('Observer got an error: ' + err),
-        () => this.loading = false)
+        () => this.loading = false);
   }
 
   newCommentClicked() {
@@ -68,7 +68,7 @@ export class CommentComponent implements OnInit {
 
             (data) => this.comments = data,
             err => console.error('Observer got an error: ' + err),
-            () => this.loading = false)
+            () => this.loading = false),
       );
   }
 }

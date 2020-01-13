@@ -30,7 +30,7 @@ export class ForumComponent implements OnInit {
 
         (data: forum_topic[]) => this.topics = data,
         err => console.error('Observer got an error: ' + err),
-        () => this.loading = false)
+        () => this.loading = false);
   }
 
   onClickTopic(id: number) {

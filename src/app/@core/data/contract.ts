@@ -28,3 +28,4 @@ export class contract {
     contract_limit: number;
     is_private: boolean;
   }
+  

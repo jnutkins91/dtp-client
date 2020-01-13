@@ -120,7 +120,6 @@ export class ContractEditComponent {
         (data: contract) => {
 
           this.contract = data;
-          console.log(this.contract);
 
           this.newContractOfferForm.controls['contract_name'].setValue(this.contract.name);
           this.newContractOfferForm.controls['contract_description'].setValue(this.contract.description);

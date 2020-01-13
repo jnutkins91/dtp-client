@@ -31,7 +31,7 @@ export class ThreadComponent implements OnInit {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
+          this.user = token.getPayload();
         }
 
       });
@@ -75,7 +75,7 @@ export class ThreadComponent implements OnInit {
 
             (data) => this.threads = data,
             err => console.error('Observer got an error: ' + err),
-            () => this.loading = false)
+            () => this.loading = false),
       );
   }
 
