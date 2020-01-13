@@ -25,7 +25,7 @@ export class ConversationService {
   //  GET
 
   getConversationsForUser(userId: number): Observable<any> {
-    return this.http.get(environment.apiUrl + "/api/conversation/" + userId);
+    return this.http.get(environment.apiUrl + '/api/conversation/' + userId);
   }
 
   getConversation(conversationId: number): Observable<any> {
@@ -34,15 +34,15 @@ export class ConversationService {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': 'Bearer ' + this.token
-      })
+      }),
     };
 
-    return this.http.get(environment.apiUrl + "/api/conversation/conversation/" + conversationId, httpOptions);
+    return this.http.get(environment.apiUrl + '/api/conversation/conversation/' + conversationId, httpOptions);
   }
 
   //  POST
 
   newMessage(newMessage: any): Observable<any> {
-    return this.http.post(environment.apiUrl + "/api/conversation", newMessage);
+    return this.http.post(environment.apiUrl + '/api/conversation', newMessage);
   }
 }

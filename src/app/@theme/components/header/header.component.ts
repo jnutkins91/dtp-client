@@ -36,8 +36,7 @@ export class HeaderComponent implements OnInit {
     private searchService: NbSearchService) {
 
       this.searchService.onSearchSubmit()
-      .subscribe((data: any) => {
-       
+      .subscribe((data: any) => {       
         this.value = data.term;
         this.router.navigate(['/pages/search/'] , { queryParams: { searchTerm: this.value, relativeTo: this.route } });
       })
@@ -46,13 +45,8 @@ export class HeaderComponent implements OnInit {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
           this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
-          console.log("User:");
-          console.log(this.user);
         }
-
       });
   }
 

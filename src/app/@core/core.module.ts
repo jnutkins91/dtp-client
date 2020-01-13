@@ -111,7 +111,7 @@ export const NB_CORE_PROVIDERS = [
             failure: null,
           },
           defaultErrors: ['Something went wrong, please try again.'],
-          defaultMessages: ['You have been successfully logged out.']
+          defaultMessages: ['You have been successfully logged out.'],
         },
         register: {
           // ...
@@ -120,7 +120,7 @@ export const NB_CORE_PROVIDERS = [
         token: {
           class: NbAuthJWTToken,
           key: 'token', // this parameter tells where to look for the token
-        }
+        },
       }),
     ],
     forms: {
@@ -140,7 +140,7 @@ export const NB_CORE_PROVIDERS = [
           success: true,
           error: true,
         },
-        terms: true
+        terms: true,
       },
       requestPassword: {
         redirectDelay: 500,
