@@ -51,8 +51,8 @@ export class ContractService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Bearer ' + this.token
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token,
       })
     };
 
@@ -72,12 +72,12 @@ export class ContractService {
   suspendContract(contractId: number): Observable<any> {
 
     const httpOptions = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + this.token
-        })
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token,
+      })
     };
 
     return this.http.post(environment.apiUrl + "/api/contractoffer/suspend", contractId, httpOptions);
-}
+  }
 }

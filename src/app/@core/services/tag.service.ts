@@ -18,8 +18,8 @@ export class TagService {
 
       page: page,
       searchTerm: searchTerm
-    }
+    };
 
-    return this.http.post(environment.apiUrl + "/api/tag/", tagSearch);
+    return this.http.post(environment.apiUrl + '/api/tag/', tagSearch);
   }
 }
