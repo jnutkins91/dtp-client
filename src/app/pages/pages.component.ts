@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-//import { MENU_ITEMS } from './pages-menu';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { NbMenuItem } from '@nebular/theme';
 import { Router, NavigationStart } from '@angular/router';

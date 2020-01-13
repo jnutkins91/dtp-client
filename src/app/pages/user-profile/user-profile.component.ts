@@ -9,8 +9,7 @@ import { ContractService } from '../../@core/services/contract.service';
 import { contract } from '../../@core/data/contract';
 
 import { ConversationService } from '../../@core/services/conversation.service';
-import { NbDialogService, NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { NbToastStatus } from '@nebular/theme/components/toastr/model';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'user-profile',
@@ -28,10 +27,7 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private contractService: ContractService,
-    private authService: NbAuthService,
-    private dialogService: NbDialogService,
-    private conversationService: ConversationService,
-    private toastrService: NbToastrService) {
+    private authService: NbAuthService) {
 
     this.selectedItem = 'gmt';
 
@@ -83,7 +79,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   reportUserClicked() {
-    alert("Report User Clicked!");
+    alert('Report User Clicked!');
   }
 
   getContracts(id: string) {
@@ -96,7 +92,6 @@ export class UserProfileComponent implements OnInit {
         (data: contract[]) => {
 
           this.contracts = data;
-          console.log(this.contracts);
         },
         err => console.error('Observer got an error: ' + err),
         () => this.contractsLoading = false);

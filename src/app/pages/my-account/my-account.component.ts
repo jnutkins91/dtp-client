@@ -30,11 +30,7 @@ export class MyAccountComponent implements OnInit {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
-          this.theUser = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
-          console.log("User:");
-          console.log(this.theUser);
+          this.theUser = token.getPayload();
 
           this.getUserData();
         }

@@ -105,7 +105,7 @@ export class ContractCreateComponent {
       'timezone': new FormControl(this.contract.timezone),
 
       'token_rate': new FormControl(this.contract.token_rate),
-      'currency_rate': new FormControl(this.contract.currency_rate)
+      'currency_rate': new FormControl(this.contract.currency_rate),
 
     });
   }
@@ -235,7 +235,7 @@ export class ContractCreateComponent {
 
         (data) => {
           this.router.navigateByUrl('/pages/contract-detail', { replaceUrl: true, state: { itemId: data['id'] } });
-        }, //this.theUser = data,
+        },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
   }

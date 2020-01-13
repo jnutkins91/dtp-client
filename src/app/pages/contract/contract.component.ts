@@ -45,7 +45,6 @@ export class ContractComponent implements OnInit {
         (data: contract[]) => {
 
           this.contracts = data;
-          console.log(this.contracts);
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);

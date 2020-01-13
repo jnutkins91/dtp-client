@@ -41,11 +41,10 @@ export class ThreadComponent implements OnInit {
   loading = false;
   threads: {
     topic: forum_topic,
-    dt_thread_lines: Array<forum_thread>
+    dt_thread_lines: Array<forum_thread>,
   };
 
   ngOnInit() {
-    
     this.sub = this.route.params.subscribe(params => {
       this.topicId = +params['topicId']; // (+) converts string 'topicId' to a number
     });
@@ -68,10 +67,6 @@ export class ThreadComponent implements OnInit {
   }
 
   newThreadClicked() {
-
-    //this.loading = true;
-
-    //alert("New Thread Clicked!");
     this.dialogService.open(NewThreadDialogComponent, { context: { id: this.topicId } })
       .onClose.subscribe(newThread =>
 
@@ -85,8 +80,6 @@ export class ThreadComponent implements OnInit {
   }
 
   onClickThread(id: number) {
-
-    // this.router.navigate(['thread', id]);
     this.router.navigate(['../comment', { threadId: id }], { relativeTo: this.route });
   }
 }

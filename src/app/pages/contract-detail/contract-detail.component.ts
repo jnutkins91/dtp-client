@@ -29,7 +29,7 @@ export class ContractDetailComponent implements OnInit {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
+          this.user = token.getPayload();
         }
       });
   }
@@ -82,7 +82,7 @@ export class ContractDetailComponent implements OnInit {
   }
 
   testClicked(id: number) {
-    alert("Test Clicked");
+    alert('Test Clicked');
   }
 
   activateClicked(id: number) {
@@ -141,7 +141,7 @@ export class ContractDetailComponent implements OnInit {
       '',
       'Commented!',
       config);
-  };
+  }
 
   private showToast_Error() {
 

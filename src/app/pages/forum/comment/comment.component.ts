@@ -1,7 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
-import { Location } from '@angular/common';
 import { forum_comment } from '../../../@core/data/forum_comment';
 import { ForumService } from '../../../@core/services/forum.service';
 import { NewCommentDialogComponent } from './newComment-dialog.component';
@@ -27,11 +26,7 @@ export class CommentComponent implements OnInit {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
-          this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
-          console.log("User:");
-          console.log(this.user);
+          this.user = token.getPayload();
         }
 
       });
@@ -47,7 +42,7 @@ export class CommentComponent implements OnInit {
   ngOnInit() {
 
     this.sub = this.route.params.subscribe(params => {
-      this.threadId = +params['threadId']; // (+) converts string 'topicId' to a number
+      this.threadId = +params['threadId'];
    });
 
     this.showComments();
@@ -65,9 +60,6 @@ export class CommentComponent implements OnInit {
 
   newCommentClicked() {
 
-    //this.loading = true;
-
-    //alert("New Thread Clicked!");
     this.dialogService.open(NewCommentDialogComponent, { context: { id: this.threadId } })
       .onClose.subscribe(newComment =>
 
