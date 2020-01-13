@@ -5,11 +5,10 @@ import { TermsComponent } from './terms.component';
 
 @NgModule({
   imports: [
-    ThemeModule
-    //BrowserAnimationsModule
+    ThemeModule,
   ],
   declarations: [
-    TermsComponent
+    TermsComponent,
   ],
 })
 export class TermsModule { }

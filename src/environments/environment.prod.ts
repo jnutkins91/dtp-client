@@ -5,5 +5,5 @@
  */
 export const environment = {
   production: true,
-  apiUrl: "https://dtp-api-dot-honor-1183.appspot.com"
+  apiUrl: 'https://dtp-api-dot-honor-1183.appspot.com',
 };

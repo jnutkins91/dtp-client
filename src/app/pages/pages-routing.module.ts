@@ -102,7 +102,8 @@ const routes: Routes = [{
   {
     path: 'terms',
     component: TermsComponent,
-  },{
+  },
+  {
     path: 'privacy',
     component: PrivacyComponent,
   },

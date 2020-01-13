@@ -7,10 +7,10 @@ import { NbBadgeModule } from '@nebular/theme';
 @NgModule({
   imports: [
     ThemeModule,
-    NbBadgeModule
+    NbBadgeModule,
   ],
   declarations: [
-    ContractCurrentUserComponent
+    ContractCurrentUserComponent,
   ],
 })
 export class ContractCurrentUserModule { }
