@@ -1,4 +1,4 @@
-import { of as observableOf, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -16,8 +16,6 @@ export class ContractRequestService {
             .subscribe((token: NbAuthJWTToken) => {
 
                 if (token.isValid()) {
-                    console.log("Token:");
-                    console.log(token.getPayload());
                     this.token = token.getValue();
                 }
 
@@ -31,11 +29,11 @@ export class ContractRequestService {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.token
-            })
+                'Authorization': 'Bearer ' + this.token,
+            }),
         };
 
-        return this.http.get(environment.apiUrl + "/api/contractrequest", httpOptions);
+        return this.http.get(environment.apiUrl + '/api/contractrequest', httpOptions);
     }
 
     //  POST
@@ -45,11 +43,11 @@ export class ContractRequestService {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.token
-            })
+                'Authorization': 'Bearer ' + this.token,
+            }),
         };
 
-        return this.http.post(environment.apiUrl + "/api/contractrequest/accept", requestId, httpOptions);
+        return this.http.post(environment.apiUrl + '/api/contractrequest/accept', requestId, httpOptions);
     }
 
     rejectRequest(requestId: number): Observable<any> {
@@ -57,11 +55,11 @@ export class ContractRequestService {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.token
-            })
+                'Authorization': 'Bearer ' + this.token,
+            }),
         };
 
-        return this.http.post(environment.apiUrl + "/api/contractrequest/reject", requestId, httpOptions);
+        return this.http.post(environment.apiUrl + '/api/contractrequest/reject', requestId, httpOptions);
     }
 
 }

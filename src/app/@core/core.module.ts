@@ -131,7 +131,7 @@ export const NB_CORE_PROVIDERS = [
         showMessages: {     // show/not show success/error messages
           success: true,
           error: true,
-        }
+        },
       },
       register: {
         redirectDelay: 500,
@@ -156,11 +156,11 @@ export const NB_CORE_PROVIDERS = [
         showMessages: {
           success: true,
           error: true,
-        }
+        },
       },
       logout: {
         redirectDelay: 500,
-        strategy: 'email'
+        strategy: 'email',
       },
       validation: {
         password: {
@@ -206,7 +206,7 @@ export const NB_CORE_PROVIDERS = [
   DTPUserService,
   ContractService,
   ContractRequestService,
-  ConversationService
+  ConversationService,
 ];
 
 @NgModule({

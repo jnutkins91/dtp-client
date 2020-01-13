@@ -5,9 +5,9 @@ export class DataType implements PipeTransform {
 
     transform(value: boolean): string {
 
-        if (value == true)
-            return "PROCESSED";
+        if (value === true)
+            return 'PROCESSED';
         else
-            return "RAW";
+            return 'RAW';
     }
 }
