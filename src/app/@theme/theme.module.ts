@@ -69,6 +69,7 @@ import {
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { ContractStatus } from './pipes/contract-status.pipe';
 import { ContractStatusColor } from './pipes/contract-status-color.pipe';
+import { DataType } from './pipes/data-type.pipe';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -136,7 +137,8 @@ const PIPES = [
   NumberWithCommasPipe,
   EvaIconsPipe,
   ContractStatus,
-  ContractStatusColor
+  ContractStatusColor,
+  DataType
 ];
 
 const NB_THEME_PROVIDERS = [

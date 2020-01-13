@@ -10,7 +10,6 @@ import { ForumComponent } from './forum/forum.component';
 import { ThreadComponent } from './forum/thread/thread.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { CommentComponent } from './forum/comment/comment.component';
-import { DirectMessagesComponent } from './direct-messages/direct-messages.component';
 import { SearchComponent } from './search/search.component';
 import { MarketplaceDetailComponent } from './marketplace/marketplace-detail/marketplace-detail.component';
 import { UsersComponent } from './users/users.component';
@@ -18,13 +17,15 @@ import { TagsComponent } from './tags/tags.component';
 import { HomePageComponent } from './homepage/homepage.component';
 import { ContractComponent } from './contract/contract.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { RepliesComponent } from './direct-messages/replies/reply.component';
 import { ContractCreateComponent } from './contract-create/contract-create.component';
 import { ContractDetailComponent } from './contract-detail/contract-detail.component';
 import { ContractCurrentUserComponent } from './contract-current-user/contract-current-user.component';
 import { ContractPurchaseComponent } from './contract-purchase/contract-purchase.component';
 import { FAQComponent } from './faq/faq.component';
 import { ContractEditComponent } from './contract-edit/contract-edit.component';
+import { TermsComponent } from './terms/terms.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { AdminHomeComponent } from './admin_home/admin_home.component';
 
 const routes: Routes = [{
   path: '',
@@ -83,10 +84,6 @@ const routes: Routes = [{
     component: ContractComponent
   },
   {
-    path: 'replies',
-    component: RepliesComponent
-  },
-  {
     path: 'user-profile',
     component: UserProfileComponent
   },
@@ -99,16 +96,23 @@ const routes: Routes = [{
     component: FAQComponent
   },
   {
+    path: 'admin_home',
+    component: AdminHomeComponent
+  },
+  {
+    path: 'terms',
+    component: TermsComponent
+  },{
+    path: 'privacy',
+    component: PrivacyComponent
+  },
+  {
     path: 'marketplace/marketplace-detail',
     component: MarketplaceDetailComponent
   },
   {
     path: 'my-account',
     component: MyAccountComponent
-  },
-  {
-    path: 'direct-messages',
-    component: DirectMessagesComponent
   },
   {
     path: 'search',
@@ -141,10 +145,6 @@ const routes: Routes = [{
   {
     path: 'maps',
     loadChildren: './maps/maps.module#MapsModule',
-  }, 
-  {
-    path: 'charts',
-    loadChildren: './charts/charts.module#ChartsModule',
   }, 
   {
     path: 'editors',

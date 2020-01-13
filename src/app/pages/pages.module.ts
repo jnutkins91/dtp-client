@@ -9,7 +9,6 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { MyAccountModule } from './my-account/my-account.module';
 import { MarketplaceModule } from './marketplace/marketplace.module';
 import { ForumModule } from './forum/forum.module';
-import { DirectMessagesModule } from './direct-messages/direct-messages.module';
 import { SearchModule } from './search/search.module';
 import { UsersModule } from './users/users.module';
 import { TagsModule } from './tags/tags.module';
@@ -22,6 +21,9 @@ import { ContractDetailModule } from './contract-detail/contract-detail.module';
 import { ContractCurrentUserModule } from './contract-current-user/contract-current-user.module';
 import { ContractPurchaseModule } from './contract-purchase/contract-purchase.module';
 import { FAQModule } from './faq/faq.module';
+import { TermsModule } from './terms/terms.module';
+import { PrivacyModule } from './privacy/privacy.module';
+import { AdminHomeModule } from './admin_home/admin_home.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -37,7 +39,6 @@ const PAGES_COMPONENTS = [
     MarketplaceModule,
     ForumModule,
     MyAccountModule,
-    DirectMessagesModule,
     SearchModule,
     UsersModule,
     TagsModule,
@@ -49,7 +50,10 @@ const PAGES_COMPONENTS = [
     ContractDetailModule,
     ContractCurrentUserModule,
     ContractPurchaseModule,
-    FAQModule
+    FAQModule,
+    TermsModule,
+    PrivacyModule,
+    AdminHomeModule
   ],
   declarations: [
     ...PAGES_COMPONENTS

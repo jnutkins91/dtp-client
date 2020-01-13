@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContractService } from '../../@core/services/contract.service';
 
 import { contract } from '../../@core/data/contract';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'contract',
@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class ContractComponent implements OnInit {
 
   constructor(private router: Router,
+    private route: ActivatedRoute,
     private contractService: ContractService) {
       
   }
@@ -20,19 +21,25 @@ export class ContractComponent implements OnInit {
   loading = false;
   contracts: any;
 
+  sub: any;
   tagName: string;
+  tagId: number;
 
   ngOnInit() {
 
-    this.getContracts(history.state.itemId);
-    this.tagName = history.state.tagName;
+    this.sub = this.route.params.subscribe(params => {
+      this.tagName = params['tagName'];
+      this.tagId = +params['tagId'];
+    });
+
+    this.getContracts(this.tagId);
   }
 
-  getContracts(id: string) {
+  getContracts(id: number) {
 
     this.loading = true;
 
-    this.contractService.getContractByTag(id)
+    this.contractService.getContractByTag(id.toString())
       .subscribe(
 
         (data: contract[]) => {
@@ -46,6 +53,7 @@ export class ContractComponent implements OnInit {
   }
 
   onClick_Contract(id: string) {
-    this.router.navigateByUrl('/pages/contract-detail', { state: { itemId: id }});
+
+    this.router.navigate(['./pages/contract-detail', { contractId: id }]);
   }
 }

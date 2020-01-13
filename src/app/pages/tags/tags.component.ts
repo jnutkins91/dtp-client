@@ -65,6 +65,8 @@ export class TagsComponent implements OnInit {
   }
 
   onClick_Tag(id: string, name: string) {
-    this.router.navigateByUrl('/pages/contract', { state: { itemId: id, tagName: name }});
+
+    this.router.navigate(['./pages/contract', { tagId: id, tagName: name }]);
+    //this.router.navigateByUrl('/pages/contract', { state: { itemId: id, tagName: name }});
   }
 }

@@ -104,14 +104,14 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/pages/contract-current-user', { state: { itemId: this.user['id'], tagName: '' }});
   }
 
-  showDirectMessages() {
+  showAdminPanel() {
 
-    this.router.navigate(['/pages/direct-messages', { }], { relativeTo: this.route });
+    this.router.navigate(['/pages/admin_home', { }], { relativeTo: this.route });
   }
 
   openWebsite() {
 
-    window.open("https://serene-payne-127cc8.netlify.com", "_blank");
+    window.open("https://dtp20200108070750.azurewebsites.net", "_blank");
   }
 
   onMenuClick(id){

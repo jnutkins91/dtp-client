@@ -6,12 +6,12 @@ export class ContractStatus implements PipeTransform {
     transform(value: number): string {
 
         if (value == 0)
-            return "DRAFT";
+            return "LIVE";
         else if (value == 1)
-            return "ACTIVE";
-        else if (value == 2)
             return "SUSPENDED";
-        else
+        else if (value == 2)
             return "ARCHIVED";
+        else
+            return "ERROR";
     }
 }

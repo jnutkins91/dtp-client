@@ -4,12 +4,12 @@ display:table;">
   <span style="color: black; font-size: 1.5em;">{{ contract?.name }}</span>
 
   <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #BC0547" (click)="activateClicked()"
-    *ngIf="user.id == contract?.miner_id && (contract?.status == 0 || contract?.status == 2)">
+    *ngIf="user.id == contract?.miner_id && (contract?.status == 1 || contract?.status == 2)">
     Activate
   </button>
 
   <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #ff6b83" (click)="suspendClicked(contract?.id)"
-    *ngIf="user.id == contract?.miner_id && contract?.status == 1">
+    *ngIf="user.id == contract?.miner_id && contract?.status == 0">
     Suspend
   </button>
 
@@ -24,37 +24,11 @@ display:table;">
   </button>
 
   <button type="button" class="btn btn-success" style="margin-left: 0.5em; float: right;" (click)="purchaseClicked()"
-    *ngIf="user.id != contract?.miner_id && contract?.status == 1">
+    *ngIf="user.id != contract?.miner_id && contract?.status == 0">
     Purchase
   </button>
 
 </div>
-
-
-<!-- <div style="margin-bottom: 0.5em;">
-
-  <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;" (click)="backClicked()">
-    <i class="nb-layout-right nb-arrow-thin-left"></i>
-  </button>
-
-  <span style="margin-left: 1em; color: black; font-size: 1.5em;">{{ contract?.name }}</span>
-
-  <button type="button" class="btn btn-info" style="margin-left: 0.5em; float: right;" (click)="testClicked()"
-    *ngIf="user.id == contract?.miner_id">
-    Test
-  </button>
-
-  <button type="button" class="btn btn-warning" style="margin-left: 0.5em; float: right;" (click)="editClicked()"
-    *ngIf="user.id == contract?.miner_id">
-    Edit
-  </button>
-
-  <button type="button" class="btn btn-success" style="margin-left: 0.5em; float: right;" (click)="purchaseClicked()"
-    *ngIf="user.id != contract?.miner_id">
-    Purchase
-  </button>
-
-</div> -->
 
 <nb-card>
 
@@ -84,11 +58,14 @@ display:table;">
 </nb-card>
 
 
+<button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #BC0547" (click)="newCommentClicked()"
+  *ngIf="(user | json) != '{}'">
+    Message Seller
+  </button>
 
 
 
-
-<div style="margin-bottom: 0.5em; width:100%;
+<!-- <div style="margin-bottom: 0.5em; width:100%;
 display:table;">
 
   <span style="color: black; font-size: 1.5em;">Comments</span>
@@ -98,10 +75,10 @@ display:table;">
     <i class="nb-layout-right nb-compose"></i>
   </button>
 
-</div>
+</div> -->
 
 
-<div [nbSpinner]="commentsLoading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+<!-- <div [nbSpinner]="commentsLoading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
 
   <nb-card *ngIf="commentsLoading">
     <nb-card-header></nb-card-header>
@@ -128,4 +105,4 @@ display:table;">
     </nb-card-footer>
   </nb-card>
 
-</div>
+</div> -->

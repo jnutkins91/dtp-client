@@ -12,9 +12,11 @@
                 <nb-card>
                     <nb-card-header>{{ theUser?.username }}</nb-card-header>
                     <nb-card-body>
-                        <button nbButton status="primary" style="width: 95%;"
-                            [disabled]="(!loggedIn || user?.id == theUser?.id)" (click)="onClick_SendMessage()">Send
-                            Message</button>
+
+                        <h6>Bio</h6>
+                        
+                        <p>{{ theUser?.bio }}</p>
+                        
 
 
                         <button nbButton status="danger" class="btn btn-icon" style="float: right;"
@@ -75,6 +77,10 @@
 
     <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of contracts">
         <nb-card-header>
+
+            <nb-alert status="warning"
+            style="text-align: center; margin-bottom: 0; width: auto; display: inline-flex;">{{ option.data_type | dataType }}</nb-alert>
+            
             {{ option.name }}
 
             <span style="float: right;">v{{ option.version }}</span>

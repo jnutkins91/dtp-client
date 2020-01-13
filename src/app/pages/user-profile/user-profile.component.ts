@@ -8,7 +8,6 @@ import { dtp_user } from '../../@core/data/dtp_user';
 import { ContractService } from '../../@core/services/contract.service';
 import { contract } from '../../@core/data/contract';
 
-import { NewMessageDialogComponent } from '../direct-messages/replies/newMessage-dialog.component';
 import { ConversationService } from '../../@core/services/conversation.service';
 import { NbDialogService, NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { NbToastStatus } from '@nebular/theme/components/toastr/model';
@@ -49,7 +48,7 @@ export class UserProfileComponent implements OnInit {
           this.loggedIn = false;
         }
 
-        this.getUserData();
+        //this.getUserData();
 
       });
 
@@ -58,16 +57,23 @@ export class UserProfileComponent implements OnInit {
   loading = false;
   contractsLoading = false;
   user: dtp_user;
+  sub: any;
+  userId: number;
   contracts: any;
 
   ngOnInit() {
 
     //this.getUserData();
+    this.sub = this.route.params.subscribe(params => {
+      this.userId = +params['userId'];
+    });
+
+    this.getUserData();
   }
 
   getUserData() {
     this.loading = true;
-    this.userService.getOtherUserData(history.state.itemId)
+    this.userService.getOtherUserData(this.userId)
       .subscribe(
 
         (data: dtp_user) => {
@@ -102,60 +108,7 @@ export class UserProfileComponent implements OnInit {
 
   }
 
-  onClick_SendMessage() {
-
-    this.dialogService.open(NewMessageDialogComponent, { context: JSON.stringify({ conversationId: null, userId: this.user["id"], messageToId: this.theUser.id }) })
-      .onClose.subscribe(newMessage =>
-
-        this.conversationService.newMessage(newMessage)
-          .subscribe(
-
-            (data) => this.showToast_Success(),
-            err => {
-              this.showToast_Error();
-              console.error('Observer got an error: ' + err)
-            },
-            () => this.loading = false)
-      );
-  }
-
-  private showToast_Success() {
-
-    const config = {
-      status: NbToastStatus.SUCCESS,
-      destroyByClick: false,
-      duration: 2000,
-      hasIcon: true,
-      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
-      preventDuplicates: false,
-    };
-
-    //this.index += 1;
-    this.toastrService.show(
-      '',
-      'Message sent!',
-      config);
-  }
-
-  private showToast_Error() {
-
-    const config = {
-      status: NbToastStatus.DANGER,
-      destroyByClick: false,
-      duration: 2000,
-      hasIcon: true,
-      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
-      preventDuplicates: false,
-    };
-
-    //this.index += 1;
-    this.toastrService.show(
-      '',
-      'Error sending message!',
-      config);
-  }
-
   onClick_Contract(id: string) {
-    this.router.navigateByUrl('/pages/contract-detail', { state: { itemId: id } });
+    this.router.navigate(['./pages/contract-detail', { contractId: id }]);
   }
 }

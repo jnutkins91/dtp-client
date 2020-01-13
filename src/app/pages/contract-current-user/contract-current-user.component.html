@@ -32,6 +32,10 @@ display:table;">
             <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of offers">
 
                 <nb-card-header style="position: relative">
+
+                    <nb-alert status="warning"
+            style="text-align: center; margin-bottom: 0; width: auto; display: inline-flex;">{{ option.data_type | dataType }}</nb-alert>
+            
                     {{ option.name }}
 
                     <span style="float: right;">v{{ option.version }}</span>

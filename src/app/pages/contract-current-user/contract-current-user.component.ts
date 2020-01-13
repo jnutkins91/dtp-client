@@ -65,7 +65,7 @@ export class ContractCurrentUserComponent implements OnInit {
   }
 
   onClick_Contract(id: string) {
-    this.router.navigateByUrl('/pages/contract-detail', { state: { itemId: id } });
+    this.router.navigate(['./pages/contract-detail', { contractId: id }]);
   }
 
   newContractClicked() {

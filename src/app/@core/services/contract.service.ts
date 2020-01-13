@@ -30,6 +30,10 @@ export class ContractService {
     return this.http.get(environment.apiUrl + "/api/contractoffer/" + id);
   }
 
+  getLatestOffers(page: number): Observable<any> {
+    return this.http.get(environment.apiUrl + "/api/contractoffer/GetLatestOffers/" + page);
+  }
+
   getContractComments(id: string): Observable<any> {
     return this.http.get(environment.apiUrl + "/api/contractoffercomment/" + id);
   }

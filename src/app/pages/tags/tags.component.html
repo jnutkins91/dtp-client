@@ -27,9 +27,10 @@
             *ngFor="let option of tags?.tags | paginate: { itemsPerPage: 24, currentPage: p, totalItems: tags?.totalTags }">
 
             <nb-card (click)="onClick_Tag(option.id, option.name)">
-                <nb-card-header style="background-color: #BC0547; color: #ffffff">{{ option.name }}</nb-card-header>
+                <nb-card-header style="background-color: #BC0547; color: #ffffff; min-height: 3.5em; max-height: 3.5em;">{{ option.name }}</nb-card-header>
 
-                <nb-card-body>
+                <nb-card-body style="min-height: 8em; max-height: 8em; overflow: hidden;
+                text-overflow: ellipsis; box-sizing: content-box;">
                     {{ option.description }}
                 </nb-card-body>
             </nb-card>

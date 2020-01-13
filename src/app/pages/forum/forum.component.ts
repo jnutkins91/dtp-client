@@ -35,7 +35,6 @@ export class ForumComponent implements OnInit {
 
   onClickTopic(id: number) {
 
-    // this.router.navigate(['thread', id]);
     this.router.navigate(['./thread', { topicId: id }], { relativeTo: this.route });
   }
 }

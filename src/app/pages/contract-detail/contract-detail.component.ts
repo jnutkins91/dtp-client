@@ -41,23 +41,28 @@ export class ContractDetailComponent implements OnInit {
 
   user: dtp_user;
   loading = false;
+  sub: any;
   commentsLoading = false;
+  contractId: number;
   contract: contract;
   contract_comments: Array<contract_offer_comment>;
 
   ngOnInit() {
 
-    this.getContract(history.state.itemId);
-    this.getContractComments(history.state.itemId);
+    this.sub = this.route.params.subscribe(params => {
+      this.contractId = +params['contractId'];
+    });
+
+    this.getContract(this.contractId);
   }
 
   searchTerm: string;
 
-  getContract(id: string) {
+  getContract(id: number) {
 
     this.loading = true;
 
-    this.contractService.getContract(id)
+    this.contractService.getContract(id.toString())
       .subscribe(
 
         (data: contract) => {
@@ -67,23 +72,6 @@ export class ContractDetailComponent implements OnInit {
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
-
-  }
-
-  getContractComments(id: string) {
-
-    this.commentsLoading = true;
-
-    this.contractService.getContractComments(id)
-      .subscribe(
-
-        (comment_data: Array<contract_offer_comment>) => {
-
-          this.contract_comments = comment_data;
-          console.log(this.contract_comments);
-        },
-        err => console.error('Observer got an error: ' + err),
-        () => this.commentsLoading = false);
 
   }
 

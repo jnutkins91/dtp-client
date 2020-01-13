@@ -18,22 +18,47 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-6">
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
 
-        <nb-card>
-            <nb-card-header>DATA REQUESTS</nb-card-header>
-            <nb-card-body>
+    <span style="color: black; font-size: 1.5em; display:table-cell;
+    vertical-align:middle;">Latest Offers</span>
 
-            </nb-card-body>
-        </nb-card>
-    </div>
-    <div class="col-md-6">
-        <nb-card>
-            <nb-card-header>CONTRACT OFFERS</nb-card-header>
-            <nb-card-body>
+</div>
 
-            </nb-card-body>
-        </nb-card>
-    </div>
+<div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+    <nb-card *ngIf="loading">
+        <nb-card-header></nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="contracts?.length == 0">
+        <nb-card-body>
+            <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
+            <p>We didn't find anything here...</p>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of contracts">
+        <nb-card-header>
+
+            <nb-alert status="warning"
+            style="text-align: center; margin-bottom: 0; width: auto; display: inline-flex;">{{ option.data_type | dataType }}</nb-alert>
+
+            {{ option.name }}
+
+            <span style="float: right;">v{{ option.version }}</span>
+        </nb-card-header>
+
+        <nb-card-body style="display: table-cell; vertical-align: middle;">
+            {{ option.description }} {{ option.data_type }}
+        </nb-card-body>
+
+        <nb-alert status="{{ option.status | contractStatusColor }}"
+            style="float: right; text-align: center; margin-bottom: 0;">{{ option.status | contractStatus }}</nb-alert>
+
+    </nb-card>
+
 </div>

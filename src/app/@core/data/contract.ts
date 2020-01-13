@@ -26,4 +26,5 @@ export class contract {
     token_rate: number;
     currency_rate: number;
     contract_limit: number;
+    is_private: boolean;
   }

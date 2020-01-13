@@ -23,7 +23,7 @@ export class PagesComponent {
   MENU_ITEMS: NbMenuItem[] = [
     {
       title: 'Home',
-      icon: 'nb-bar-chart',
+      icon: 'nb-home',
       link: '/pages/home',
     },
     {
@@ -41,11 +41,6 @@ export class PagesComponent {
           link: '/pages/users', // goes directly into `href` attribute
         }
       ],
-    },
-    {
-      title: 'Groups',
-      icon: 'nb-grid-b-outline',
-      link: '/pages/faq',
     },
     {
       title: 'Forum',

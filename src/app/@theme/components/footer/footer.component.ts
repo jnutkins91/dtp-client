@@ -14,9 +14,9 @@ import { Component } from '@angular/core';
     <div style="float: right;">
       <a href="#/pages/faq" style="color: #a4abb3;">FAQ</a>
       <p style="display: inline;">  |  </p>
-      <a href="#/pages/faq" style="color: #a4abb3;">Terms & Conditions</a>
+      <a href="#/pages/terms" style="color: #a4abb3;">Terms & Conditions</a>
       <p style="display: inline;">  |  </p>
-      <a href="#/pages/faq" style="color: #a4abb3;">Privacy Policy</a>
+      <a href="#/pages/privacy" style="color: #a4abb3;">Privacy Policy</a>
     </div>
   `,
 })

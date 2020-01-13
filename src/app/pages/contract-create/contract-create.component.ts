@@ -230,6 +230,8 @@ export class ContractCreateComponent {
       currency: this.contract.currency,
       timezone: this.contract.timezone,
 
+      is_private: this.contract.is_private,
+
       tags: tagsToSend
     }
 

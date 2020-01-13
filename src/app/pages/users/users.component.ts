@@ -63,7 +63,8 @@ export class UsersComponent implements OnInit {
   }
 
   onClick_User(id: string) {
-    this.router.navigateByUrl('/pages/user-profile', { state: { itemId: id }});
+    //this.router.navigateByUrl('/pages/user-profile', { state: { itemId: id }});
+    this.router.navigate(['./pages/user-profile', { userId: id }]);
   }
 
   onClickUserImg() {
