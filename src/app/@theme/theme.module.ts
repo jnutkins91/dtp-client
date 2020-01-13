@@ -49,7 +49,7 @@ import {
   LayoutDirectionSwitcherComponent,
   ThemeSwitcherComponent,
   TinyMCEComponent,
-  ThemeSwitcherListComponent
+  ThemeSwitcherListComponent,
 } from './components';
 import {
   CapitalizePipe,
@@ -57,7 +57,7 @@ import {
   RoundPipe,
   TimingPipe,
   NumberWithCommasPipe,
-  EvaIconsPipe
+  EvaIconsPipe,
 } from './pipes';
 import {
   OneColumnLayoutComponent,
@@ -122,7 +122,7 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
-  TwoColumnsLayoutComponent
+  TwoColumnsLayoutComponent,
 ];
 
 const ENTRY_COMPONENTS = [
@@ -138,7 +138,7 @@ const PIPES = [
   EvaIconsPipe,
   ContractStatus,
   ContractStatusColor,
-  DataType
+  DataType,
 ];
 
 const NB_THEME_PROVIDERS = [

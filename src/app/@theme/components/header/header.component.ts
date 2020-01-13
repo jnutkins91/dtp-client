@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
+          this.user = token.getPayload();
         }
       });
   }
@@ -59,15 +59,13 @@ export class HeaderComponent implements OnInit {
       )
       .subscribe(title => {
 
-        if (title == "Log Out") {
+        if (title === 'Log Out') {
 
-          console.log("Log Out Pressed");
           this.nbTokenService.clear();
           this.user = {};
         }
-        else if (title == "Profile") {
+        else if (title === 'Profile') {
 
-          console.log("Profile Pressed");
           this.router.navigate(['/pages/my-account', { }], { relativeTo: this.route });
         }
 

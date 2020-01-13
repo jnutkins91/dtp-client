@@ -6,12 +6,12 @@ export class ContractStatusColor implements PipeTransform {
     transform(value: number): string {
 
         if (value === 0)
-            return "success";
+            return 'success';
         else if (value === 1)
-            return "danger";
+            return 'danger';
         else if (value === 2)
-            return "info";
+            return 'info';
         else
-            return "warning";
+            return 'warning';
     }
 }

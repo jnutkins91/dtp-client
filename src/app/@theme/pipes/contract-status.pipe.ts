@@ -5,13 +5,13 @@ export class ContractStatus implements PipeTransform {
 
     transform(value: number): string {
 
-        if (value == 0)
-            return "LIVE";
-        else if (value == 1)
-            return "SUSPENDED";
-        else if (value == 2)
-            return "ARCHIVED";
+        if (value === 0)
+            return 'LIVE';
+        else if (value === 1)
+            return 'SUSPENDED';
+        else if (value === 2)
+            return 'ARCHIVED';
         else
-            return "ERROR";
+            return 'ERROR';
     }
 }

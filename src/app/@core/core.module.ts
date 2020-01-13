@@ -148,7 +148,7 @@ export const NB_CORE_PROVIDERS = [
         showMessages: {
           success: true,
           error: true,
-        }
+        },
       },
       resetPassword: {
         redirectDelay: 500,
