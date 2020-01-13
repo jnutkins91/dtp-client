@@ -40,7 +40,6 @@ export class ContractCurrentUserComponent implements OnInit {
         (data: contract[]) => {
 
           this.offers = data;
-          console.log(this.offers);
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
@@ -57,7 +56,6 @@ export class ContractCurrentUserComponent implements OnInit {
         (data: contract[]) => {
 
           this.requests = data;
-          console.log(this.requests);
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
@@ -85,7 +83,6 @@ export class ContractCurrentUserComponent implements OnInit {
           this.loading = false;
         },
         err => {
-          debugger;
           alert(err.error);
           this.loading = false;
         },

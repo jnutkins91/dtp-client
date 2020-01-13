@@ -12,7 +12,6 @@ export class ContractPurchaseComponent {
   selectedCurrency: any;
 
   constructor(private _location: Location) {
-      
     this.selectedCurrency = 'usd';
   }
 
@@ -26,5 +25,4 @@ export class ContractPurchaseComponent {
   backClicked() {
     this._location.back();
   }
-
 }

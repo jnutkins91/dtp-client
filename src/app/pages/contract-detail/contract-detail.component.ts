@@ -86,7 +86,7 @@ export class ContractDetailComponent implements OnInit {
   }
 
   activateClicked(id: number) {
-    alert("Activate Clicked");
+    alert('Activate Clicked');
   }
 
   suspendClicked(id: number) {
@@ -100,7 +100,7 @@ export class ContractDetailComponent implements OnInit {
 
           this.contract = data;
           this.loading = false;
-        }, //this.theUser = data,
+        },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
   }
@@ -120,9 +120,9 @@ export class ContractDetailComponent implements OnInit {
             },
             err => {
               this.showToast_Error();
-              console.error('Observer got an error: ' + err)
+              console.error('Observer got an error: ' + err);
             },
-            () => this.loading = false)
+            () => this.loading = false),
       );
   }
 
@@ -154,7 +154,6 @@ export class ContractDetailComponent implements OnInit {
       preventDuplicates: false,
     };
 
-    //this.index += 1;
     this.toastrService.show(
       '',
       'Failed to comment!',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { DTPUserService } from '../../@core/services/dtp_user.service';
 import { dtp_user } from '../../@core/data/dtp_user';
 

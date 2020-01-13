@@ -8,7 +8,7 @@ import { SearchComponent } from './search.component';
     ThemeModule,
   ],
   declarations: [
-    SearchComponent
+    SearchComponent,
   ],
 })
 export class SearchModule { }

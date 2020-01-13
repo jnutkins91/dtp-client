@@ -22,7 +22,7 @@ export class ContractCreateComponent {
   user: dtp_user;
   contract: contract;
   passwordConfirm: string;
-  data_type = "raw";
+  data_type = 'raw';
   limit_contracts = false;
 
   loading = false;
@@ -57,17 +57,16 @@ export class ContractCreateComponent {
         if (token.isValid()) {
           this.user = token.getPayload();
         }
-
       });
 
     this.newContractOfferForm = new FormGroup({
       'contract_name': new FormControl(this.contract.name, [
         Validators.required,
-        Validators.minLength(10)
+        Validators.minLength(10),
       ]),
       'description': new FormControl(this.contract.description, [
         Validators.required,
-        Validators.minLength(25)
+        Validators.minLength(25),
       ]),
       'contract_tags': new FormControl(this.contract.tags),
 
@@ -81,23 +80,23 @@ export class ContractCreateComponent {
 
 
       'startDateControl': new FormControl(this.contract.startdate, [
-        Validators.required
+        Validators.required,
       ]),
       'endDateControl': new FormControl(this.contract.enddate, [
-        Validators.required
+        Validators.required,
       ]),
       'use_primary_wallet': new FormControl(this.contract.use_primary_wallet),
       'fixed_currency': new FormControl(this.contract.fixed_currency),
       'username': new FormControl(this.contract.username, [
-        Validators.required
+        Validators.required,
       ]),
       'location_directory': new FormControl(this.contract.location_directory),
 
       'password': new FormControl(this.contract.password, [
-        Validators.required
+        Validators.required,
       ]),
       'passwordConfirm': new FormControl(this.contract.passwordConfirm, [
-        Validators.required
+        Validators.required,
       ]),
 
       'limit_contracts': new FormControl(),
@@ -140,7 +139,7 @@ export class ContractCreateComponent {
 
     var tagsToSend = [];
     var count = 0;
-    
+
     if (this.contract.tags === undefined || this.contract.tags.length === 0) {
       this.dialogService.open(ShowcaseDialogComponent, {
         context: {
@@ -163,7 +162,7 @@ export class ContractCreateComponent {
 
       count++;
     }
-    
+
     if (this.contract.startdate === undefined || this.contract.enddate === undefined) {
       this.dialogService.open(ShowcaseDialogComponent, {
         context: {
@@ -174,7 +173,7 @@ export class ContractCreateComponent {
       return;
     }
 
-    if (this.contract.data_format_csv === false 
+    if (this.contract.data_format_csv === false
       && this.contract.data_format_json === false
       && this.contract.data_format_plain_text === false
       && this.contract.data_format_xlsx === false
@@ -189,7 +188,7 @@ export class ContractCreateComponent {
     }
 
     var local_data_type = 0;
-    if (this.data_type == "processed")
+    if (this.data_type == 'processed')
       local_data_type = 1;
 
     var newContract = {

@@ -53,7 +53,7 @@ const PAGES_COMPONENTS = [
     FAQModule,
     TermsModule,
     PrivacyModule,
-    AdminHomeModule
+    AdminHomeModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
     private conversationService: ConversationService,
     private toastrService: NbToastrService) {
 
-    this.selectedItem = "gmt";
+    this.selectedItem = 'gmt';
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
@@ -47,11 +47,7 @@ export class UserProfileComponent implements OnInit {
 
           this.loggedIn = false;
         }
-
-        //this.getUserData();
-
       });
-
   }
 
   loading = false;
@@ -87,7 +83,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   reportUserClicked() {
-    
     alert("Report User Clicked!");
   }
 

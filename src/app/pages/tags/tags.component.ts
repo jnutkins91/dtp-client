@@ -27,11 +27,11 @@ export class TagsComponent implements OnInit {
 
   p: number = 1;
 
-  searchTerm: string = "";
+  searchTerm: string = '';
 
   tags: {
     totalTags: 0,
-    tags: Array<tag>
+    tags: Array<tag>,
   };
 
   ngOnInit() {
@@ -40,7 +40,6 @@ export class TagsComponent implements OnInit {
   }
 
   onPageChange(number: number) {
-    //alert('change to page' + number);
     this.getTags(number, this.searchTerm);
   }
 
@@ -58,15 +57,13 @@ export class TagsComponent implements OnInit {
         (data: any) => {
 
           this.tags = data;
-          console.log(this.tags);
         },
         err => console.error('Observer got an error: ' + err),
-        () => this.loading = false)
+        () => this.loading = false);
   }
 
   onClick_Tag(id: string, name: string) {
 
     this.router.navigate(['./pages/contract', { tagId: id, tagName: name }]);
-    //this.router.navigateByUrl('/pages/contract', { state: { itemId: id, tagName: name }});
   }
 }

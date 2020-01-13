@@ -150,15 +150,15 @@ const routes: Routes = [{
   {
     path: 'editors',
     loadChildren: './editors/editors.module#EditorsModule',
-  }, 
+  },
   {
     path: 'forms',
     loadChildren: './forms/forms.module#FormsModule',
-  }, 
+  },
   {
     path: 'miscellaneous',
     loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
-  }, 
+  },
   {
     path: '',
     redirectTo: 'home',

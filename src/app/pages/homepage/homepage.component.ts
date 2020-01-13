@@ -35,7 +35,5 @@ export class HomePageComponent implements OnInit {
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
-    
   }
-
 }

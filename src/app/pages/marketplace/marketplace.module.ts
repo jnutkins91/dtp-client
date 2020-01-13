@@ -9,11 +9,11 @@ import { MarketplaceDetailComponent } from './marketplace-detail/marketplace-det
 @NgModule({
   imports: [
     ThemeModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
   ],
   declarations: [
     MarketplaceComponent,
-    MarketplaceDetailComponent
+    MarketplaceDetailComponent,
   ],
 })
 export class MarketplaceModule { }

@@ -15,7 +15,7 @@ export class ContractComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private contractService: ContractService) {
-      
+
   }
 
   loading = false;
@@ -49,7 +49,7 @@ export class ContractComponent implements OnInit {
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
-    
+
   }
 
   onClick_Contract(id: string) {

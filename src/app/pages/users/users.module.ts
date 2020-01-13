@@ -8,13 +8,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   imports: [
     ThemeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   declarations: [
-    UsersComponent
+    UsersComponent,
   ],
 })
 export class UsersModule {
 
-  
 }
