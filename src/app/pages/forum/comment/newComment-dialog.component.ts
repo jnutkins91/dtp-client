@@ -33,8 +33,8 @@ export class NewCommentDialogComponent {
 
       thread_id: this.id,
       creator_id: 7,
-      body: description
-    }
+      body: description,
+    };
 
     this.dialogRef.close(newComment);
   }

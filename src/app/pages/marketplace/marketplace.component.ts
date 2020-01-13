@@ -28,12 +28,12 @@ export class MarketplaceComponent implements OnInit {
     //   deleteButtonContent: '<i class="nb-trash"></i>',
     //   confirmDelete: true,
     // },
-    noDataMessage: "No Contracts Found!",
+    noDataMessage: 'No Contracts Found!',
     actions: {
 
       add: false,
       edit: false,
-      delete: false
+      delete: false,
     },
     columns: {
       id: {
@@ -80,14 +80,10 @@ export class MarketplaceComponent implements OnInit {
   tags: Array<tag>;
 
   ngOnInit() {
-
     this.selectedDataType = false;
-
-    console.log(this.selectedDataType);
   }
 
   onUserRowSelect(event): void {
-    console.log(event);
     this.router.navigate(['/pages/marketplace/marketplace-detail', { }], { relativeTo: this.route });
   }
 }

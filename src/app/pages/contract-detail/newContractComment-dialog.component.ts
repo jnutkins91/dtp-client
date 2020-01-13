@@ -34,7 +34,7 @@ export class NewContractCommentDialogComponent {
 
       creator_id: this.userId,
       body: reply,
-      contract_offer_id: this.contractId
+      contract_offer_id: this.contractId,
     }
 
     this.dialogRef.close(newContractComment);

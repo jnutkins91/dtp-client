@@ -30,16 +30,16 @@ export class HeaderComponent implements OnInit {
     private layoutService: LayoutService,
     private authService: NbAuthService,
     private nbMenuService: NbMenuService,
-    private nbTokenService:NbTokenService,
+    private nbTokenService: NbTokenService,
     private router: Router,
     private route: ActivatedRoute,
     private searchService: NbSearchService) {
 
-      this.searchService.onSearchSubmit()
-      .subscribe((data: any) => {       
+    this.searchService.onSearchSubmit()
+      .subscribe((data: any) => {
         this.value = data.term;
-        this.router.navigate(['/pages/search/'] , { queryParams: { searchTerm: this.value, relativeTo: this.route } });
-      })
+        this.router.navigate(['/pages/search/'], { queryParams: { searchTerm: this.value, relativeTo: this.route } });
+      });
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit {
         }
         else if (title === 'Profile') {
 
-          this.router.navigate(['/pages/my-account', { }], { relativeTo: this.route });
+          this.router.navigate(['/pages/my-account', {}], { relativeTo: this.route });
         }
 
       });
@@ -74,7 +74,7 @@ export class HeaderComponent implements OnInit {
 
   loginClicked() {
 
-    this.router.navigate(['/auth/login', { }], { relativeTo: this.route });
+    this.router.navigate(['/auth/login', {}], { relativeTo: this.route });
   }
 
   toggleSidebar(): boolean {
@@ -93,20 +93,20 @@ export class HeaderComponent implements OnInit {
   }
 
   newContractClicked() {
-    this.router.navigateByUrl('/pages/contract-current-user', { state: { itemId: this.user['id'], tagName: '' }});
+    this.router.navigateByUrl('/pages/contract-current-user', { state: { itemId: this.user['id'], tagName: '' } });
   }
 
   showAdminPanel() {
 
-    this.router.navigate(['/pages/admin_home', { }], { relativeTo: this.route });
+    this.router.navigate(['/pages/admin_home', {}], { relativeTo: this.route });
   }
 
   openWebsite() {
 
-    window.open("https://dtp20200108070750.azurewebsites.net", "_blank");
+    window.open('https://dtp20200108070750.azurewebsites.net', '_blank');
   }
 
-  onMenuClick(id){
+  onMenuClick(id) {
 
     alert(id);
   }

@@ -39,14 +39,14 @@ export class PagesComponent {
           title: 'Users',
           icon: 'nb-person',
           link: '/pages/users', // goes directly into `href` attribute
-        }
+        },
       ],
     },
     {
       title: 'Forum',
       icon: 'nb-lightbulb',
       link: '/pages/forum',
-    }
+    },
     // ,
     // {
     //   title: 'UI',
@@ -94,14 +94,14 @@ export class PagesComponent {
 
       });
 
-      this._router.events.pipe(
-        filter(e => e instanceof NavigationStart),
-        filter((e: NavigationStart) => e.navigationTrigger == "popstate")
-      )
-        .subscribe((x: NavigationStart) => {
-          //this.itemId = history.state.itemId;
-          this._router.getCurrentNavigation().extras.state={...x.restoredState, navigationId:x.id } ;
-        });
+    this._router.events.pipe(
+      filter(e => e instanceof NavigationStart),
+      filter((e: NavigationStart) => e.navigationTrigger === "popstate"),
+    )
+      .subscribe((x: NavigationStart) => {
+        //this.itemId = history.state.itemId;
+        this._router.getCurrentNavigation().extras.state = { ...x.restoredState, navigationId: x.id };
+      });
   }
 
   isEmptyObject(obj) {
