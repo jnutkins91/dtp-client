@@ -3,3 +3,4 @@ export interface wallet {
     external_id: string;
     balance: number;
   }
+  

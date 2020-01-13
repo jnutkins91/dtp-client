@@ -19,6 +19,7 @@ import { NbDialogRef } from '@nebular/theme';
 export class NewCommentDialogComponent {
   
   constructor(protected dialogRef: NbDialogRef<NewCommentDialogComponent>) {
+    
   }
 
   id: number;

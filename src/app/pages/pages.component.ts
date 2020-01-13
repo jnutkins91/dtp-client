@@ -47,33 +47,6 @@ export class PagesComponent {
       icon: 'nb-lightbulb',
       link: '/pages/forum',
     },
-    // ,
-    // {
-    //   title: 'UI',
-    //   icon: 'nb-lightbulb',
-    //   children: [
-    //     {
-    //       title: 'Form Inputs',
-    //       icon: 'nb-edit',
-    //       link: '/pages/forms/inputs', // goes into angular `routerLink`
-    //     },
-    //     {
-    //       title: 'Form Layouts',
-    //       icon: 'nb-person',
-    //       link: '/pages/forms/layouts', // goes directly into `href` attribute
-    //     },
-    //     {
-    //       title: 'Buttons',
-    //       icon: 'nb-person',
-    //       link: '/pages/forms/buttons', // goes directly into `href` attribute
-    //     },
-    //     {
-    //       title: 'Datepicker',
-    //       icon: 'nb-person',
-    //       link: '/pages/forms/datepicker', // goes directly into `href` attribute
-    //     }
-    //   ],
-    // }
   ];
 
   menu = this.MENU_ITEMS;
@@ -85,13 +58,8 @@ export class PagesComponent {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
-          this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
-          console.log("User:");
-          console.log(this.user);
+          this.user = token.getPayload();
         }
-
       });
 
     this._router.events.pipe(
@@ -99,7 +67,6 @@ export class PagesComponent {
       filter((e: NavigationStart) => e.navigationTrigger === "popstate"),
     )
       .subscribe((x: NavigationStart) => {
-        //this.itemId = history.state.itemId;
         this._router.getCurrentNavigation().extras.state = { ...x.restoredState, navigationId: x.id };
       });
   }

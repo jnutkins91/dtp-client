@@ -21,7 +21,7 @@ import { NewContractCommentDialogComponent } from './pages/contract-detail/newCo
     NewThreadDialogComponent,
     ShowcaseDialogComponent,
     NewCommentDialogComponent,
-    NewContractCommentDialogComponent
+    NewContractCommentDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,13 +31,13 @@ import { NewContractCommentDialogComponent } from './pages/contract-detail/newCo
 
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
-    CoreModule.forRoot()
+    CoreModule.forRoot(),
   ],
   entryComponents: [
     NewThreadDialogComponent,
     ShowcaseDialogComponent,
     NewContractCommentDialogComponent,
-    NewCommentDialogComponent
+    NewCommentDialogComponent,
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -31,11 +31,7 @@ export class ThreadComponent implements OnInit {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
           this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
-          console.log("User:");
-          console.log(this.user);
         }
 
       });
@@ -49,7 +45,7 @@ export class ThreadComponent implements OnInit {
   };
 
   ngOnInit() {
-
+    
     this.sub = this.route.params.subscribe(params => {
       this.topicId = +params['topicId']; // (+) converts string 'topicId' to a number
     });

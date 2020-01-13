@@ -36,7 +36,7 @@ export class NewThreadDialogComponent {
       creator_id: 7,
       title: title,
       body: description,
-    }
+    };
 
     this.dialogRef.close(newThread);
   }
