@@ -5,12 +5,12 @@ import { MyAccountComponent } from './my-account.component';
 
 @NgModule({
   imports: [
-    ThemeModule
+    ThemeModule,
   ],
   declarations: [
-    MyAccountComponent
+    MyAccountComponent,
   ],
 })
 export class MyAccountModule {
 
- }
+}

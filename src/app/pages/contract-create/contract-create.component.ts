@@ -48,18 +48,14 @@ export class ContractCreateComponent {
     this.contract.currency_rate = 0;
     this.contract.contract_limit = 0;
 
-    this.selectedCurrency = "usd";
-    this.selectedTimezone = "gmt";
+    this.selectedCurrency = 'usd';
+    this.selectedTimezone = 'gmt';
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
-          this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
-          console.log("User:");
-          console.log(this.user);
+          this.user = token.getPayload();
         }
 
       });
@@ -131,7 +127,7 @@ export class ContractCreateComponent {
 
   create() {
 
-    if (this.contract.password != this.contract.passwordConfirm) {
+    if (this.contract.password !== this.contract.passwordConfirm) {
 
       this.dialogService.open(ShowcaseDialogComponent, {
         context: {
@@ -160,8 +156,8 @@ export class ContractCreateComponent {
       var newTag = {
         id: count,
         name: entry['value'],
-        description: ''
-      }
+        description: '',
+      };
 
       tagsToSend.push(newTag);
 
@@ -232,10 +228,8 @@ export class ContractCreateComponent {
 
       is_private: this.contract.is_private,
 
-      tags: tagsToSend
-    }
-
-
+      tags: tagsToSend,
+    };
 
     this.contractService.newContractOffer(newContract)
       .subscribe(

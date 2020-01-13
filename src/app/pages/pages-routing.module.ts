@@ -142,11 +142,11 @@ const routes: Routes = [{
   {
     path: 'bootstrap',
     loadChildren: './bootstrap/bootstrap.module#BootstrapModule',
-  }, 
+  },
   {
     path: 'maps',
     loadChildren: './maps/maps.module#MapsModule',
-  }, 
+  },
   {
     path: 'editors',
     loadChildren: './editors/editors.module#EditorsModule',
@@ -163,7 +163,7 @@ const routes: Routes = [{
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
-  }, 
+  },
   {
     path: '**',
     component: NotFoundComponent,

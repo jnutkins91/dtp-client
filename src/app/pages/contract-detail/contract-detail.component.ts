@@ -29,13 +29,8 @@ export class ContractDetailComponent implements OnInit {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
           this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
-          console.log("User:");
-          console.log(this.user);
         }
-
       });
   }
 
@@ -68,7 +63,6 @@ export class ContractDetailComponent implements OnInit {
         (data: contract) => {
 
           this.contract = data;
-          console.log(this.contract);
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
@@ -84,7 +78,7 @@ export class ContractDetailComponent implements OnInit {
   }
 
   editClicked(id: number) {
-    this.router.navigate(['/pages/contract-edit'] , { queryParams: { id: id, relativeTo: this.route } });
+    this.router.navigate(['/pages/contract-edit'], { queryParams: { id: id, relativeTo: this.route } });
   }
 
   testClicked(id: number) {
@@ -113,7 +107,7 @@ export class ContractDetailComponent implements OnInit {
 
   newCommentClicked(id: number) {
 
-    this.dialogService.open(NewContractCommentDialogComponent, { context: { contractId: this.contract.id, userId: this.user["id"] } })
+    this.dialogService.open(NewContractCommentDialogComponent, { context: { contractId: this.contract.id, userId: this.user['id'] } })
       .onClose.subscribe(newMessage =>
 
         this.contractService.newContractComment(newMessage)
@@ -143,12 +137,11 @@ export class ContractDetailComponent implements OnInit {
       preventDuplicates: false,
     };
 
-    //this.index += 1;
     this.toastrService.show(
       '',
       'Commented!',
       config);
-  }
+  };
 
   private showToast_Error() {
 

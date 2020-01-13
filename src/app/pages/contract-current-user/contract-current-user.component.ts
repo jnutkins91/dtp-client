@@ -82,7 +82,7 @@ export class ContractCurrentUserComponent implements OnInit {
         (data) => {
 
           this.requests = data;
-          this.loading = false
+          this.loading = false;
         },
         err => {
           debugger;

@@ -13,7 +13,7 @@ export class ContractPurchaseComponent {
 
   constructor(private _location: Location) {
       
-    this.selectedCurrency = "usd";
+    this.selectedCurrency = 'usd';
   }
 
   loading = false;

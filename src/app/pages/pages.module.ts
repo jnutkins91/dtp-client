@@ -56,7 +56,7 @@ const PAGES_COMPONENTS = [
     AdminHomeModule
   ],
   declarations: [
-    ...PAGES_COMPONENTS
+    ...PAGES_COMPONENTS,
   ],
 })
 export class PagesModule {

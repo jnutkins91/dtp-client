@@ -53,7 +53,7 @@ export class ContractEditComponent {
       limit_contracts: this.limit_contracts,
       contract_limit: this.contract_limit,
       token_rate: this.token_rate,
-      currency_rate: this.currency_rate
+      currency_rate: this.currency_rate,
     });
 
     this.authService.onTokenChange()
@@ -240,7 +240,7 @@ export class ContractEditComponent {
 
         (data) => {
           this.router.navigateByUrl('/pages/contract-detail', { replaceUrl: true, state: { itemId: data['id'] } });
-        }, //this.theUser = data,
+        },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
   }

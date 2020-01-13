@@ -16,7 +16,6 @@ import 'ckeditor';
     </nb-card>
   `,
 })
-export class CKEditorComponent {
-
+export class CKEditorComponent {  
   
 }
