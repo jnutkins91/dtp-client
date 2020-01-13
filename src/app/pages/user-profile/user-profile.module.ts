@@ -5,10 +5,10 @@ import { UserProfileComponent } from './user-profile.component';
 
 @NgModule({
   imports: [
-    ThemeModule
+    ThemeModule,
   ],
   declarations: [
-    UserProfileComponent
+    UserProfileComponent,
   ],
 })
 export class UserProfileModule {

@@ -5,10 +5,10 @@ import { ContractComponent } from './contract.component';
 
 @NgModule({
   imports: [
-    ThemeModule
+    ThemeModule,
   ],
   declarations: [
-    ContractComponent
+    ContractComponent,
   ],
 })
 export class ContractModule { }

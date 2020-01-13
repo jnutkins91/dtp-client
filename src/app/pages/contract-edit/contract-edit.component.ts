@@ -28,8 +28,8 @@ export class ContractEditComponent {
     public datepipe: DatePipe,
     private activatedRoute: ActivatedRoute) {
 
-    this.selectedCurrency = "usd";
-    this.selectedTimezone = "gmt";
+    this.selectedCurrency = 'usd';
+    this.selectedTimezone = 'gmt';
 
     this.newContractOfferForm = formBuilder.group({
       contract_name: this.contract_name,
@@ -60,13 +60,8 @@ export class ContractEditComponent {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
-          this.user = token.getPayload(); // here we receive a payload from the token and assign it to our `user` variable 
-          console.log("User:");
-          console.log(this.user);
+          this.user = token.getPayload();
         }
-
       });
   }
 
@@ -133,21 +128,18 @@ export class ContractEditComponent {
           var tagsReceived = [];
           for (let entry of this.contract['tags']) {
 
-            var newTag = {
+            const newTag = {
               value: entry['id'],
-              display: entry['name']
-            }
+              display: entry['name'],
+            };
 
             tagsReceived.push(newTag);
 
-
           }
-
-          console.log(tagsReceived);
 
           this.newContractOfferForm.controls['contract_tags'].setValue(tagsReceived);
 
-          if (this.newContractOfferForm.get('data_type').value == 'processed')
+          if (this.newContractOfferForm.get('data_type').value === 'processed')
             this.newContractOfferForm.controls['data_type'].setValue('processed');
           else
             this.newContractOfferForm.controls['data_type'].setValue('raw');
@@ -181,9 +173,9 @@ export class ContractEditComponent {
 
     //  alert(this.newContractOfferForm.get('data_type').value);
 
-    if (this.newContractOfferForm.get('password').value != this.newContractOfferForm.get('passwordConfirm').value) {
+    if (this.newContractOfferForm.get('password').value !== this.newContractOfferForm.get('passwordConfirm').value) {
 
-      alert("Passwords don't match!");
+      alert('Passwords don\'t match!');
       return;
     }
 
@@ -191,11 +183,11 @@ export class ContractEditComponent {
     var count = 0;
     for (let entry of this.newContractOfferForm.get('contract_tags').value) {
 
-      var newTag = {
+      const newTag = {
         id: count,
         name: entry['value'],
-        description: ''
-      }
+        description: '',
+      };
 
       tagsToSend.push(newTag);
 
@@ -203,10 +195,10 @@ export class ContractEditComponent {
     }
 
     var dataType = 0;
-    if (this.newContractOfferForm.get('data_type').value == 'processed')
+    if (this.newContractOfferForm.get('data_type').value === 'processed')
       dataType = 1;
 
-    var newContract = {
+    const newContract = {
 
       name: this.newContractOfferForm.get('contract_name').value,
       description: this.newContractOfferForm.get('contract_description').value,
@@ -240,10 +232,8 @@ export class ContractEditComponent {
       currency: this.selectedCurrency,
       timezone: this.selectedTimezone,
 
-      tags: tagsToSend
-    }
-
-
+      tags: tagsToSend,
+    };
 
     this.contractService.newContractOffer(newContract)
       .subscribe(
