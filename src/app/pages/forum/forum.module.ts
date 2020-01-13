@@ -7,12 +7,12 @@ import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   imports: [
-    ThemeModule
+    ThemeModule,
   ],
   declarations: [
     ForumComponent,
     ThreadComponent,
-    CommentComponent
-  ]
+    CommentComponent,
+  ],
 })
 export class ForumModule { }

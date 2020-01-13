@@ -5,11 +5,10 @@ import { FAQComponent } from './faq.component';
 
 @NgModule({
   imports: [
-    ThemeModule
-    //BrowserAnimationsModule
+    ThemeModule,
   ],
   declarations: [
-    FAQComponent
+    FAQComponent,
   ],
 })
 export class FAQModule { }

@@ -33,90 +33,90 @@ const routes: Routes = [{
   children: [
     {
     path: 'marketplace',
-    component: MarketplaceComponent
+    component: MarketplaceComponent,
   },
   {
     path: 'forum',
-    component: ForumComponent
+    component: ForumComponent,
   },
   {
     path: 'users',
-    component: UsersComponent
+    component: UsersComponent,
   },
   {
     path: 'forum/thread',
-    component: ThreadComponent
+    component: ThreadComponent,
   },
   {
     path: 'forum/comment',
-    component: CommentComponent
+    component: CommentComponent,
   },
   {
     path: 'tags',
-    component: TagsComponent
+    component: TagsComponent,
   },
   {
     path: 'home',
-    component: HomePageComponent
+    component: HomePageComponent,
   },
   {
     path: 'contract-create',
-    component: ContractCreateComponent
+    component: ContractCreateComponent,
   },
   {
     path: 'contract-edit',
-    component: ContractEditComponent
+    component: ContractEditComponent,
   },
   {
     path: 'contract-purchase',
-    component: ContractPurchaseComponent
+    component: ContractPurchaseComponent,
   },
   {
     path: 'contract-detail',
-    component: ContractDetailComponent
+    component: ContractDetailComponent,
   },
   {
     path: 'contract-current-user',
-    component: ContractCurrentUserComponent
+    component: ContractCurrentUserComponent,
   },
   {
     path: 'contract',
-    component: ContractComponent
+    component: ContractComponent,
   },
   {
     path: 'user-profile',
-    component: UserProfileComponent
+    component: UserProfileComponent,
   },
   {
     path: 'user-profile',
-    component: UserProfileComponent
+    component: UserProfileComponent,
   },
   {
     path: 'faq',
-    component: FAQComponent
+    component: FAQComponent,
   },
   {
     path: 'admin_home',
-    component: AdminHomeComponent
+    component: AdminHomeComponent,
   },
   {
     path: 'terms',
-    component: TermsComponent
+    component: TermsComponent,
   },{
     path: 'privacy',
-    component: PrivacyComponent
+    component: PrivacyComponent,
   },
   {
     path: 'marketplace/marketplace-detail',
-    component: MarketplaceDetailComponent
+    component: MarketplaceDetailComponent,
   },
   {
     path: 'my-account',
-    component: MyAccountComponent
+    component: MyAccountComponent,
   },
   {
     path: 'search',
-    component: SearchComponent
+    component: SearchComponent,
   },
   {
     path: 'dashboard',
