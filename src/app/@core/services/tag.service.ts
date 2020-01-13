@@ -1,4 +1,4 @@
-import { of as observableOf, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -17,7 +17,7 @@ export class TagService {
     const tagSearch = {
 
       page: page,
-      searchTerm: searchTerm
+      searchTerm: searchTerm,
     };
 
     return this.http.post(environment.apiUrl + '/api/tag/', tagSearch);

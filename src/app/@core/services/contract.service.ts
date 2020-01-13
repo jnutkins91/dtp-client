@@ -16,8 +16,6 @@ export class ContractService {
       .subscribe((token: NbAuthJWTToken) => {
 
         if (token.isValid()) {
-          console.log("Token:");
-          console.log(token.getPayload());
           this.token = token.getValue();
         }
 
@@ -27,24 +25,24 @@ export class ContractService {
   //  GET
 
   getContract(id: string): Observable<any> {
-    return this.http.get(environment.apiUrl + "/api/contractoffer/" + id);
+    return this.http.get(environment.apiUrl + '/api/contractoffer/' + id);
   }
 
   getLatestOffers(page: number): Observable<any> {
-    return this.http.get(environment.apiUrl + "/api/contractoffer/GetLatestOffers/" + page);
+    return this.http.get(environment.apiUrl + '/api/contractoffer/GetLatestOffers/' + page);
   }
 
   getContractComments(id: string): Observable<any> {
-    return this.http.get(environment.apiUrl + "/api/contractoffercomment/" + id);
+    return this.http.get(environment.apiUrl + '/api/contractoffercomment/' + id);
   }
 
   getContractByTag(id: string): Observable<any> {
-    return this.http.get(environment.apiUrl + "/api/contractoffer/tag/" + id);
+    return this.http.get(environment.apiUrl + '/api/contractoffer/tag/' + id);
   }
 
   getContractByUser(id: string): Observable<any> {
 
-    return this.http.get(environment.apiUrl + "/api/contractoffer/user/" + id);
+    return this.http.get(environment.apiUrl + '/api/contractoffer/user/' + id);
   }
 
   getMyContracts(): Observable<any> {
@@ -53,20 +51,20 @@ export class ContractService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.token,
-      })
+      }),
     };
 
-    return this.http.get(environment.apiUrl + "/api/contractoffer/user", httpOptions);
+    return this.http.get(environment.apiUrl + '/api/contractoffer/user', httpOptions);
   }
 
   //  POST
 
   newContractOffer(contract: any): Observable<any> {
-    return this.http.post(environment.apiUrl + "/api/contractoffer/", contract);
+    return this.http.post(environment.apiUrl + '/api/contractoffer/', contract);
   }
 
   newContractComment(contract_comment: any): Observable<any> {
-    return this.http.post(environment.apiUrl + "/api/contractoffercomment", contract_comment);
+    return this.http.post(environment.apiUrl + '/api/contractoffercomment', contract_comment);
   }
 
   suspendContract(contractId: number): Observable<any> {
@@ -75,9 +73,9 @@ export class ContractService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.token,
-      })
+      }),
     };
 
-    return this.http.post(environment.apiUrl + "/api/contractoffer/suspend", contractId, httpOptions);
+    return this.http.post(environment.apiUrl + '/api/contractoffer/suspend', contractId, httpOptions);
   }
 }
