@@ -107,7 +107,15 @@ export class ContractDetailComponent implements OnInit {
 
   newCommentClicked(id: number) {
 
-    this.dialogService.open(NewContractCommentDialogComponent, { context: { contractId: this.contract.id, userId: this.user['id'] } })
+    this.dialogService.open(
+      NewContractCommentDialogComponent,
+      {
+        context:
+        {
+          contractId: this.contract.id,
+          userId: this.user['id']
+        }
+      })
       .onClose.subscribe(newMessage =>
 
         this.contractService.newContractComment(newMessage)

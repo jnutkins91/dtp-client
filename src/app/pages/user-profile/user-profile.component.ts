@@ -31,14 +31,12 @@ export class UserProfileComponent implements OnInit {
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
 
+        this.loggedIn = false;
+
         if (token.isValid()) {
 
           this.loggedIn = true;
           this.user = token.getPayload();
-        }
-        else {
-
-          this.loggedIn = false;
         }
       });
   }

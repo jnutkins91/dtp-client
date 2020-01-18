@@ -8,8 +8,8 @@ import { NbDialogRef } from '@nebular/theme';
       <nb-card-header>New Thread:</nb-card-header>
       <nb-card-body>
         <input #name nbInput placeholder="Title" style="width: 100%;">
-        <textarea #description nbInput fullWidth placeholder="Description" style="resize: none; height: 8em;"></textarea>   
-      </nb-card-body>
+        <textarea #description nbInput fullWidth placeholder="Description" style="resize: none; height: 8em;"></textarea>
+        </nb-card-body>
       <nb-card-footer>
         <button nbButton status="danger" (click)="cancel()">Cancel</button>
         <button nbButton status="success" (click)="submit(name.value, description.value)" style="float: right;">Submit</button>
@@ -20,7 +20,7 @@ import { NbDialogRef } from '@nebular/theme';
 export class NewThreadDialogComponent {
   
   constructor(protected dialogRef: NbDialogRef<NewThreadDialogComponent>) {
-    
+
   }
 
   id: number;
