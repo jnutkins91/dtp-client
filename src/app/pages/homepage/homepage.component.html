@@ -2,17 +2,35 @@
     <div class="col-md-6">
 
         <nb-card>
-            <nb-card-header>WATCHED TAGS</nb-card-header>
+            <nb-card-header>
+
+                WATCHED TAGS
+                <i class="nb-layout-right nb-heart"
+                    style="float: right; font-size: 1.5em; color: #BC0547; font-weight: bold;"></i>
+            </nb-card-header>
             <nb-card-body>
 
+                <button nbButton status="danger" class="btn" style="float: right;"
+                    [disabled]="(!loggedIn || user?.id == theUser?.id)">
+                    Edit
+                </button>
             </nb-card-body>
         </nb-card>
     </div>
     <div class="col-md-6">
         <nb-card>
-            <nb-card-header>IGNORED TAGS</nb-card-header>
+            <nb-card-header>
+
+                IGNORED TAGS
+                <i class="nb-layout-right nb-close-circled"
+                    style="float: right; font-size: 1.5em; color: #BC0547; font-weight: bold;"></i>
+            </nb-card-header>
             <nb-card-body>
 
+                <button nbButton status="danger" class="btn" style="float: right;"
+                    [disabled]="(!loggedIn || user?.id == theUser?.id)">
+                    Edit
+                </button>
             </nb-card-body>
         </nb-card>
     </div>

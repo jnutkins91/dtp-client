@@ -113,8 +113,8 @@ export class ContractDetailComponent implements OnInit {
         context:
         {
           contractId: this.contract.id,
-          userId: this.user['id']
-        }
+          userId: this.user['id'],
+        },
       })
       .onClose.subscribe(newMessage =>
 
