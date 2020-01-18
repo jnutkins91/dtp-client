@@ -84,7 +84,7 @@ export class MyAccountComponent implements OnInit {
           this.selectedItem = this.theUser['timezone'];
         },
         err => console.error('Observer got an error: ' + err),
-        () => this.loading = false)
+        () => this.loading = false);
   }
 
   changePasswordClicked() {
@@ -103,7 +103,7 @@ export class MyAccountComponent implements OnInit {
 
         (data) => this.theUser = data,
         err => console.error('Observer got an error: ' + err),
-        () => this.loading = false)
+        () => this.loading = false);
 
   }
 }

@@ -125,10 +125,10 @@ export const NB_CORE_PROVIDERS = [
     ],
     forms: {
       login: {
-        redirectDelay: 500, // delay before redirect after a successful login, while success message is shown to the user
-        strategy: 'email',  // strategy id key.
-        rememberMe: false,   // whether to show or not the `rememberMe` checkbox
-        showMessages: {     // show/not show success/error messages
+        redirectDelay: 500,
+        strategy: 'email',
+        rememberMe: false,
+        showMessages: {
           success: true,
           error: true,
         },

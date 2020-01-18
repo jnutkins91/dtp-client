@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Location, DatePipe } from '@angular/common';
 import { ContractService } from '../../@core/services/contract.service';
@@ -12,7 +12,7 @@ import { contract } from '../../@core/data/contract';
   styleUrls: ['./contract-edit.component.scss'],
   templateUrl: './contract-edit.component.html',
 })
-export class ContractEditComponent {
+export class ContractEditComponent implements OnInit {
 
   selectedCurrency: any;
   selectedTimezone: any;

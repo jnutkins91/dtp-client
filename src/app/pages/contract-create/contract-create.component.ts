@@ -151,7 +151,7 @@ export class ContractCreateComponent {
 
     for (let entry of this.contract.tags) {
 
-      var newTag = {
+      const newTag = {
         id: count,
         name: entry['value'],
         description: '',
@@ -186,11 +186,11 @@ export class ContractCreateComponent {
       return;
     }
 
-    var local_data_type = 0;
+    let local_data_type = 0;
     if (this.data_type === 'processed')
       local_data_type = 1;
 
-    var newContract = {
+    const newContract = {
 
       name: this.contract.name,
       description: this.contract.description,

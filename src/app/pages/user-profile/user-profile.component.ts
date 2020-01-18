@@ -71,7 +71,7 @@ export class UserProfileComponent implements OnInit {
           this.getContracts(this.theUser['id'].toString());
         },
         err => console.error('Observer got an error: ' + err),
-        () => this.loading = false)
+        () => this.loading = false);
   }
 
   reportUserClicked() {
