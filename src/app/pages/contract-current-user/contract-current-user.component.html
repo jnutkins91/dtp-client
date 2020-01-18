@@ -32,9 +32,6 @@ display:table;">
             <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of offers">
 
                 <nb-card-header style="position: relative">
-
-                    <nb-alert status="warning"
-            style="text-align: center; margin-bottom: 0; width: auto; display: inline-flex;">{{ option.data_type | dataType }}</nb-alert>
             
                     {{ option.name }}
 
@@ -43,9 +40,18 @@ display:table;">
 
                 <nb-card-body style="display: table-cell; vertical-align: middle;">
                     {{ option.description }}
+
+                    <div style="padding-top: 1em;">
+                        <div class="tag" *ngFor="let tag of option?.tags">
+                            {{ tag?.name }}
+                        </div>
+                        <div class="dataType" style="float: right;">
+                            {{ option.data_type | dataType }}
+                        </div>
+                    </div>
                 </nb-card-body>
 
-                <nb-alert status="{{ option.status | contractStatusColor }}"
+                <nb-alert status="{{ option.status | contractStatusColor }}"  *ngIf="option.status === 1"
                     style="float: right; text-align: center; margin-bottom: 0;">
                     {{ option.status | contractStatus }}</nb-alert>
 
@@ -70,9 +76,18 @@ display:table;">
 
                 <nb-card-body style="display: table-cell; vertical-align: middle;">
                     {{ option.description }}
+
+                    <div style="padding-top: 1em;">
+                        <div class="tag" *ngFor="let tag of option?.tags">
+                            {{ tag?.name }}
+                        </div>
+                        <div class="dataType" style="float: right;">
+                            {{ option.data_type | dataType }}
+                        </div>
+                    </div>
                 </nb-card-body>
 
-                <nb-alert status="{{ option.status | contractStatusColor }}"
+                <nb-alert status="{{ option.status | contractStatusColor }}" *ngIf="option.status === 1"
                     style="float: right; text-align: center; margin-bottom: 0;">
                     {{ option.status | contractStatus }}</nb-alert>
 

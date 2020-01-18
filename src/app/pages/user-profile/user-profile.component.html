@@ -24,16 +24,6 @@
                             (click)="reportUserClicked()">
                             <i class="nb-layout-right nb-alert"></i>
                         </button>
-
-                        <!-- <button type="button" class="btn btn-icon" style="width: 13%;"
-                            [disabled]="(!loggedIn || user?.id == theUser?.id)">
-                            <i class="nb-layout-right nb-compose"></i>
-                        </button> -->
-
-
-                        <!-- <button nbButton status="danger" style="width: 13%;"
-                            [disabled]="(!loggedIn || user?.id == theUser?.id)"
-                            (click)="onClick_SendMessage()">Report</button> -->
                     </nb-card-body>
                 </nb-card>
             </div>
@@ -77,9 +67,6 @@
 
     <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of contracts">
         <nb-card-header>
-
-            <nb-alert status="warning"
-            style="text-align: center; margin-bottom: 0; width: auto; display: inline-flex;">{{ option.data_type | dataType }}</nb-alert>
             
             {{ option.name }}
 
@@ -88,9 +75,18 @@
 
         <nb-card-body style="display: table-cell; vertical-align: middle;">
             {{ option.description }}
+
+            <div style="padding-top: 1em;">
+                <div class="tag" *ngFor="let tag of option?.tags">
+                    {{ tag?.name }}
+                </div>
+                <div class="dataType" style="float: right;">
+                    {{ option.data_type | dataType }}
+                </div>
+            </div>
         </nb-card-body>
 
-        <nb-alert status="{{ option.status | contractStatusColor }}"
+        <nb-alert status="{{ option.status | contractStatusColor }}" *ngIf="option.status === 1"
             style="float: right; text-align: center; margin-bottom: 0;">{{ option.status | contractStatus }}</nb-alert>
 
     </nb-card>

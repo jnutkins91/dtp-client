@@ -19,5 +19,26 @@
   nb-card.inline-form-card nb-card-body {
     padding-bottom: 0;
   }
+
+  .tag {
+    background: #BC0547;
+    color: white;
+    border-radius: 2.5px;
+    padding: 0.5em; 
+    min-width:60px; 
+    display: inline-block;
+    margin-right: 1em;
+  }
+
+  .dataType {
+    background: black;
+    color: white;
+    border-radius: 2.5px;
+    padding: 0.5em; 
+    min-width:60px; 
+    display: inline-block;
+    margin-right: 1em;
+    text-align: center;
+  }
   
 }
