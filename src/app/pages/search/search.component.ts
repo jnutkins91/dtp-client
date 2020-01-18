@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./search.component.scss'],
   templateUrl: './search.component.html',
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute) {
 

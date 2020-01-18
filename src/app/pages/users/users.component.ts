@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
   }
 
   p: number = 1;
-  searchTerm: string = "";
+  searchTerm: string = '';
 
   selectedDataType: boolean;
 
@@ -51,7 +51,7 @@ export class UsersComponent implements OnInit {
           this.users = data;
         },
         err => console.error('Observer got an error: ' + err),
-        () => this.loading = false)
+        () => this.loading = false);
   }
 
   onPageChange(number: number) {
