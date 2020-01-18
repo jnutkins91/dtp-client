@@ -8,9 +8,6 @@ import { dtp_user } from '../../@core/data/dtp_user';
 import { ContractService } from '../../@core/services/contract.service';
 import { contract } from '../../@core/data/contract';
 
-import { ConversationService } from '../../@core/services/conversation.service';
-import { NbDialogService, NbToastrService } from '@nebular/theme';
-
 @Component({
   selector: 'user-profile',
   styleUrls: ['./user-profile.component.scss'],

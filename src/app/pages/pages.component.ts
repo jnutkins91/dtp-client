@@ -63,7 +63,7 @@ export class PagesComponent {
 
     this._router.events.pipe(
       filter(e => e instanceof NavigationStart),
-      filter((e: NavigationStart) => e.navigationTrigger === "popstate"),
+      filter((e: NavigationStart) => e.navigationTrigger === 'popstate'),
     )
       .subscribe((x: NavigationStart) => {
         this._router.getCurrentNavigation().extras.state = { ...x.restoredState, navigationId: x.id };

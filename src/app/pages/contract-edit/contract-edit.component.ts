@@ -124,7 +124,7 @@ export class ContractEditComponent {
           this.newContractOfferForm.controls['contract_name'].setValue(this.contract.name);
           this.newContractOfferForm.controls['contract_description'].setValue(this.contract.description);
 
-          var tagsReceived = [];
+          let tagsReceived = [];
           for (let entry of this.contract['tags']) {
 
             const newTag = {
@@ -178,8 +178,8 @@ export class ContractEditComponent {
       return;
     }
 
-    var tagsToSend = [];
-    var count = 0;
+    let tagsToSend = [];
+    let count = 0;
     for (let entry of this.newContractOfferForm.get('contract_tags').value) {
 
       const newTag = {
@@ -193,7 +193,7 @@ export class ContractEditComponent {
       count++;
     }
 
-    var dataType = 0;
+    let dataType = 0;
     if (this.newContractOfferForm.get('data_type').value === 'processed')
       dataType = 1;
 

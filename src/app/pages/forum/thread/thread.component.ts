@@ -61,8 +61,8 @@ export class ThreadComponent implements OnInit {
         err => console.error('Observer got an error: ' + err),
         () => {
           this.cd.detectChanges();
-          this.loading = false;     
-        }
+          this.loading = false;
+        },
       );
   }
 

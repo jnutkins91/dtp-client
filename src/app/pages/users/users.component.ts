@@ -32,8 +32,6 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
 
     this.selectedDataType = false;
-
-    console.log(this.selectedDataType);
     this.getUsers(this.p, this.searchTerm);
   }
 
@@ -51,7 +49,6 @@ export class UsersComponent implements OnInit {
         (data: any) => {
 
           this.users = data;
-          console.log(this.users);
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false)

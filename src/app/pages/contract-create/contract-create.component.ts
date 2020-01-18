@@ -4,7 +4,7 @@ import { Location, DatePipe } from '@angular/common';
 import { ContractService } from '../../@core/services/contract.service';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { dtp_user } from '../../@core/data/dtp_user';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { contract } from '../../@core/data/contract';
 import { ShowcaseDialogComponent } from '../modal-overlays/dialog/showcase-dialog/showcase-dialog.component';
 import { NbDialogService } from '@nebular/theme';
@@ -136,8 +136,8 @@ export class ContractCreateComponent {
       return;
     }
 
-    var tagsToSend = [];
-    var count = 0;
+    let tagsToSend = [];
+    let count = 0;
 
     if (this.contract.tags === undefined || this.contract.tags.length === 0) {
       this.dialogService.open(ShowcaseDialogComponent, {
@@ -187,7 +187,7 @@ export class ContractCreateComponent {
     }
 
     var local_data_type = 0;
-    if (this.data_type == 'processed')
+    if (this.data_type === 'processed')
       local_data_type = 1;
 
     var newContract = {
