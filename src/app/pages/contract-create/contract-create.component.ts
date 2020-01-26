@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Location, DatePipe } from '@angular/common';
 import { ContractService } from '../../@core/services/contract.service';
@@ -32,6 +32,11 @@ export class ContractCreateComponent {
   inputItemFormControl = new FormControl();
 
   newContractOfferForm: FormGroup;
+
+  files = new Array();
+  formData: FormData = new FormData();
+
+  @ViewChild('fileUploadInput') fileUploadInput: ElementRef;
 
   constructor(private _location: Location,
     private formBuilder: FormBuilder,
@@ -121,6 +126,27 @@ export class ContractCreateComponent {
   limitContracts() {
 
     return this.limit_contracts || false;
+  }
+
+  uploadDocument() {
+
+    this.fileUploadInput.nativeElement.click();
+  }
+
+  fileChange(event) {
+
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+
+      let file: File = fileList[0];
+      
+      this.formData.append('uploadFile', file, file.name);
+
+      this.files.push(file);
+
+      console.log(this.files);
+
+    }
   }
 
   create() {
@@ -232,8 +258,19 @@ export class ContractCreateComponent {
     this.contractService.newContractOffer(newContract)
       .subscribe(
 
-        (data) => {
-          this.router.navigateByUrl('/pages/contract-detail', { replaceUrl: true, state: { itemId: data['id'] } });
+        (data: contract) => {
+
+          this.contractService.newContractOfferFile(this.formData, data.id)
+        .subscribe(
+
+          () => {
+
+            this.router.navigateByUrl('/pages/contract-detail', { replaceUrl: true, state: { itemId: data['id'] } });
+          },
+          err => console.error('Observer got an error: ' + err),
+          () => this.loading = false);
+
+          
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);

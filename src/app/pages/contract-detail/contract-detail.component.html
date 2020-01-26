@@ -3,23 +3,26 @@ display:table;">
 
   <span style="color: black; font-size: 1.5em;">{{ contract?.name }}</span>
 
-  <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #BC0547" (click)="activateClicked()"
+  <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #BC0547"
+    (click)="activateClicked()"
     *ngIf="user.id == contract?.miner_id && (contract?.status == 1 || contract?.status == 2)">
     Activate
   </button>
 
-  <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #ff6b83" (click)="suspendClicked(contract?.id)"
-    *ngIf="user.id == contract?.miner_id && contract?.status == 0">
+  <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #ff6b83"
+    (click)="suspendClicked(contract?.id)" *ngIf="user.id == contract?.miner_id && contract?.status == 0">
     Suspend
   </button>
 
-  <button type="button" class="btn btn-info" style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;" (click)="testClicked()"
-    *ngIf="user.id == contract?.miner_id">
+  <button type="button" class="btn btn-info"
+    style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;"
+    (click)="testClicked()" *ngIf="user.id == contract?.miner_id">
     Test
   </button>
 
-  <button type="button" class="btn btn-warning" style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;" (click)="editClicked(contract?.id)"
-    *ngIf="user.id == contract?.miner_id && contract?.status == 0">
+  <button type="button" class="btn btn-warning"
+    style="margin-left: 0.5em; float: right; background-color: transparent; border-color: #BC0547; color: #BC0547;"
+    (click)="editClicked(contract?.id)" *ngIf="user.id == contract?.miner_id && contract?.status == 0">
     Edit
   </button>
 
@@ -58,51 +61,36 @@ display:table;">
 </nb-card>
 
 
-<button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #BC0547" (click)="newCommentClicked()"
-  *ngIf="(user | json) != '{}'">
+
+
+
+
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
+
+  <span style="color: black; font-size: 1.5em;">Attachments</span>
+
+  <button type="button" class="btn btn-primary" style="margin-left: 0.5em; float: right; background-color: #BC0547"
+    (click)="newCommentClicked()" *ngIf="(user | json) != '{}'">
     Message Seller
   </button>
 
+</div>
+
+<div class="row">
+
+  <div class="col-md-2" style="padding: 0px;" *ngFor="let option of contract?.files">
+
+    <a href="{{option.fileUrl}}" download>
+      <nb-card>
+        <nb-card-header style="background-color: #BC0547; color: #ffffff; min-height: 3.5em; max-height: 3.5em;">
+          {{option.fileName}}.{{option.fileType}}
+          <i class="nb-layout-right nb-arrow-thin-down"
+            style="float: right; font-size: 1.5em; color: #ffffff; font-weight: bold;"></i>
+        </nb-card-header>
+      </nb-card>
+    </a>
 
 
-<!-- <div style="margin-bottom: 0.5em; width:100%;
-display:table;">
-
-  <span style="color: black; font-size: 1.5em;">Comments</span>
-
-  <button type="button" class="btn btn-primary btn-icon" style="margin-left: 0.5em; float: right; background-color: #BC0547" (click)="newCommentClicked()"
-  *ngIf="(user | json) != '{}'">
-    <i class="nb-layout-right nb-compose"></i>
-  </button>
-
-</div> -->
-
-
-<!-- <div [nbSpinner]="commentsLoading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
-
-  <nb-card *ngIf="commentsLoading">
-    <nb-card-header></nb-card-header>
-    <nb-card-body>
-    </nb-card-body>
-  </nb-card>
-
-  <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="contract_comments?.length == 0">
-    <nb-card-body>
-      <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
-      <p>We didn't find anything here...</p>
-    </nb-card-body>
-  </nb-card>
-
-  <nb-card *ngFor="let comment of contract_comments">
-
-    <nb-card-body>
-      <nb-user [picture]="comment.picture" [name]="comment.username" title="4.8" style="margin-bottom: 2em;">
-      </nb-user>
-      <p>{{ comment.body }}</p>
-    </nb-card-body>
-    <nb-card-footer>
-      <span style="float: right;">{{ comment.creation_time | date:'medium' }}</span>
-    </nb-card-footer>
-  </nb-card>
-
-</div> -->
+  </div>
+</div>

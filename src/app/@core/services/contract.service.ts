@@ -63,6 +63,22 @@ export class ContractService {
     return this.http.post(environment.apiUrl + '/api/contractoffer/', contract);
   }
 
+  newContractOfferFile(formData: FormData, id: number): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + this.token,
+      }),
+
+    };
+
+    return this.http.post(environment.apiUrl + '/api/contractoffer/file/' + id, formData, httpOptions);
+  }
+
+  editContractOffer(contract: any): Observable<any> {
+    return this.http.post(environment.apiUrl + '/api/contractoffer/', contract);
+  }
+
   newContractComment(contract_comment: any): Observable<any> {
     return this.http.post(environment.apiUrl + '/api/contractoffercomment', contract_comment);
   }

@@ -18,8 +18,8 @@ display:table;">
     <form #newContractOfferForm="ngForm">
 
       <div class="form-group">
-        <input id="contract_name" name="contract_name" class="form-control" required placeholder="Contract Title" type="text"
-          minlength="10" [(ngModel)]="contract.name" #contract_name="ngModel">
+        <input id="contract_name" name="contract_name" class="form-control" required placeholder="Contract Title"
+          type="text" minlength="10" [(ngModel)]="contract.name" #contract_name="ngModel">
       </div>
 
       <div *ngIf="contract_name.invalid && (contract_name.dirty || contract_name.touched)" class="alert alert-danger">
@@ -70,7 +70,8 @@ display:table;">
       <div class="row" style="margin-bottom: 2em;">
         <div class="form-check">
           <label class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" value="raw" [(ngModel)]="data_type" name="data_type" checked>
+            <input type="radio" class="custom-control-input" value="raw" [(ngModel)]="data_type" name="data_type"
+              checked>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Raw</span>
           </label>
@@ -88,7 +89,8 @@ display:table;">
       <div class="row" style="margin-bottom: 1em; padding-left: 1.5em;">
 
         <div class="form-group">
-          <nb-checkbox name="data_format_json" [(ngModel)]="contract.data_format_json" #name="ngModel">JSON</nb-checkbox>
+          <nb-checkbox name="data_format_json" [(ngModel)]="contract.data_format_json" #name="ngModel">JSON
+          </nb-checkbox>
         </div>
 
         <div class="form-group">
@@ -100,15 +102,18 @@ display:table;">
         </div>
 
         <div class="form-group">
-          <nb-checkbox name="data_format_xlsx" [(ngModel)]="contract.data_format_xlsx" #name="ngModel">XLSX</nb-checkbox>
+          <nb-checkbox name="data_format_xlsx" [(ngModel)]="contract.data_format_xlsx" #name="ngModel">XLSX
+          </nb-checkbox>
         </div>
 
         <div class="form-group">
-          <nb-checkbox name="data_format_plain_text" [(ngModel)]="contract.data_format_plain_text" #name="ngModel">Plain Text</nb-checkbox>
+          <nb-checkbox name="data_format_plain_text" [(ngModel)]="contract.data_format_plain_text" #name="ngModel">Plain
+            Text</nb-checkbox>
         </div>
-      </div>  
+      </div>
 
-      <nb-select placeholder="Select Timezone" [(selected)]="selectedTimezone" name="timezone" [(ngModel)]="contract.timezone" #name="ngModel">
+      <nb-select placeholder="Select Timezone" [(selected)]="selectedTimezone" name="timezone"
+        [(ngModel)]="contract.timezone" #name="ngModel">
         <nb-option value="nst">New Zealand Standard Time (GMT+12:00)</nb-option>
         <nb-option value="sst">Solomon Standard Time (GMT+11:00)</nb-option>
         <nb-option value="aet">Australia Eastern Time (GMT+10:00)</nb-option>
@@ -149,8 +154,8 @@ display:table;">
           <nb-card>
             <nb-card-header>Start Date</nb-card-header>
             <nb-card-body>
-              <input nbInput placeholder="Start Date" [nbDatepicker]="startdatecontrol" name="timezone" [(ngModel)]="contract.startdate" #name="ngModel"
-                style="width: 100%;">
+              <input nbInput placeholder="Start Date" [nbDatepicker]="startdatecontrol" name="timezone"
+                [(ngModel)]="contract.startdate" #name="ngModel" style="width: 100%;">
               <nb-datepicker #startdatecontrol></nb-datepicker>
             </nb-card-body>
           </nb-card>
@@ -160,8 +165,8 @@ display:table;">
           <nb-card>
             <nb-card-header>End Date</nb-card-header>
             <nb-card-body>
-              <input nbInput placeholder="End Date" [nbDatepicker]="enddatecontrol" name="timezone" [(ngModel)]="contract.enddate" #name="ngModel"
-                style="width: 100%;">
+              <input nbInput placeholder="End Date" [nbDatepicker]="enddatecontrol" name="timezone"
+                [(ngModel)]="contract.enddate" #name="ngModel" style="width: 100%;">
               <nb-datepicker #enddatecontrol></nb-datepicker>
             </nb-card-body>
           </nb-card>
@@ -174,11 +179,13 @@ display:table;">
         <nb-card-body>
 
           <div class="form-group">
-            <input id="location_directory" name="location_directory" class="form-control" required placeholder="Directory Path" type="text"
-             [(ngModel)]="contract.location_directory" #location_directory="ngModel">
+            <input id="location_directory" name="location_directory" class="form-control" required
+              placeholder="Directory Path" type="text" [(ngModel)]="contract.location_directory"
+              #location_directory="ngModel">
           </div>
 
-          <div *ngIf="location_directory.invalid && (location_directory.dirty || location_directory.touched)" class="alert alert-danger">
+          <div *ngIf="location_directory.invalid && (location_directory.dirty || location_directory.touched)"
+            class="alert alert-danger">
             <div *ngIf="location_directory.errors.required">
               Directory Path is required.
             </div>
@@ -193,7 +200,7 @@ display:table;">
 
           <div class="form-group">
             <input id="username" name="username" class="form-control" required placeholder="Username" type="text"
-             [(ngModel)]="contract.username" #username="ngModel">
+              [(ngModel)]="contract.username" #username="ngModel">
           </div>
 
           <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
@@ -204,7 +211,7 @@ display:table;">
 
           <div class="form-group">
             <input id="password" name="password" class="form-control" required placeholder="Password" type="password"
-             [(ngModel)]="contract.password" #password="ngModel">
+              [(ngModel)]="contract.password" #password="ngModel">
           </div>
 
           <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
@@ -214,11 +221,13 @@ display:table;">
           </div>
 
           <div class="form-group">
-            <input id="passwordConfirm" name="passwordConfirm" class="form-control" required placeholder="Confirm Password" type="password"
-             [(ngModel)]="contract.passwordConfirm" #passwordConfirm="ngModel">
+            <input id="passwordConfirm" name="passwordConfirm" class="form-control" required
+              placeholder="Confirm Password" type="password" [(ngModel)]="contract.passwordConfirm"
+              #passwordConfirm="ngModel">
           </div>
 
-          <div *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)" class="alert alert-danger">
+          <div *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)"
+            class="alert alert-danger">
             <div *ngIf="passwordConfirm.errors.required">
               Password Confirm is required.
             </div>
@@ -232,30 +241,34 @@ display:table;">
         <nb-card-body>
 
           <div class="form-group">
-            <nb-checkbox name="limit_contracts" [(ngModel)]="limit_contracts" #name="ngModel">Limit Contracts?</nb-checkbox>
+            <nb-checkbox name="limit_contracts" [(ngModel)]="limit_contracts" #name="ngModel">Limit Contracts?
+            </nb-checkbox>
           </div>
 
           <div class="form-group">
             <input type="number" class="form-control" id="contract_limit" placeholder="Contract Limit"
-            name="contract_limit" [(ngModel)]="contract.contract_limit" #name="ngModel" *ngIf="limitContracts()">
+              name="contract_limit" [(ngModel)]="contract.contract_limit" #name="ngModel" *ngIf="limitContracts()">
           </div>
 
           <div class="form-group">
-            <nb-checkbox name="use_primary_wallet" [(ngModel)]="contract.use_primary_wallet" #name="ngModel">Use My Primary Wallet</nb-checkbox>
+            <nb-checkbox name="use_primary_wallet" [(ngModel)]="contract.use_primary_wallet" #name="ngModel">Use My
+              Primary Wallet</nb-checkbox>
           </div>
 
           <div class="form-group">
-            <nb-checkbox name="fixed_currency" [(ngModel)]="contract.fixed_currency" #name="ngModel">Fixed Currency</nb-checkbox>
+            <nb-checkbox name="fixed_currency" [(ngModel)]="contract.fixed_currency" #name="ngModel">Fixed Currency
+            </nb-checkbox>
           </div>
 
           <div class="form-group" *ngIf="!isCurrency()">
             <label for="exampleInputPassword1">Token Rate</label>
             <input type="number" step="0.01" class="form-control" id="tokenRateInput" placeholder="Token Rate"
-            name="token_rate" [(ngModel)]="contract.token_rate" #name="ngModel">
+              name="token_rate" [(ngModel)]="contract.token_rate" #name="ngModel">
           </div>
 
           <label for="exampleInputPassword1" *ngIf="isCurrency()">Currency</label>
-          <nb-select placeholder="Selected Currency" [(selected)]="selectedCurrency" *ngIf="isCurrency()" name="currency" [(ngModel)]="contract.currency" #name="ngModel">
+          <nb-select placeholder="Selected Currency" [(selected)]="selectedCurrency" *ngIf="isCurrency()"
+            name="currency" [(ngModel)]="contract.currency" #name="ngModel">
             <nb-option value="usd">United States Dollar</nb-option>
             <nb-option value="gbp">British Pound</nb-option>
             <nb-option value="eur">Euro</nb-option>
@@ -263,8 +276,8 @@ display:table;">
 
           <div class="form-group" *ngIf="isCurrency()">
             <label for="exampleInputPassword1">Currency Rate</label>
-            <input type="number" step="0.01" class="form-control" id="currencyRateInput" placeholder="Currency Rate" 
-            name="currency_rate" [(ngModel)]="contract.currency_rate" #name="ngModel">
+            <input type="number" step="0.01" class="form-control" id="currencyRateInput" placeholder="Currency Rate"
+              name="currency_rate" [(ngModel)]="contract.currency_rate" #name="ngModel">
           </div>
 
         </nb-card-body>
@@ -272,4 +285,35 @@ display:table;">
 
     </form>
   </nb-card-body>
+
 </nb-card>
+
+<div class="row">
+
+  <div class="col-md-2" style="padding: 0px;" (click)="uploadDocument()">
+
+    <nb-card>
+      <nb-card-header style="background-color: #ffffff; color: #BC0547; min-height: 3.5em; max-height: 3.5em;">
+       Upload Document
+        <i class="nb-layout-right nb-arrow-thin-up"
+          style="float: right; font-size: 1.5em; color: #BC0547; font-weight: bold;"></i>
+      </nb-card-header>
+    </nb-card>
+
+  </div>
+
+  <div class="col-md-2" style="padding: 0px;" *ngFor="let option of files">
+
+    <nb-card>
+      <nb-card-header style="background-color: #BC0547; color: #ffffff; min-height: 3.5em; max-height: 3.5em;">
+        {{option['name']}}
+        <i class="nb-layout-right nb-close"
+          style="float: right; font-size: 1.5em; color: #ffffff; font-weight: bold;"></i>
+      </nb-card-header>
+    </nb-card>
+
+  </div>
+</div>
+
+<input #fileUploadInput type="file" (change)="fileChange($event)" placeholder="Upload file" accept="*"
+  style="display: none;">

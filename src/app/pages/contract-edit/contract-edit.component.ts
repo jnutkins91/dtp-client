@@ -234,7 +234,7 @@ export class ContractEditComponent implements OnInit {
       tags: tagsToSend,
     };
 
-    this.contractService.newContractOffer(newContract)
+    this.contractService.editContractOffer(newContract)
       .subscribe(
 
         (data) => {
