@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ContractService } from '../../@core/services/contract.service';
-import { contract } from '../../@core/data/contract';
+import { contract_offer } from '../../@core/data/contract_offer';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { dtp_user } from '../../@core/data/dtp_user';
@@ -39,7 +39,7 @@ export class ContractDetailComponent implements OnInit {
   sub: any;
   commentsLoading = false;
   contractId: number;
-  contract: contract;
+  contract: contract_offer;
   contract_comments: Array<contract_offer_comment>;
 
   ngOnInit() {
@@ -57,10 +57,10 @@ export class ContractDetailComponent implements OnInit {
 
     this.loading = true;
 
-    this.contractService.getContract(id.toString())
+    this.contractService.getContractOffer(id.toString())
       .subscribe(
 
-        (data: contract) => {
+        (data: contract_offer) => {
 
           this.contract = data;
         },
@@ -69,12 +69,8 @@ export class ContractDetailComponent implements OnInit {
 
   }
 
-  backClicked() {
-    this._location.back();
-  }
-
   purchaseClicked(id: number) {
-    this.router.navigateByUrl('/pages/contract-purchase', { state: { itemId: id }, replaceUrl: true });
+    this.router.navigate(['./pages/contract-purchase', { contractId: id }]);
   }
 
   editClicked(id: number) {
@@ -86,7 +82,19 @@ export class ContractDetailComponent implements OnInit {
   }
 
   activateClicked(id: number) {
-    alert('Activate Clicked');
+    
+    this.loading = true;
+
+    this.contractService.activateContract(id)
+      .subscribe(
+
+        (data) => {
+
+          this.contract = data;
+          this.loading = false;
+        },
+        err => console.error('Observer got an error: ' + err),
+        () => this.loading = false);
   }
 
   suspendClicked(id: number) {
@@ -94,6 +102,22 @@ export class ContractDetailComponent implements OnInit {
     this.loading = true;
 
     this.contractService.suspendContract(id)
+      .subscribe(
+
+        (data) => {
+
+          this.contract = data;
+          this.loading = false;
+        },
+        err => console.error('Observer got an error: ' + err),
+        () => this.loading = false);
+  }
+
+  terminateClicked(id: number) {
+
+    this.loading = true;
+
+    this.contractService.terminateContract(id)
       .subscribe(
 
         (data) => {

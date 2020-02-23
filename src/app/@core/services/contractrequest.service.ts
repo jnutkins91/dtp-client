@@ -38,6 +38,18 @@ export class ContractRequestService {
 
     //  POST
 
+    createRequests(userId: number, offerIds: Array<number>): Observable<any> {
+
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.token,
+            }),
+        };
+
+        return this.http.post(environment.apiUrl + '/api/contractrequest/' + userId, offerIds, httpOptions);
+    }
+
     acceptRequest(requestId: number): Observable<any> {
 
         const httpOptions = {

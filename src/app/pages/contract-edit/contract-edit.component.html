@@ -15,9 +15,16 @@ display:table;">
         <input type="text" class="form-control" id="name" placeholder="Title" formControlName="contract_name">
       </div>
 
-      <div class="form-group" style="margin-bottom: 2em;">
+      <!-- <div class="form-group" style="margin-bottom: 2em;">
         <input type="text" class="form-control" id="descriptionInput" placeholder="Description"
           formControlName="contract_description">
+      </div> -->
+
+      <div class="form-group" style="margin-bottom: 2em;">
+        <textarea id="descriptionInput" class="form-control" required
+        placeholder="This is a detailed description of the service promised. Including when appropriate additional files such as XML examples, APIs, Category Structure, Data formatting or further documentation. Please detail the frequency of the Data feed if it is critical to the service. Please include a Time Lag Performance Criteria Target or guarantee also."
+          minlength="25" rows="4" formControlName="contract_description">
+</textarea>
       </div>
 
       <h6 for="exampleInputPassword1">Tags</h6>

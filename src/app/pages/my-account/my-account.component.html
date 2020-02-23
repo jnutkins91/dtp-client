@@ -97,16 +97,16 @@
                 <nb-card>
                     <nb-card-header style="padding-bottom: 0px;">2-FACTOR AUTHENTICATION</nb-card-header>
                     <nb-card-body>
-                        <button nbButton status="success" style="width: 100%;">Enable</button>
+                        <button nbButton style="width: 100%; background-color: #BC0547;">Enable</button>
                     </nb-card-body>
                 </nb-card>
 
                 <nb-card>
-                    <nb-card-header style="padding-bottom: 0px;">DANGER</nb-card-header>
-                    <nb-card-body>
-                        <button nbButton status="warning" style="width: 100%; margin-bottom: 1em;"
+                    <nb-card-header style="padding-bottom: 0px; background-color: #BC0547; color: white;">DANGER</nb-card-header>
+                    <nb-card-body style="background-color: #BC0547;">
+                        <button nbButton status="warning" style="width: 100%; margin-bottom: 1em; background-color: white; color: black;" 
                             (click)="changePasswordClicked()">Change Password</button>
-                        <button nbButton status="danger" style="width: 100%;">Delete Account</button>
+                        <button nbButton status="danger" style="width: 100%; background-color: white; color: black;">Delete Account</button>
                     </nb-card-body>
                 </nb-card>
 
@@ -166,23 +166,23 @@
                         </nb-select>
                         <h6 style="margin-top: 1em;">E-Mail Notifications</h6>
                         <div class="row">
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.news_pref">News
+                            <nb-checkbox class="col-md-3" [(ngModel)]="theUser.news_pref">News
                             </nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.deposit_pref">
+                            <nb-checkbox class="col-md-3" [(ngModel)]="theUser.deposit_pref">
                                 Deposit
                             </nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.receipt_pref">
+                            <nb-checkbox class="col-md-3" [(ngModel)]="theUser.receipt_pref">
                                 Receipt
                             </nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.warnings_pref">
+                            <nb-checkbox class="col-md-3" [(ngModel)]="theUser.warnings_pref">
                                 Warnings
                             </nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.comments_pref">
+                            <nb-checkbox class="col-md-3" [(ngModel)]="theUser.comments_pref">
                                 Comments
                             </nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.newdm_pref">New DMs
+                            <nb-checkbox class="col-md-3" [(ngModel)]="theUser.newdm_pref">New DMs
                             </nb-checkbox>
-                            <nb-checkbox status="success" class="col-md-3" [(ngModel)]="theUser.new_contract_pref">
+                            <nb-checkbox class="col-md-3" [(ngModel)]="theUser.new_contract_pref">
                                 New
                                 Contract</nb-checkbox>
                         </div>
@@ -190,7 +190,7 @@
                     </nb-card-body>
                 </nb-card>
 
-                <button nbButton status="success" style="margin-right: 1em; width: 100%;"
+                <button nbButton status="success" style="margin-right: 1em; width: 100%; background-color: #BC0547;"
                             (click)="saveClicked()">Save</button>
 
             </div>

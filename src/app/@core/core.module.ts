@@ -57,9 +57,12 @@ import { DTPUserService } from './services/dtp_user.service';
 import { TagService } from './services/tag.service';
 import { ContractService } from './services/contract.service';
 import { ContractRequestService } from './services/contractrequest.service';
+import { SearchService } from './services/search.service';
 import { ConversationService } from './services/conversation.service';
+import { DataTransferService } from './services/data-transfer.service';
 
 import { environment } from '../../environments/environment';
+import { ReportUserService } from './services/reportuser.service';
 
 const DATA_SERVICES = [
   { provide: UserData, useClass: UserService },
@@ -207,6 +210,9 @@ export const NB_CORE_PROVIDERS = [
   ContractService,
   ContractRequestService,
   ConversationService,
+  DataTransferService,
+  SearchService,
+  ReportUserService,
 ];
 
 @NgModule({

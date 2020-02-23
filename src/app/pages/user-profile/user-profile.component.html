@@ -14,16 +14,21 @@
                     <nb-card-body>
 
                         <h6>Bio</h6>
-                        
+
                         <p>{{ theUser?.bio }}</p>
-                        
 
-
-                        <button nbButton status="danger" class="btn btn-icon" style="float: right;"
-                            [disabled]="(!loggedIn || user?.id == theUser?.id)"
-                            (click)="reportUserClicked()">
+                        <button nbButton status="danger" class="btn btn-icon"
+                            style="float: right; background-color: transparent; border-style: solid; border-color: #BC0547; color: #BC0547;"
+                            [disabled]="(!loggedIn || user?.id == theUser?.id)" (click)="reportUserClicked()">
                             <i class="nb-layout-right nb-alert"></i>
                         </button>
+
+                        <button nbButton status="danger" class="btn"
+                            style="float: right; margin-right: 1em; background-color: #BC0547;"
+                            [disabled]="(!loggedIn || user?.id == theUser?.id)" (click)="inviteToContractClicked(theUser?.id, theUser?.username)">
+                            INVITE TO CONTRACT
+                        </button>
+
                     </nb-card-body>
                 </nb-card>
             </div>
@@ -39,13 +44,9 @@
 </div>
 
 
-
-
-
-
 <div style="margin-bottom: 0.5em;">
 
-    <span style="margin-left: 1em; color: black; font-size: 1.5em;">{{ theUser?.username }}'s Contracts:</span>
+    <span style="margin-left: 1em; color: black; font-size: 1.5em;">{{ theUser?.username }}'s Contract Offers:</span>
 
 </div>
 
@@ -65,30 +66,6 @@
         </nb-card-body>
     </nb-card>
 
-    <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of contracts">
-        <nb-card-header>
-            
-            {{ option.name }}
-
-            <span style="float: right;">v{{ option.version }}</span>
-        </nb-card-header>
-
-        <nb-card-body style="display: table-cell; vertical-align: middle;">
-            {{ option.description }}
-
-            <div style="padding-top: 1em;">
-                <div class="tag" *ngFor="let tag of option?.tags">
-                    {{ tag?.name }}
-                </div>
-                <div class="dataType" style="float: right;">
-                    {{ option.data_type | dataType }}
-                </div>
-            </div>
-        </nb-card-body>
-
-        <nb-alert status="{{ option.status | contractStatusColor }}" *ngIf="option.status === 1"
-            style="float: right; text-align: center; margin-bottom: 0;">{{ option.status | contractStatus }}</nb-alert>
-
-    </nb-card>
+    <contract-list-item *ngFor="let option of contracts" [contractDetail]="option"></contract-list-item>
 
 </div>

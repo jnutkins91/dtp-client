@@ -1,0 +1,29 @@
+<nb-card (click)="onClick_Contract(contractDetail?.id)">
+  <nb-card-header>
+
+    [{{ contractDetail?.id }}] {{ contractDetail?.name }}
+    <nb-user [picture]="contractDetail?.minerPicture" [name]="contractDetail?.minerName" title="4.8"
+      style="margin-bottom: 2em; float: right;">
+    </nb-user>
+  </nb-card-header>
+
+  <nb-card-body style="display: table-cell; vertical-align: middle;">
+    {{ contractDetail?.description }}
+
+    <div style="padding-top: 1em;">
+      <div class="tag" *ngFor="let tag of contractDetail?.tags" (click)="onClick_Tag(tag.id, tag.name)">
+        {{ tag?.name }}
+      </div>
+      <div class="dataType" style="float: right;">
+        {{ contractDetail?.data_type | dataType }}
+      </div>
+    </div>
+  </nb-card-body>
+
+  <nb-alert status="{{ contractDetail?.status | contractStatusColor }}" *ngIf="contractDetail?.status === 1"
+    style="float: right; text-align: center; margin-bottom: 0;">{{ contractDetail?.status | contractStatus }}</nb-alert>
+
+  <nb-alert status="{{ contractDetail?.status | contractStatusColor }}" *ngIf="contractDetail?.status === 2"
+    style="float: right; text-align: center; margin-bottom: 0;">{{ contractDetail?.status | contractStatus }}</nb-alert>
+
+</nb-card>

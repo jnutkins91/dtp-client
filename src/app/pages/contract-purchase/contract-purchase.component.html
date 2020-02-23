@@ -1,58 +1,97 @@
 <div style="margin-bottom: 0.5em;">
-
-    <button type="button" class="btn btn-outline-primary btn-icon" style="display: inline-block;"
-        (click)="backClicked()">
-        <i class="nb-layout-right nb-arrow-thin-left"></i>
-    </button>
-
-    <span style="margin-left: 1em; color: black; font-size: 1.5em;">Contract Purchase</span>
-
-    <!-- <button type="button" class="btn btn-success btn-icon" style="margin-left: 0.5em; float: right;" (click)="newContractClicked()">
-        <i class="nb-layout-right nb-compose"></i>
-    </button> -->
-
+  <span style="margin-left: 1em; color: black; font-size: 1.5em;">Accept Contract</span>
 </div>
 
-<nb-card>
-  <!-- <nb-card-header style="font-size: 1.75rem;">Create a New Contract</nb-card-header> -->
-  <nb-card-body>
-    <form>
+<contract-list-item [contractDetail]="contract_offer"></contract-list-item>
 
-      <nb-card>
-        <nb-card-header>Location</nb-card-header>
-        <nb-card-body>
+<div style="margin-bottom: 0.5em;">
+  <span style="margin-left: 1em; color: black; font-size: 1.5em;">Server Details to Receive Data</span>
+</div>
 
-          <div class="form-group" style="margin-bottom: 1em;">
-            <input type="text" class="form-control" id="directoryInput" placeholder="Directory">
-          </div>
+<div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
 
-        </nb-card-body>
-      </nb-card>
+  <nb-card>
+    <nb-card-body>
 
-      <nb-card>
-        <nb-card-header>Basic Authentication</nb-card-header>
-        <nb-card-body>
+      <p>When the Contract is accepted the Data Trading Platform will build a Data Transfer Gateway (DTG) to install on
+        your server. The DTG will facilitate fast reliable data transfers, updates to your account records and where
+        payment is dependent on file transfers provide Proof of Work to authorise payments.</p>
+      <p>You will need access to a server with a unique www address with Docker installed. (If you don’t have these
+        facilities there are many cloud based solutions that provide virtual servers with pre installed Docker such as
+        digital Ocean). You will need to provide a directory for your DTG, the DTG of your Users where you will send
+        your
+        data files. The DTP will pick these up and forward. These server details will not be disclosed outside the DTP
+        or
+        to your Users. Please ensure we have access to install in the directory with your Directory Details. Please see
+        technical help in our FAQs for information about configuring your systems.</p>
 
-          <div class="form-group">
-            <label for="exampleInputEmail1">Username</label>
-            <input type="text" class="form-control" id="usernameInput" placeholder="Username">
-          </div>
+      <form #newContractForm="ngForm">
 
-          <div class="form-group">
-            <label for="exampleInputEmail1">Password</label>
-            <input type="password" class="form-control" id="passwordInput" placeholder="Password">
-          </div>
+        <nb-card>
+          <nb-card-body>
 
-          <div class="form-group">
-            <label for="exampleInputEmail1">Confirm Password</label>
-            <input type="password" class="form-control" id="passwordConfirmInput" placeholder="Confirm Password">
-          </div>
+            <div class="form-group">
+              <input id="location_serverURL" name="location_serverURL" class="form-control" required
+                placeholder="Server URL" type="text" [(ngModel)]="contract.location_serverURL"
+                #location_serverURL="ngModel">
+            </div>
 
-        </nb-card-body>
-      </nb-card>
+            <div *ngIf="location_serverURL.invalid && (location_serverURL.dirty || location_serverURL.touched)"
+              class="alert alert-danger">
+              <div *ngIf="location_serverURL.errors.required">
+                Server URL is required.
+              </div>
+            </div>
 
-      <button style="float: right;" type="submit" class="btn btn-success">Purchase</button>
+            <div class="form-group">
+              <input id="email_to_receive_data" name="email_to_receive_data" class="form-control" required
+                placeholder="Email to Receive Data" type="text" [(ngModel)]="contract.email_to_receive_data"
+                #email_to_receive_data="ngModel">
+            </div>
 
-    </form>
-  </nb-card-body>
-</nb-card>
+            <div class="form-group">
+              <input id="username" name="username" class="form-control" required placeholder="Username" type="text"
+                [(ngModel)]="contract.username" #username="ngModel">
+            </div>
+
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+              <div *ngIf="username.errors.required">
+                Username is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input id="password" name="password" class="form-control" required placeholder="Password" type="password"
+                [(ngModel)]="contract.password" #password="ngModel">
+            </div>
+
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+              <div *ngIf="password.errors.required">
+                Password is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input id="passwordConfirm" name="passwordConfirm" class="form-control" required
+                placeholder="Confirm Password" type="password" [(ngModel)]="contract.passwordConfirm"
+                #passwordConfirm="ngModel">
+            </div>
+
+            <div *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)"
+              class="alert alert-danger">
+              <div *ngIf="passwordConfirm.errors.required">
+                Password Confirm is required.
+              </div>
+            </div>
+
+          </nb-card-body>
+        </nb-card>
+
+        <button style="float: right; background-color: #BC0547;" type="submit" class="btn"
+          (click)="accept()">Done</button>
+
+      </form>
+    </nb-card-body>
+  </nb-card>
+
+</div>

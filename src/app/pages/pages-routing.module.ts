@@ -26,6 +26,9 @@ import { ContractEditComponent } from './contract-edit/contract-edit.component';
 import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { AdminHomeComponent } from './admin_home/admin_home.component';
+import { PackageBuilderMessageComponent } from './package-builder-message/package-builder-message.component';
+import { InviteToContractComponent } from './invite-to-contract/invite-to-contract.component';
+import { ClientDownloadComponent } from './client-download/client-download.component';
 
 const routes: Routes = [{
   path: '',
@@ -118,6 +121,18 @@ const routes: Routes = [{
   {
     path: 'search',
     component: SearchComponent,
+  },
+  {
+    path: 'package-builder-message',
+    component: PackageBuilderMessageComponent,
+  },
+  {
+    path: 'invite-to-contract',
+    component: InviteToContractComponent,
+  },
+  {
+    path: 'client-download',
+    component: ClientDownloadComponent,
   },
   {
     path: 'dashboard',

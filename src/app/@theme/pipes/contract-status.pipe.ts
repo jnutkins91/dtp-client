@@ -10,7 +10,7 @@ export class ContractStatus implements PipeTransform {
         else if (value === 1)
             return 'SUSPENDED';
         else if (value === 2)
-            return 'ARCHIVED';
+            return 'TERMINATED';
         else
             return 'ERROR';
     }

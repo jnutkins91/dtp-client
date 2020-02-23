@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContractService } from '../../@core/services/contract.service';
 import { ContractRequestService } from '../../@core/services/contractrequest.service';
 
-import { contract } from '../../@core/data/contract';
+import { contract_offer } from '../../@core/data/contract_offer';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,8 +26,25 @@ export class ContractCurrentUserComponent implements OnInit {
 
   ngOnInit() {
 
+    this.getContractOffers();
     this.getContracts();
-    this.getContractRequests();
+    this.getContractRequests();  
+  }
+
+  getContractOffers() {
+
+    this.loading = true;
+
+    this.contractService.getMyContractsOffers()
+      .subscribe(
+
+        (data: contract_offer[]) => {
+
+          this.offers = data;
+        },
+        err => console.error('Observer got an error: ' + err),
+        () => this.loading = false);
+
   }
 
   getContracts() {
@@ -37,9 +54,9 @@ export class ContractCurrentUserComponent implements OnInit {
     this.contractService.getMyContracts()
       .subscribe(
 
-        (data: contract[]) => {
+        (data: contract_offer[]) => {
 
-          this.offers = data;
+          this.contracts = data;
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);
@@ -53,7 +70,7 @@ export class ContractCurrentUserComponent implements OnInit {
     this.contractRequestService.getMyContractRequests()
       .subscribe(
 
-        (data: contract[]) => {
+        (data: contract_offer[]) => {
 
           this.requests = data;
         },

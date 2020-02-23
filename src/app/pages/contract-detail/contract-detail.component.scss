@@ -23,7 +23,7 @@
   .custom-control-indicator::before {
     background-color: #ba7fec !important;
   }
- 
+
   .tag {
     background: #BC0547;
     color: white;
@@ -32,5 +32,18 @@
     min-width:60px; 
     display: inline-block;
     margin-right: 1em;
+  }
+
+  .dataType {
+    background: transparent;
+    color: black;
+    border-color: #BC0547;
+    border-style: solid;
+    border-radius: 2.5px;
+    padding: 0.5em; 
+    min-width:60px; 
+    display: inline-block;
+    margin-right: 1em;
+    text-align: center;
   }
 }

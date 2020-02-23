@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ContractService } from '../../@core/services/contract.service';
 
-import { contract } from '../../@core/data/contract';
+import { contract_offer } from '../../@core/data/contract_offer';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -42,7 +42,7 @@ export class ContractComponent implements OnInit {
     this.contractService.getContractByTag(id.toString())
       .subscribe(
 
-        (data: contract[]) => {
+        (data: contract_offer[]) => {
 
           this.contracts = data;
         },
@@ -54,5 +54,9 @@ export class ContractComponent implements OnInit {
   onClick_Contract(id: string) {
 
     this.router.navigate(['./pages/contract-detail', { contractId: id }]);
+  }
+
+  newContractClicked() {
+    this.router.navigateByUrl('/pages/contract-create');
   }
 }

@@ -5,7 +5,7 @@ import { ContractService } from '../../@core/services/contract.service';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { dtp_user } from '../../@core/data/dtp_user';
 import { Router, ActivatedRoute } from '@angular/router';
-import { contract } from '../../@core/data/contract';
+import { contract_offer } from '../../@core/data/contract_offer';
 
 @Component({
   selector: 'contract-edit',
@@ -18,7 +18,7 @@ export class ContractEditComponent implements OnInit {
   selectedTimezone: any;
 
   user: dtp_user;
-  contract: contract;
+  contract: contract_offer;
 
   constructor(private _location: Location,
     private formBuilder: FormBuilder,
@@ -114,10 +114,10 @@ export class ContractEditComponent implements OnInit {
 
     this.loading = true;
 
-    this.contractService.getContract(id)
+    this.contractService.getContractOffer(id)
       .subscribe(
 
-        (data: contract) => {
+        (data: contract_offer) => {
 
           this.contract = data;
 

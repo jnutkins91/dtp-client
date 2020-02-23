@@ -6,7 +6,11 @@ import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { DTPUserService } from '../../@core/services/dtp_user.service';
 import { dtp_user } from '../../@core/data/dtp_user';
 import { ContractService } from '../../@core/services/contract.service';
-import { contract } from '../../@core/data/contract';
+import { contract_offer } from '../../@core/data/contract_offer';
+import { ReportUserService } from '../../@core/services/reportuser.service';
+import { NbDialogService, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
+import { ReportUserDialogComponent } from '../dialogs/reportuser-dialog.component';
+import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 
 @Component({
   selector: 'user-profile',
@@ -24,7 +28,10 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private contractService: ContractService,
-    private authService: NbAuthService) {
+    private reportUserService: ReportUserService,
+    private dialogService: NbDialogService,
+    private authService: NbAuthService,
+    private toastrService: NbToastrService) {
 
     this.selectedItem = 'gmt';
 
@@ -73,7 +80,24 @@ export class UserProfileComponent implements OnInit {
   }
 
   reportUserClicked() {
-    alert('Report User Clicked!');
+
+    this.dialogService.open(ReportUserDialogComponent, { context: { userId: this.userId, currentUserId:  this.user.id } })
+      .onClose.subscribe(newReport =>
+
+        this.reportUserService.createReportUser(newReport)
+          .subscribe(
+
+            (data: any) => {
+
+              this.showToast_Success();
+            },
+            err => this.showToast_Error(),
+            () => {}),
+      );
+  }
+
+  inviteToContractClicked(id: number, name: string) {
+    this.router.navigate(['./pages/invite-to-contract', { userId: id, userName: name }]);
   }
 
   getContracts(id: string) {
@@ -83,7 +107,7 @@ export class UserProfileComponent implements OnInit {
     this.contractService.getContractByUser(id)
       .subscribe(
 
-        (data: contract[]) => {
+        (data: contract_offer[]) => {
 
           this.contracts = data;
         },
@@ -93,6 +117,40 @@ export class UserProfileComponent implements OnInit {
   }
 
   onClick_Contract(id: string) {
-    this.router.navigate(['./pages/contract-detail', { contractId: id }]);
+    this.router.navigate(['./pages/contract-detail', { userId: id }]);
+  }
+
+  private showToast_Success() {
+
+    const config = {
+      status: NbToastStatus.SUCCESS,
+      destroyByClick: false,
+      duration: 2000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: false,
+    };
+
+    this.toastrService.show(
+      '',
+      'User Reported!',
+      config);
+  }
+
+  private showToast_Error() {
+
+    const config = {
+      status: NbToastStatus.DANGER,
+      destroyByClick: false,
+      duration: 2000,
+      hasIcon: true,
+      position: NbGlobalPhysicalPosition.BOTTOM_RIGHT,
+      preventDuplicates: false,
+    };
+
+    this.toastrService.show(
+      '',
+      'Failed to Report!',
+      config);
   }
 }

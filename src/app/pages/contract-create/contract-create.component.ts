@@ -5,7 +5,7 @@ import { ContractService } from '../../@core/services/contract.service';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { dtp_user } from '../../@core/data/dtp_user';
 import { Router } from '@angular/router';
-import { contract } from '../../@core/data/contract';
+import { contract_offer } from '../../@core/data/contract_offer';
 import { ShowcaseDialogComponent } from '../modal-overlays/dialog/showcase-dialog/showcase-dialog.component';
 import { NbDialogService } from '@nebular/theme';
 
@@ -20,7 +20,7 @@ export class ContractCreateComponent {
   selectedTimezone: any;
 
   user: dtp_user;
-  contract: contract;
+  contract: contract_offer;
   passwordConfirm: string;
   data_type = 'raw';
   limit_contracts = false;
@@ -46,7 +46,7 @@ export class ContractCreateComponent {
     public datepipe: DatePipe,
     private dialogService: NbDialogService) {
 
-    this.contract = {} as contract;
+    this.contract = {} as contract_offer;
 
     this.contract.token_rate = 0;
     this.contract.currency_rate = 0;
@@ -67,10 +67,12 @@ export class ContractCreateComponent {
       'contract_name': new FormControl(this.contract.name, [
         Validators.required,
         Validators.minLength(10),
+        Validators.maxLength(125)
       ]),
       'description': new FormControl(this.contract.description, [
         Validators.required,
         Validators.minLength(25),
+        Validators.maxLength(1000)
       ]),
       'contract_tags': new FormControl(this.contract.tags),
 
@@ -81,7 +83,6 @@ export class ContractCreateComponent {
       'data_format_xml': new FormControl(this.contract.data_format_xml),
       'data_format_csv': new FormControl(this.contract.data_format_csv),
       'data_format_plain_text': new FormControl(this.contract.data_format_plain_text),
-
 
       'startDateControl': new FormControl(this.contract.startdate, [
         Validators.required,
@@ -94,7 +95,9 @@ export class ContractCreateComponent {
       'username': new FormControl(this.contract.username, [
         Validators.required,
       ]),
-      'location_directory': new FormControl(this.contract.location_directory),
+      'location_serverURL': new FormControl(this.contract.location_serverURL, [
+        Validators.required,
+      ]),
 
       'password': new FormControl(this.contract.password, [
         Validators.required,
@@ -111,16 +114,30 @@ export class ContractCreateComponent {
       'token_rate': new FormControl(this.contract.token_rate),
       'currency_rate': new FormControl(this.contract.currency_rate),
 
+
+
+      'test_directory': new FormControl(this.contract.test_directory, [
+        Validators.required,
+      ]),
+      'test_serverURL': new FormControl(this.contract.test_serverURL, [
+        Validators.required,
+      ]),
+
+      'test_username': new FormControl(this.contract.test_username, [
+        Validators.required,
+      ]),
+      'test_password': new FormControl(this.contract.test_password, [
+        Validators.required,
+      ]),
+      'test_passwordConfirm': new FormControl(this.contract.test_passwordConfirm, [
+        Validators.required,
+      ]),
+
     });
   }
 
   backClicked() {
     this._location.back();
-  }
-
-  isCurrency() {
-
-    return this.contract.fixed_currency || false;
   }
 
   limitContracts() {
@@ -151,6 +168,8 @@ export class ContractCreateComponent {
 
   create() {
 
+    this.loading = true;
+
     if (this.contract.password !== this.contract.passwordConfirm) {
 
       this.dialogService.open(ShowcaseDialogComponent, {
@@ -158,6 +177,8 @@ export class ContractCreateComponent {
           title: 'Passwords Don\'t Match',
         },
       });
+
+      this.loading = true;
 
       return;
     }
@@ -171,6 +192,8 @@ export class ContractCreateComponent {
           title: 'Contract\'s Require Atleast 1 Tag',
         },
       });
+
+      this.loading = true;
 
       return;
     }
@@ -195,6 +218,8 @@ export class ContractCreateComponent {
         },
       });
 
+      this.loading = true;
+
       return;
     }
 
@@ -208,6 +233,8 @@ export class ContractCreateComponent {
           title: 'Contract\'s Require Atleast 1 Data Format',
         },
       });
+
+      this.loading = true;
 
       return;
     }
@@ -233,8 +260,7 @@ export class ContractCreateComponent {
 
       use_primary_wallet: this.contract.use_primary_wallet,
       fixed_currency: this.contract.fixed_currency,
-      location_directory: this.contract.location_directory,
-      location_api_endpoint: '',
+      location_serverURL: this.contract.location_serverURL,
       username: this.contract.username,
 
       password: this.contract.password,
@@ -253,19 +279,25 @@ export class ContractCreateComponent {
       is_private: this.contract.is_private,
 
       tags: tagsToSend,
+
+      test_directory: this.contract.test_directory,
+      test_serverURL: this.contract.test_serverURL,
+      test_username: this.contract.test_username,
+
+      test_password: this.contract.test_password,
     };
 
     this.contractService.newContractOffer(newContract)
       .subscribe(
 
-        (data: contract) => {
+        (data: contract_offer) => {
 
           this.contractService.newContractOfferFile(this.formData, data.id)
         .subscribe(
 
           () => {
 
-            this.router.navigateByUrl('/pages/contract-detail', { replaceUrl: true, state: { itemId: data['id'] } });
+            this.router.navigate(['./pages/contract-detail', { contractId: data.id }]);
           },
           err => console.error('Observer got an error: ' + err),
           () => this.loading = false);

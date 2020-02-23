@@ -72,7 +72,7 @@ export const CORPORATE_THEME = {
       textColor: '#b2bac2',
 
       firstAnimationBarColor: '#719efc',
-      secondAnimationBarColor: '#5dcfe3',
+      secondAnimationBarColor: '#BC0547',
 
       splitLineStyleOpacity: '0.06',
       splitLineStyleWidth: '1',
@@ -196,8 +196,8 @@ export const CORPORATE_THEME = {
       firstLineShadow: 'rgba(14, 16, 48, 0.4)',
 
       // second bar
-      secondLineGradFrom: '#5dcfe3',
-      secondLineGradTo: '#5dcfe3',
+      secondLineGradFrom: '#BC0547',
+      secondLineGradTo: '#BC0547',
       secondLineShadow: 'rgba(14, 16, 48, 0.4)',
 
       // third bar
@@ -208,7 +208,7 @@ export const CORPORATE_THEME = {
 
     orderProfitLegend: {
       firstItem: '#719efc',
-      secondItem: '#5dcfe3',
+      secondItem: '#BC0547',
       thirdItem: '#e3ecfe',
     },
 

@@ -46,6 +46,16 @@ export class PagesComponent {
       icon: 'nb-lightbulb',
       link: '/pages/forum',
     },
+    {
+      title: 'Client Downloads',
+      icon: 'nb-e-commerce',
+      link: '/pages/client-download',
+    },
+    {
+      title: 'Accounting Log',
+      icon: 'nb-notifications',
+      link: '/pages/package-builder-message',
+    },
   ];
 
   menu = this.MENU_ITEMS;

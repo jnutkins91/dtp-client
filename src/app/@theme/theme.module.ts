@@ -70,6 +70,7 @@ import { CORPORATE_THEME } from './styles/theme.corporate';
 import { ContractStatus } from './pipes/contract-status.pipe';
 import { ContractStatusColor } from './pipes/contract-status-color.pipe';
 import { DataType } from './pipes/data-type.pipe';
+import { ContractListItemComponent } from '../pages/contract-list-item/contract-list-item.component';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -123,6 +124,7 @@ const COMPONENTS = [
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  ContractListItemComponent,
 ];
 
 const ENTRY_COMPONENTS = [

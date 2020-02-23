@@ -14,6 +14,7 @@ import { NewThreadDialogComponent } from './pages/forum/thread/newThread-dialog.
 import { ShowcaseDialogComponent } from './pages/modal-overlays/dialog/showcase-dialog/showcase-dialog.component';
 import { NewCommentDialogComponent } from './pages/forum/comment/newComment-dialog.component';
 import { NewContractCommentDialogComponent } from './pages/contract-detail/newContractComment-dialog.component';
+import { ReportUserDialogComponent } from './pages/dialogs/reportuser-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NewContractCommentDialogComponent } from './pages/contract-detail/newCo
     ShowcaseDialogComponent,
     NewCommentDialogComponent,
     NewContractCommentDialogComponent,
+    ReportUserDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,7 @@ import { NewContractCommentDialogComponent } from './pages/contract-detail/newCo
     ShowcaseDialogComponent,
     NewContractCommentDialogComponent,
     NewCommentDialogComponent,
+    ReportUserDialogComponent
   ],
   bootstrap: [AppComponent],
   providers: [

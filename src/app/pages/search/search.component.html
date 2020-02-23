@@ -24,14 +24,46 @@ display:table;">
     <nb-tabset fullWidth>
         <nb-tab tabTitle="Contract Offers">
 
+            <contract-list-item *ngFor="let option of searchItems?.offers" [contractDetail]="option"></contract-list-item>
+
         </nb-tab>
 
         <nb-tab tabTitle="Users">
+
+            <div class="col-md-2" style="padding: 0px;"
+                    *ngFor="let option of searchItems?.users.users">
+        
+                    <nb-card (click)="onClick_User(option.id)">
+                        <nb-card-body>
+                            <nb-user [picture]="option.picture" [name]="option.username" title="4.8" (click)="onClickUserImg()">
+                            </nb-user>
+                        </nb-card-body>
+        
+                        <nb-card-footer style="background-color: #BC0547; color: #ffffff">
+                            {{ option.bio }}
+                        </nb-card-footer>
+                    </nb-card>
+        
+                </div>
 
         </nb-tab>
 
         <nb-tab tabTitle="Tags">
  
+            <div class="col-md-2" style="padding: 0px;"
+            *ngFor="let option of searchItems?.tags">
+
+            <nb-card (click)="onClick_Tag(option.id, option.name)">
+                <nb-card-header style="background-color: #BC0547; color: #ffffff; min-height: 3.5em; max-height: 3.5em;">{{ option.name }}</nb-card-header>
+
+                <nb-card-body style="min-height: 8em; max-height: 8em; overflow: hidden;
+                text-overflow: ellipsis; box-sizing: content-box;">
+                    {{ option.description }}
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+
         </nb-tab>
     </nb-tabset>
 

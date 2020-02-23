@@ -1,0 +1,38 @@
+<div style="margin-bottom: 0.5em; width:100%;
+display:table;">
+
+  <span style="color: black; font-size: 1.5em; display:table-cell;
+    vertical-align:middle;">Logs</span>
+
+  <button style="float: right; background-color: #BC0547;" type="submit" class="btn" (click)="ping()">
+    PING
+  </button>
+
+</div>
+
+<div [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+    <nb-card *ngIf="loading">
+        <nb-card-header></nb-card-header>
+        <nb-card-body>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card style="text-align: center; background: transparent; border: none;" *ngIf="messages?.length == 0">
+        <nb-card-body>
+            <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
+            <p>We didn't find anything here...</p>
+        </nb-card-body>
+    </nb-card>
+
+
+
+    <nb-card *ngFor="let option of messages">
+        <nb-card-body>
+            {{ option.json }}
+        </nb-card-body>
+    </nb-card>
+
+</div>
+
+

@@ -24,6 +24,9 @@ import { FAQModule } from './faq/faq.module';
 import { TermsModule } from './terms/terms.module';
 import { PrivacyModule } from './privacy/privacy.module';
 import { AdminHomeModule } from './admin_home/admin_home.module';
+import { PackageBuilderMessageModule } from './package-builder-message/package-builder-message.module';
+import { InviteToContractModule } from './invite-to-contract/invite-to-contract.module';
+import { ClientDownloadModule } from './client-download/client-download.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -54,6 +57,9 @@ const PAGES_COMPONENTS = [
     TermsModule,
     PrivacyModule,
     AdminHomeModule,
+    PackageBuilderMessageModule,
+    InviteToContractModule,
+    ClientDownloadModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,

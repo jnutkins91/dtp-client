@@ -24,8 +24,20 @@ export class ContractService {
 
   //  GET
 
+  getContractOffer(id: string): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token,
+      }),
+    };
+
+    return this.http.get(environment.apiUrl + '/api/contractoffer/' + id, httpOptions);
+  }
+
   getContract(id: string): Observable<any> {
-    return this.http.get(environment.apiUrl + '/api/contractoffer/' + id);
+    return this.http.get(environment.apiUrl + '/api/contractoffer/contract' + id);
   }
 
   getLatestOffers(page: number): Observable<any> {
@@ -45,7 +57,7 @@ export class ContractService {
     return this.http.get(environment.apiUrl + '/api/contractoffer/user/' + id);
   }
 
-  getMyContracts(): Observable<any> {
+  getMyContractsOffers(): Observable<any> {
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -57,10 +69,26 @@ export class ContractService {
     return this.http.get(environment.apiUrl + '/api/contractoffer/user', httpOptions);
   }
 
+  getMyContracts(): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token,
+      }),
+    };
+
+    return this.http.get(environment.apiUrl + '/api/contractoffer/userAccepted', httpOptions);
+  }
+
   //  POST
 
-  newContractOffer(contract: any): Observable<any> {
-    return this.http.post(environment.apiUrl + '/api/contractoffer/', contract);
+  newContractOffer(contractOffer: any): Observable<any> {
+    return this.http.post(environment.apiUrl + '/api/contractoffer/', contractOffer);
+  }
+
+  newContract(contract: any): Observable<any> {
+    return this.http.post(environment.apiUrl + '/api/contractoffer/contract', contract);
   }
 
   newContractOfferFile(formData: FormData, id: number): Observable<any> {
@@ -93,5 +121,29 @@ export class ContractService {
     };
 
     return this.http.post(environment.apiUrl + '/api/contractoffer/suspend', contractId, httpOptions);
+  }
+
+  activateContract(contractId: number): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token,
+      }),
+    };
+
+    return this.http.post(environment.apiUrl + '/api/contractoffer/setActive', contractId, httpOptions);
+  }
+
+  terminateContract(contractId: number): Observable<any> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.token,
+      }),
+    };
+
+    return this.http.post(environment.apiUrl + '/api/contractoffer/terminate', contractId, httpOptions);
   }
 }

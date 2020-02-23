@@ -2,9 +2,9 @@
 display:table;">
 
     <span style="color: black; font-size: 1.5em; display:table-cell;
-    vertical-align:middle;">Data Hub</span>
+    vertical-align:middle;">My Data</span>
 
-    <button type="button" class="btn btn-success" style="float: right;" (click)="newContractClicked()">
+    <button type="button" class="btn btn-success" style="float: right; background-color: #BC0547" (click)="newContractClicked()">
         Create
     </button>
 
@@ -18,44 +18,19 @@ display:table;">
         </nb-card-body>
     </nb-card>
 
-    <nb-tabset fullWidth>
+    <nb-tabset fullWidth *ngIf="!loading">
+
         <nb-tab tabTitle="My Offers">
 
             <nb-card style="text-align: center; background: transparent; border: none;"
-                *ngIf="offers?.length == 0 || !offers">
+                *ngIf="(offers?.length == 0) && !loading">
                 <nb-card-body>
                     <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
                     <p>We didn't find anything here...</p>
                 </nb-card-body>
             </nb-card>
 
-            <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of offers">
-
-                <nb-card-header style="position: relative">
-            
-                    {{ option.name }}
-
-                    <span style="float: right;">v{{ option.version }}</span>
-                </nb-card-header>
-
-                <nb-card-body style="display: table-cell; vertical-align: middle;">
-                    {{ option.description }}
-
-                    <div style="padding-top: 1em;">
-                        <div class="tag" *ngFor="let tag of option?.tags">
-                            {{ tag?.name }}
-                        </div>
-                        <div class="dataType" style="float: right;">
-                            {{ option.data_type | dataType }}
-                        </div>
-                    </div>
-                </nb-card-body>
-
-                <nb-alert status="{{ option.status | contractStatusColor }}"  *ngIf="option.status === 1"
-                    style="float: right; text-align: center; margin-bottom: 0;">
-                    {{ option.status | contractStatus }}</nb-alert>
-
-            </nb-card>
+            <contract-list-item *ngFor="let option of offers" [contractDetail]="option"></contract-list-item>
 
         </nb-tab>
 
@@ -68,30 +43,8 @@ display:table;">
                 </nb-card-body>
             </nb-card>
 
-            <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of contracts">
-                <nb-card-header>
-                    {{ option.name }}
-                    <span style="float: right;">v{{ option.version }}</span>
-                </nb-card-header>
+            <contract-list-item *ngFor="let option of contracts" [contractDetail]="option"></contract-list-item>
 
-                <nb-card-body style="display: table-cell; vertical-align: middle;">
-                    {{ option.description }}
-
-                    <div style="padding-top: 1em;">
-                        <div class="tag" *ngFor="let tag of option?.tags">
-                            {{ tag?.name }}
-                        </div>
-                        <div class="dataType" style="float: right;">
-                            {{ option.data_type | dataType }}
-                        </div>
-                    </div>
-                </nb-card-body>
-
-                <nb-alert status="{{ option.status | contractStatusColor }}" *ngIf="option.status === 1"
-                    style="float: right; text-align: center; margin-bottom: 0;">
-                    {{ option.status | contractStatus }}</nb-alert>
-
-            </nb-card>
         </nb-tab>
 
         <nb-tab tabTitle="Pending Requests">
@@ -110,14 +63,16 @@ display:table;">
                         style="margin-bottom: 2em;">
                     </nb-user>
                     <p style="font-weight: bold;">{{ request.contract_name }}</p>
-                    <span style="float: right;">{{ request.created_on }}</span>
+                    <span style="float: right;">{{ request.created_on | date:'medium' }}</span>
                 </nb-card-body>
 
-                <nb-alert status="success" style="float: right; text-align: center; margin-bottom: 0;" (click)="acceptContractRequest(request.id)">
-                    Accept</nb-alert>
+                <nb-alert style="float: right; text-align: center; margin-bottom: 0; background-color: #BC0547; color: white;"
+                    (click)="acceptContractRequest(request.id)">
+                    ACCEPT</nb-alert>
 
-                <nb-alert status="danger" style="float: right; text-align: center; margin-bottom: 0;" (click)="rejectContractRequest(request.id)">
-                    Reject</nb-alert>
+                <nb-alert style="float: right; text-align: center; margin-bottom: 0; border: solid; border-color: #BC0547; color: black;"
+                    (click)="rejectContractRequest(request.id)">
+                    REJECT</nb-alert>
 
             </nb-card>
 

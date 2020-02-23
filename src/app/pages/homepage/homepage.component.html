@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="(user | json) != '{}'">
     <div class="col-md-6">
 
         <nb-card>
@@ -10,12 +10,30 @@
             </nb-card-header>
             <nb-card-body>
 
-                <button nbButton status="danger" class="btn" style="float: right;">
-                    Edit
-                </button>
+                <div [nbSpinner]="loadingWatchedTags" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+                    <nb-card *ngIf="loadingWatchedTags">
+                        <nb-card-header></nb-card-header>
+                        <nb-card-body>
+                        </nb-card-body>
+                    </nb-card>
+                
+                    <div class="tag" *ngFor="let option of watchedTags">
+                        {{ option?.name }}
+                    </div>
+
+                    <button nbButton status="danger" class="btn" style="float: right; background-color: #BC0547;" *ngIf="!loadingWatchedTags">
+                        Edit
+                    </button>
+                
+                </div>
+                
             </nb-card-body>
         </nb-card>
     </div>
+
+
+
     <div class="col-md-6">
         <nb-card>
             <nb-card-header>
@@ -26,9 +44,23 @@
             </nb-card-header>
             <nb-card-body>
 
-                <button nbButton status="danger" class="btn" style="float: right;">
-                    Edit
-                </button>
+                <div [nbSpinner]="loadingIgnoredTags" nbSpinnerStatus="danger" nbSpinnerSize="xlarge">
+
+                    <nb-card *ngIf="loadingIgnoredTags">
+                        <nb-card-header></nb-card-header>
+                        <nb-card-body>
+                        </nb-card-body>
+                    </nb-card>
+                
+                    <div class="tag" *ngFor="let option of ignoredTags">
+                        {{ option?.name }}
+                    </div>
+
+                    <button nbButton status="danger" class="btn" style="float: right; background-color: #BC0547;" *ngIf="!loadingIgnoredTags">
+                        Edit
+                    </button>
+                
+                </div>
             </nb-card-body>
         </nb-card>
     </div>
@@ -57,30 +89,9 @@ display:table;">
         </nb-card-body>
     </nb-card>
 
-    <nb-card (click)="onClick_Contract(option.id)" *ngFor="let option of contracts">
-        <nb-card-header>
+    <contract-list-item *ngFor="let option of contracts" [contractDetail]="option"></contract-list-item>
 
-            {{ option.name }}
-
-            <span style="float: right;">v{{ option.version }}</span>
-        </nb-card-header>
-
-        <nb-card-body style="display: table-cell; vertical-align: middle;">
-            {{ option.description }}
-
-            <div style="padding-top: 1em;">
-                <div class="tag" *ngFor="let tag of option?.tags">
-                    {{ tag?.name }}
-                </div>
-                <div class="dataType" style="float: right;">
-                    {{ option.data_type | dataType }}
-                </div>
-            </div>
-        </nb-card-body>
-
-        <nb-alert status="{{ option.status | contractStatusColor }}" *ngIf="option.status === 1"
-            style="float: right; text-align: center; margin-bottom: 0;">{{ option.status | contractStatus }}</nb-alert>
-
-    </nb-card>
+    <pagination-controls (pageChange)="p = $event" [maxSize]="12" (pageChange)="onPageChange($event)">
+    </pagination-controls>
 
 </div>

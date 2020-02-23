@@ -8,6 +8,15 @@
     overflow: visible;
   }
 
+  // nb-checkbox .customised-control-input:checked + .customised-control-indicator {
+  //   border-color: #BC0547;
+  // }
+
+  .nb-theme-corporate nb-checkbox .customised-control-input:checked + .customised-control-indicator {
+    // border-color: #BC0547;
+    border: 2px solid #BC0547;
+  }
+
   .input-group {
     margin-bottom: 1rem;
   }
