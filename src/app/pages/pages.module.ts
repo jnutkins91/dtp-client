@@ -16,7 +16,6 @@ import { HomePageModule } from './homepage/homepage.module';
 import { ContractModule } from './contract/contract.module';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { ContractCreateModule } from './contract-create/contract-create.module';
-import { ContractEditModule } from './contract-edit/contract-edit.module';
 import { ContractDetailModule } from './contract-detail/contract-detail.module';
 import { ContractCurrentUserModule } from './contract-current-user/contract-current-user.module';
 import { ContractPurchaseModule } from './contract-purchase/contract-purchase.module';
@@ -27,6 +26,7 @@ import { AdminHomeModule } from './admin_home/admin_home.module';
 import { PackageBuilderMessageModule } from './package-builder-message/package-builder-message.module';
 import { InviteToContractModule } from './invite-to-contract/invite-to-contract.module';
 import { ClientDownloadModule } from './client-download/client-download.module';
+import { SpeedTestModule } from './speed-test/speed-test.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -49,7 +49,6 @@ const PAGES_COMPONENTS = [
     ContractModule,
     UserProfileModule,
     ContractCreateModule,
-    ContractEditModule,
     ContractDetailModule,
     ContractCurrentUserModule,
     ContractPurchaseModule,
@@ -59,7 +58,8 @@ const PAGES_COMPONENTS = [
     AdminHomeModule,
     PackageBuilderMessageModule,
     InviteToContractModule,
-    ClientDownloadModule
+    ClientDownloadModule,
+    SpeedTestModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,

@@ -1,0 +1,30 @@
+iframe{
+  transform: translate3d(0,0,0);
+}
+
+.clockColumn { 
+
+  text-align: center;
+}
+
+.cityLabel { 
+
+  margin-top: 1em;
+  font-size: 1.5em;
+  color: black;
+  font-weight: bold;
+}
+
+.dataReceivedLabel { 
+
+  margin-top: 1em;
+  font-size: 1.25em;
+  color: #BC0547;
+}
+
+.platformNotifiedLabel { 
+
+  margin-top: 1em;
+  font-size: 1.25em;
+  color: #BC0547;
+}

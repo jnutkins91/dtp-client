@@ -118,12 +118,14 @@ export class ContractPurchaseComponent implements OnInit {
       password: this.contract.password,
     };
 
+    console.log(newContract);
+
     this.contractService.newContract(newContract)
       .subscribe(
 
-        (data: contract) => {
+        (data: contract_offer) => {
 
-          this.router.navigate(['./pages/contract-purchase', { contractId: data.id }]);
+          this.router.navigate(['./pages/contract-detail', { contractId: data.id }]);
        
         },
         err => console.error('Observer got an error: ' + err),

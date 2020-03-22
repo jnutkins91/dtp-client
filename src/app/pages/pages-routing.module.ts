@@ -22,13 +22,13 @@ import { ContractDetailComponent } from './contract-detail/contract-detail.compo
 import { ContractCurrentUserComponent } from './contract-current-user/contract-current-user.component';
 import { ContractPurchaseComponent } from './contract-purchase/contract-purchase.component';
 import { FAQComponent } from './faq/faq.component';
-import { ContractEditComponent } from './contract-edit/contract-edit.component';
 import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { AdminHomeComponent } from './admin_home/admin_home.component';
 import { PackageBuilderMessageComponent } from './package-builder-message/package-builder-message.component';
 import { InviteToContractComponent } from './invite-to-contract/invite-to-contract.component';
 import { ClientDownloadComponent } from './client-download/client-download.component';
+import { SpeedTestComponent } from './speed-test/speed-test.component';
 
 const routes: Routes = [{
   path: '',
@@ -67,16 +67,16 @@ const routes: Routes = [{
     component: ContractCreateComponent,
   },
   {
-    path: 'contract-edit',
-    component: ContractEditComponent,
-  },
-  {
     path: 'contract-purchase',
     component: ContractPurchaseComponent,
   },
   {
     path: 'contract-detail',
     component: ContractDetailComponent,
+  },
+  {
+    path: 'speed-test',
+    component: SpeedTestComponent,
   },
   {
     path: 'contract-current-user',

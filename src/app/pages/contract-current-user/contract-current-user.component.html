@@ -77,6 +77,20 @@ display:table;">
             </nb-card>
 
         </nb-tab>
+
+        <nb-tab tabTitle="Messages">
+
+            <nb-card style="text-align: center; background: transparent; border: none;"
+                *ngIf="(offers?.length == 0) && !loading">
+                <nb-card-body>
+                    <i class="nb-alert" style="font-size: 8em; color: #BC0547;"></i>
+                    <p>We didn't find anything here...</p>
+                </nb-card-body>
+            </nb-card>
+
+            <contract-list-item *ngFor="let option of offers" [contractDetail]="option"></contract-list-item>
+
+        </nb-tab>
     </nb-tabset>
 
 </div>

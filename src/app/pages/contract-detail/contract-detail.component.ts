@@ -74,7 +74,7 @@ export class ContractDetailComponent implements OnInit {
   }
 
   editClicked(id: number) {
-    this.router.navigate(['/pages/contract-edit'], { queryParams: { id: id, relativeTo: this.route } });
+    this.router.navigate(['./pages/contract-create', { contractId: id }]);
   }
 
   testClicked(id: number) {

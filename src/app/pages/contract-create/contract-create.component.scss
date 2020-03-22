@@ -26,8 +26,17 @@
 
   .custom-control-indicator::before {
     background-color: #ba7fec !important;
+  } 
+
+  .tag {
+    background: #BC0547;
+    color: white;
+    border-radius: 2.5px;
+    padding: 0.5em; 
+    min-width:60px; 
+    display: inline-block;
+    margin-right: 1em;
   }
- 
 }
 
 /deep/ .cdk-global-scrollblock {

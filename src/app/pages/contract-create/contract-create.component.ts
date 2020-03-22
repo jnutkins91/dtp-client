@@ -4,7 +4,7 @@ import { Location, DatePipe } from '@angular/common';
 import { ContractService } from '../../@core/services/contract.service';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { dtp_user } from '../../@core/data/dtp_user';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { contract_offer } from '../../@core/data/contract_offer';
 import { ShowcaseDialogComponent } from '../modal-overlays/dialog/showcase-dialog/showcase-dialog.component';
 import { NbDialogService } from '@nebular/theme';
@@ -18,12 +18,16 @@ export class ContractCreateComponent {
 
   selectedCurrency: any;
   selectedTimezone: any;
+  subscriptionType: any;
 
   user: dtp_user;
   contract: contract_offer;
   passwordConfirm: string;
+  pageTitle: string;
   data_type = 'raw';
   limit_contracts = false;
+  sub: any;
+  contractId: number;
 
   loading = false;
 
@@ -44,16 +48,24 @@ export class ContractCreateComponent {
     private contractService: ContractService,
     private router: Router,
     public datepipe: DatePipe,
-    private dialogService: NbDialogService) {
+    private dialogService: NbDialogService,
+    private route: ActivatedRoute) {
 
     this.contract = {} as contract_offer;
+    this.contract.use_primary_wallet = true;
 
     this.contract.token_rate = 0;
     this.contract.currency_rate = 0;
-    this.contract.contract_limit = 0;
 
     this.selectedCurrency = 'usd';
     this.selectedTimezone = 'gmt';
+    this.subscriptionType = 'one-off';
+
+    this.contract.currency = 'usd';
+    this.contract.timezone = 'gmt';
+    this.contract.subscriptionType = 'one-off';
+
+    this.pageTitle = "Create a New Contract Offer for Data Services";
 
     this.authService.onTokenChange()
       .subscribe((token: NbAuthJWTToken) => {
@@ -106,23 +118,15 @@ export class ContractCreateComponent {
         Validators.required,
       ]),
 
-      'limit_contracts': new FormControl(),
-      'contract_limit': new FormControl(this.contract.contract_limit),
-
       'timezone': new FormControl(this.contract.timezone),
 
       'token_rate': new FormControl(this.contract.token_rate),
       'currency_rate': new FormControl(this.contract.currency_rate),
 
-
-
-      'test_directory': new FormControl(this.contract.test_directory, [
-        Validators.required,
-      ]),
       'test_serverURL': new FormControl(this.contract.test_serverURL, [
         Validators.required,
       ]),
-
+      'test_email': new FormControl(this.contract.test_email),
       'test_username': new FormControl(this.contract.test_username, [
         Validators.required,
       ]),
@@ -134,6 +138,58 @@ export class ContractCreateComponent {
       ]),
 
     });
+  }
+
+  ngOnInit() {
+
+    this.sub = this.route.params.subscribe(params => {
+
+      if (!isNaN(+params['contractId'])) {
+        this.contractId = +params['contractId'];
+        this.pageTitle = "Edit a Contract Offer for Data Services";
+        this.getContract(this.contractId);
+      }
+    });
+  }
+
+  getContract(id: number) {
+
+    this.loading = true;
+
+    this.contractService.getContractOffer(id.toString())
+      .subscribe(
+
+        (data: contract_offer) => {
+
+          this.contract = data;
+
+          if (this.contract.data_type === true)
+            this.data_type = 'processed'
+          else
+            this.data_type = 'raw'
+
+          let tags = [];
+
+          for (let entry of this.contract.tags) {
+
+            const newTag = {
+              display: entry['name'],
+              value: entry['name'],
+              description: entry['description'],
+            };
+
+            tags.push(newTag);
+          }
+
+          this.selectedTimezone = this.contract.timezone;
+          this.selectedCurrency = this.contract.currency;
+          this.subscriptionType = this.contract.subscriptionType;
+
+          this.contract.tags = tags;
+        },
+        err => console.error('Observer got an error: ' + err),
+        () => this.loading = false);
+
   }
 
   backClicked() {
@@ -156,13 +212,43 @@ export class ContractCreateComponent {
     if (fileList.length > 0) {
 
       let file: File = fileList[0];
-      
+
       this.formData.append('uploadFile', file, file.name);
 
       this.files.push(file);
 
       console.log(this.files);
 
+    }
+  }
+
+  setTokenValue() {
+
+    //  5 Tokens = 1 GBP
+
+    if (this.contract.currency === "gbp") {
+      this.contract.token_rate = this.contract.currency_rate * 5;
+    }
+    else if (this.contract.currency === "usd") {
+      this.contract.token_rate = this.contract.currency_rate * 4;
+    }
+    else if (this.contract.currency === "eur") {
+      this.contract.token_rate = this.contract.currency_rate * 4.5;
+    }
+  }
+
+  setCurrencyValue() {
+
+    //  5 Tokens = 1 GBP
+
+    if (this.contract.currency === "gbp") {
+      this.contract.currency_rate = this.contract.token_rate / 5;
+    }
+    else if (this.contract.currency === "usd") {
+      this.contract.currency_rate = this.contract.token_rate / 4;
+    }
+    else if (this.contract.currency === "eur") {
+      this.contract.currency_rate = this.contract.token_rate / 4.5;
     }
   }
 
@@ -265,8 +351,6 @@ export class ContractCreateComponent {
 
       password: this.contract.password,
 
-      contract_limit: this.contract.contract_limit,
-
       token_rate: this.contract.token_rate,
       currency_rate: this.contract.currency_rate,
 
@@ -277,13 +361,13 @@ export class ContractCreateComponent {
       timezone: this.contract.timezone,
 
       is_private: this.contract.is_private,
+      subscriptionType: this.contract.subscriptionType,
 
       tags: tagsToSend,
 
-      test_directory: this.contract.test_directory,
       test_serverURL: this.contract.test_serverURL,
+      test_email: this.contract.test_email,
       test_username: this.contract.test_username,
-
       test_password: this.contract.test_password,
     };
 
@@ -293,16 +377,16 @@ export class ContractCreateComponent {
         (data: contract_offer) => {
 
           this.contractService.newContractOfferFile(this.formData, data.id)
-        .subscribe(
+            .subscribe(
 
-          () => {
+              () => {
 
-            this.router.navigate(['./pages/contract-detail', { contractId: data.id }]);
-          },
-          err => console.error('Observer got an error: ' + err),
-          () => this.loading = false);
+                this.router.navigate(['./pages/contract-detail', { contractId: data.id }]);
+              },
+              err => console.error('Observer got an error: ' + err),
+              () => this.loading = false);
 
-          
+
         },
         err => console.error('Observer got an error: ' + err),
         () => this.loading = false);

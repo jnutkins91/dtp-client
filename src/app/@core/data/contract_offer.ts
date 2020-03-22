@@ -24,13 +24,13 @@ export class contract_offer {
     fixed_currency: boolean;
     token_rate: number;
     currency_rate: number;
-    contract_limit: number;
     is_private: boolean;
+    subscriptionType: string;
     files: any;
-    test_directory: string;
     test_serverURL: string;
     test_username: string;
     test_password: string;
+    test_email: string;
     test_passwordConfirm: string;
 
     userHasAcceptedContract: boolean;

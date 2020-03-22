@@ -1,0 +1,105 @@
+<div style="margin-bottom: 2em; width:100%;
+display:table;">
+
+    <span style="color: black; font-size: 1.5em; display:table-cell;
+    vertical-align:middle;">Data Transfer Gateway - Global Network Response Time</span>
+
+    <button type="button" class="btn btn-success" style="float: right; background-color: #BC0547" (click)="sendData()">
+        Send Data
+    </button>
+
+</div>
+
+<div style="margin-bottom: 2em; width:100%;
+display:table; text-align: center; font-size: large;">
+
+This is a benchmarking page so that users can get a sense of the data transfer rates they can achieve.
+
+</div>
+
+<div style="margin-bottom: 2em; width:100%;
+display:table; text-align: center; font-size: large; color: black;">
+
+The Test
+
+</div>
+
+<div style="margin-bottom: 2em; width:100%;
+display:table; text-align: center; font-size: large;">
+
+The file is a 10k text file (?) sent from Iowa (US) to multiple recipients world wide.
+
+</div>
+
+<div style="margin-bottom: 2em; width:100%;
+display:table; text-align: center; font-size: large; color: black;">
+
+Data Last Sent:
+
+</div>
+
+<div style="margin-bottom: 2em; width:100%;
+display:table; text-align: center; font-size: large; color: #BC0547">
+
+17/03/2020 00:50:01
+
+</div>
+
+<div style="display: flex; justify-content: space-between;">
+
+    <div class="clockColumn">
+        <iframe
+            src="http://free.timeanddate.com/clock/i770qxl2/n137/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
+            frameborder="0" width="160" height="160"></iframe>
+        <p class="cityLabel">Los Angeles</p>
+        <p class="dataReceivedLabel">Data Received</p>
+        <p>{{ losAngelesMessage?.received_at }}</p>
+        <p class="platformNotifiedLabel">DTP Notified</p>
+        <p>{{ losAngelesMessage?.creation_time }}</p>
+    </div>
+
+    <div class="clockColumn">
+        <iframe
+            src="http://free.timeanddate.com/clock/i770qxl2/n179/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
+            frameborder="0" width="160" height="160"></iframe>
+        <p class="cityLabel">New York</p>
+        <p class="dataReceivedLabel">Data Received</p>
+        <p>{{ newYorkMessage?.received_at }}</p>
+        <p class="platformNotifiedLabel">DTP Notified</p>
+        <p>{{ newYorkMessage?.creation_time }}</p>
+    </div>
+
+    <div class="clockColumn">
+        <iframe
+            src="http://free.timeanddate.com/clock/i76y70tr/n136/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
+            frameborder="0" width="160" height="160"></iframe>
+        <p class="cityLabel">London</p>
+        <p class="dataReceivedLabel">Data Received</p>
+        <p>{{ londonMessage?.received_at }}</p>
+        <p class="platformNotifiedLabel">DTP Notified</p>
+        <p>{{ londonMessage?.creation_time }}</p>
+    </div>
+
+    <div class="clockColumn">
+        <iframe
+            src="http://free.timeanddate.com/clock/i770qxl2/n367/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
+            frameborder="0" width="160" height="160"></iframe>
+        <p class="cityLabel">Kyiv</p>
+        <p class="dataReceivedLabel">Data Received</p>
+        <p>{{ kyivMessage?.received_at }}</p>
+        <p class="platformNotifiedLabel">DTP Notified</p>
+        <p>{{ kyivMessage?.creation_time }}</p>
+    </div>
+
+    <div class="clockColumn">
+        <iframe
+            src="http://free.timeanddate.com/clock/i770qxl2/n248/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
+            frameborder="0" width="160" height="160"></iframe>
+        <p class="cityLabel">Tokyo</p>
+        <p class="dataReceivedLabel">Data Received</p>
+        <p>{{ tokyoMessage?.received_at }}</p>
+        <p class="platformNotifiedLabel">DTP Notified</p>
+        <p>{{ tokyoMessage?.creation_time }}</p>
+    </div>
+
+</div>

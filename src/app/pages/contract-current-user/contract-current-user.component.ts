@@ -84,7 +84,7 @@ export class ContractCurrentUserComponent implements OnInit {
   }
 
   newContractClicked() {
-    this.router.navigateByUrl('/pages/contract-create');
+    this.router.navigate(['./pages/contract-create', { contractId: null }]);
   }
 
   acceptContractRequest(id: number) {

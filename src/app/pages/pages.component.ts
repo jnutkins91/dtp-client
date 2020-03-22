@@ -56,6 +56,11 @@ export class PagesComponent {
       icon: 'nb-notifications',
       link: '/pages/package-builder-message',
     },
+    {
+      title: 'Speed Test',
+      icon: 'nb-shuffle',
+      link: '/pages/speed-test',
+    },
   ];
 
   menu = this.MENU_ITEMS;

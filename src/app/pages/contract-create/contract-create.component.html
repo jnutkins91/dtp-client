@@ -2,7 +2,7 @@
 display:table;">
 
   <span style="color: black; font-size: 1.5em; display:table-cell;
-    vertical-align:middle;">Create a New Contract</span>
+    vertical-align:middle;">{{ pageTitle }}</span>
 
   <button style="float: right; background-color: #BC0547;" type="submit" class="btn" (click)="create()"
     [disabled]="newContractOfferForm.invalid">
@@ -19,9 +19,11 @@ display:table;">
 
       <form #newContractOfferForm="ngForm">
 
-        <div class="form-group">
-          <input id="contract_name" name="contract_name" class="form-control" required placeholder="Contract Title"
-            type="text" minlength="10" [(ngModel)]="contract.name" #contract_name="ngModel">
+        <h5>Contract Title</h5>
+        <div class="form-group" style="margin-bottom: 2em;">
+          <input id="contract_name" name="contract_name" class="form-control" required
+            placeholder="Enter a Contract Title..." type="text" minlength="10" [(ngModel)]="contract.name"
+            #contract_name="ngModel">
         </div>
 
         <div *ngIf="contract_name.invalid && (contract_name.dirty || contract_name.touched)" class="alert alert-danger">
@@ -36,6 +38,7 @@ display:table;">
           </div>
         </div>
 
+        <h5>Description of Terms</h5>
         <p>This is a detailed description of the service promised. Including when appropriate additional files such as
           XML
           examples, APIs, Category Structure, Data formatting or further documentation. Please detail the frequency of
@@ -43,9 +46,9 @@ display:table;">
           Data feed if it is critical to the service. Please include a Time lag performance criteria target or guarantee
           also.</p>
 
-        <div class="form-group">
+        <div class="form-group" style="margin-bottom: 2em;">
           <textarea id="description" [(ngModel)]="contract.description" name="description" class="form-control" required
-            placeholder="Description of Terms" minlength="25" rows="4" #description="ngModel">
+            placeholder="Enter a Description of Terms..." minlength="25" rows="4" #description="ngModel">
   </textarea>
         </div>
 
@@ -61,25 +64,22 @@ display:table;">
           </div>
         </div>
 
-        <div class="form-group">
+        <h5>Private Contract</h5>
+        <p>If you don't wish your Contract Offer to be publically available, check the box below (you must invite users
+          instead).</p>
+        <div class="form-group" style="margin-bottom: 2em;">
           <nb-checkbox name="is_private" [(ngModel)]="contract.is_private" #name="ngModel">Private</nb-checkbox>
         </div>
 
-
-
-
-
-        <h6>Tags</h6>
+        <h5>Tags</h5>
+        <p>Allocate up to 5 tags to help define your data.</p>
         <div class="form-group" style="margin-bottom: 2em;">
           <tag-input class="form-control" [maxItems]='5' theme='bootstrap' [(ngModel)]="contract.tags" name="tags"
             #tags="ngModel">
           </tag-input>
         </div>
 
-
-
-
-        <h6>Data Type</h6>
+        <h5>Data Type</h5>
         <div class="row" style="margin-bottom: 2em;">
           <div class="form-check">
             <label class="custom-control custom-radio">
@@ -99,8 +99,8 @@ display:table;">
           </div>
         </div>
 
-        <h6>Available Data Formats</h6>
-        <div class="row" style="margin-bottom: 1em; padding-left: 1.5em;">
+        <h5>Available Data Formats</h5>
+        <div class="row" style="margin-bottom: 2em; padding-left: 1.5em;">
 
           <div class="form-group">
             <nb-checkbox name="data_format_json" [(ngModel)]="contract.data_format_json" #name="ngModel">JSON
@@ -127,270 +127,258 @@ display:table;">
           </div>
         </div>
 
-        <nb-select placeholder="Select Timezone" [(selected)]="selectedTimezone" name="timezone"
-          [(ngModel)]="contract.timezone" #name="ngModel">
-          <nb-option value="nst">New Zealand Standard Time (GMT+12:00)</nb-option>
-          <nb-option value="sst">Solomon Standard Time (GMT+11:00)</nb-option>
-          <nb-option value="aet">Australia Eastern Time (GMT+10:00)</nb-option>
-          <nb-option value="act">Australia Central Time (GMT+9:30)</nb-option>
-          <nb-option value="jst">Japan Standard Time (GMT+9:00)</nb-option>
-          <nb-option value="ctt">China Taiwan Time (GMT+8:00)</nb-option>
-          <nb-option value="vst">Vietnam Standard Time (GMT+7:00)</nb-option>
-          <nb-option value="bst">Bangladesh Standard Time (GMT+6:00)</nb-option>
-          <nb-option value="ist">India Standard Time (GMT+5:30)</nb-option>
-          <nb-option value="plt">Pakistan Lahore Time (GMT+5:00)</nb-option>
-          <nb-option value="net">Near East Time (GMT+4:00)</nb-option>
-          <nb-option value="met">Middle East Time (GMT+3:30)</nb-option>
-          <nb-option value="eat">Eastern African Time (GMT+3:00)</nb-option>
-          <nb-option value="art">(Arabic) Egypt Standard Time (GMT+2:00)</nb-option>
-          <nb-option value="eet">Eastern European Time (GMT+2:00)</nb-option>
-          <nb-option value="ect">European Central Time (GMT+1:00)</nb-option>
-          <nb-option value="gmt">Greenwich Mean Time (GMT)</nb-option>
-          <nb-option value="utc">Universal Coordinated Time (UTC)</nb-option>
-          <nb-option value="cat">Central African Time (GMT-1:00)</nb-option>
-          <nb-option value="bet">Brazil Eastern Time (GMT-3:00)</nb-option>
-          <nb-option value="ast">Argentina Standard Time (GMT-3:00)</nb-option>
-          <nb-option value="cnt">Canada Newfoundland Time (GMT-3:30)</nb-option>
-          <nb-option value="prt">Puerto Rico and US Virgin Islands Time (GMT-4:00)</nb-option>
-          <nb-option value="iet">Indiana Eastern Standard Time (GMT-5:00)</nb-option>
-          <nb-option value="est">Eastern Standard Time (GMT-5:00)</nb-option>
-          <nb-option value="cst">Central Standard Time (GMT-6:00)</nb-option>
-          <nb-option value="mst">Mountain Standard Time (GMT-7:00)</nb-option>
-          <nb-option value="pnt">Phoenix Standard Time (GMT-7:00)</nb-option>
-          <nb-option value="pst">Pacific Standard Time (GMT-8:00)</nb-option>
-          <nb-option value="ast">Alaska Standard Time (GMT-9:00)</nb-option>
-          <nb-option value="hst">Hawaii Standard Time (GMT-10:00)</nb-option>
-          <nb-option value="mit">Midway Islands Time (GMT-11:00)</nb-option>
-        </nb-select>
+        <h5>Timezone</h5>
+        <div class="form-group" style="margin-bottom: 2em;">
 
-        <div class="row">
+          <nb-select placeholder="Select Timezone" [(selected)]="selectedTimezone" name="timezone"
+            style="margin-bottom: 2em;" [(ngModel)]="contract.timezone" #name="ngModel">
+            <nb-option value="nst">New Zealand Standard Time (GMT+12:00)</nb-option>
+            <nb-option value="sst">Solomon Standard Time (GMT+11:00)</nb-option>
+            <nb-option value="aet">Australia Eastern Time (GMT+10:00)</nb-option>
+            <nb-option value="act">Australia Central Time (GMT+9:30)</nb-option>
+            <nb-option value="jst">Japan Standard Time (GMT+9:00)</nb-option>
+            <nb-option value="ctt">China Taiwan Time (GMT+8:00)</nb-option>
+            <nb-option value="vst">Vietnam Standard Time (GMT+7:00)</nb-option>
+            <nb-option value="bst">Bangladesh Standard Time (GMT+6:00)</nb-option>
+            <nb-option value="ist">India Standard Time (GMT+5:30)</nb-option>
+            <nb-option value="plt">Pakistan Lahore Time (GMT+5:00)</nb-option>
+            <nb-option value="net">Near East Time (GMT+4:00)</nb-option>
+            <nb-option value="met">Middle East Time (GMT+3:30)</nb-option>
+            <nb-option value="eat">Eastern African Time (GMT+3:00)</nb-option>
+            <nb-option value="art">(Arabic) Egypt Standard Time (GMT+2:00)</nb-option>
+            <nb-option value="eet">Eastern European Time (GMT+2:00)</nb-option>
+            <nb-option value="ect">European Central Time (GMT+1:00)</nb-option>
+            <nb-option value="gmt">Greenwich Mean Time (GMT)</nb-option>
+            <nb-option value="utc">Universal Coordinated Time (UTC)</nb-option>
+            <nb-option value="cat">Central African Time (GMT-1:00)</nb-option>
+            <nb-option value="bet">Brazil Eastern Time (GMT-3:00)</nb-option>
+            <nb-option value="ast">Argentina Standard Time (GMT-3:00)</nb-option>
+            <nb-option value="cnt">Canada Newfoundland Time (GMT-3:30)</nb-option>
+            <nb-option value="prt">Puerto Rico and US Virgin Islands Time (GMT-4:00)</nb-option>
+            <nb-option value="iet">Indiana Eastern Standard Time (GMT-5:00)</nb-option>
+            <nb-option value="est">Eastern Standard Time (GMT-5:00)</nb-option>
+            <nb-option value="cst">Central Standard Time (GMT-6:00)</nb-option>
+            <nb-option value="mst">Mountain Standard Time (GMT-7:00)</nb-option>
+            <nb-option value="pnt">Phoenix Standard Time (GMT-7:00)</nb-option>
+            <nb-option value="pst">Pacific Standard Time (GMT-8:00)</nb-option>
+            <nb-option value="ast">Alaska Standard Time (GMT-9:00)</nb-option>
+            <nb-option value="hst">Hawaii Standard Time (GMT-10:00)</nb-option>
+            <nb-option value="mit">Midway Islands Time (GMT-11:00)</nb-option>
+          </nb-select>
 
-          <div class="col-md-12 col-lg-6 col-xxxl-6">
-            <nb-card>
-              <nb-card-header>Start Date</nb-card-header>
-              <nb-card-body>
-                <input nbInput placeholder="Start Date" [nbDatepicker]="startdatecontrol" name="timezone"
+          <div class="row">
+            <div class="col-md-12 col-lg-6 col-xxxl-6">
+              <h5>Start Date</h5>
+              <div class="form-group">
+                <input nbInput placeholder="Start Date" [nbDatepicker]="startdatecontrol" name="startDate"
                   [(ngModel)]="contract.startdate" #name="ngModel" style="width: 100%;">
                 <nb-datepicker #startdatecontrol></nb-datepicker>
-              </nb-card-body>
-            </nb-card>
-          </div>
+              </div>
+            </div>
 
-          <div class="col-md-12 col-lg-6 col-xxxl-6">
-            <nb-card>
-              <nb-card-header>End Date</nb-card-header>
-              <nb-card-body>
-                <input nbInput placeholder="End Date" [nbDatepicker]="enddatecontrol" name="timezone"
+            <div class="col-md-12 col-lg-6 col-xxxl-6">
+              <h5>End Date</h5>
+              <div class="form-group">
+                <input nbInput placeholder="End Date" [nbDatepicker]="enddatecontrol" name="endDate"
                   [(ngModel)]="contract.enddate" #name="ngModel" style="width: 100%;">
                 <nb-datepicker #enddatecontrol></nb-datepicker>
-              </nb-card-body>
-            </nb-card>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <h5>Wallet Settings</h5>
+        <p>Each contract can have a unique wallet address to accept payment for this Contract. By default this is
+          set
+          to your receipt account wallet address.</p>
+        <div class="form-group" style="margin-bottom: 2em;">
+          <nb-checkbox name="use_primary_wallet" [(ngModel)]="contract.use_primary_wallet" #name="ngModel">Use My
+            Primary Wallet</nb-checkbox>
+        </div>
+
+
+
+        <h5>Subscription Type</h5>
+        <nb-select placeholder="Subscription Type" [(selected)]="subscriptionType" name="subscriptionType"
+          style="margin-bottom: 2em;" [(ngModel)]="contract.subscriptionType" #name="ngModel">
+          <nb-option value="one-off">One-Off Payment</nb-option>
+          <nb-option value="yearly">Yearly</nb-option>
+          <nb-option value="monthly">Monthly</nb-option>
+          <nb-option value="weekly">Weekly</nb-option>
+          <nb-option value="daily">Daily</nb-option>
+          <nb-option value="pof">Proof of Work</nb-option>
+        </nb-select>
+
+        <h5>Token Rate</h5>
+        <div class="form-group" style="margin-bottom: 2em;">
+          <input type="number" step="0.01" class="form-control" id="tokenRateInput" placeholder="Token Rate" (change)="setCurrencyValue()"
+            name="token_rate" [(ngModel)]="contract.token_rate" #name="ngModel">
+        </div>
+
+        <h5>Fixed Currency</h5>
+        <div class="form-group" style="margin-bottom: 2em;">
+          <nb-checkbox name="fixed_currency" [(ngModel)]="contract.fixed_currency" #name="ngModel">Fixed Currency
+          </nb-checkbox>
+        </div>
+
+        <h5>Currency</h5>
+        <p>If you wish to anchor the payment to a currency of your choice select the currency below. The account
+          will be credited with the number of tokens the currency will buy at the exact time when the payment comes
+          due (when the file is delivered and the DTP is notified).</p>
+        <div class="form-group" style="margin-bottom: 2em;">
+          <nb-select placeholder="Selected Currency" [(selected)]="selectedCurrency" name="currency"
+            [(ngModel)]="contract.currency" #name="ngModel">
+            <nb-option value="usd">United States Dollar</nb-option>
+            <nb-option value="gbp">British Pound</nb-option>
+            <nb-option value="eur">Euro</nb-option>
+          </nb-select>
+        </div>
+
+
+        <h5>Currency Rate</h5>
+        <div class="form-group" style="margin-bottom: 2em;">
+          <input type="number" step="0.01" class="form-control" id="currencyRateInput" placeholder="Currency Rate" (change)="setTokenValue()"
+            name="currency_rate" [(ngModel)]="contract.currency_rate" #name="ngModel">
+        </div>
+
+        <h5>Server Details to Send Data</h5>
+        <p>When the Contract is created the Data Trading Platform will build a Data Transfer Gateway (DTG) to
+          install
+          on your server. The DTG will facilitate fast reliable data transfers, updates to your account records and
+          where payment is dependent on file transfers provide Proof of Work to authorise payments.</p>
+        <p>You will need access to a server with a unique www address with Docker installed. (If you don’t have
+          these facilities there are many cloud based solutions that provide virtual servers with pre installed
+          Docker
+          such as digital Ocean). You will need to provide a directory for your DTG, the DTG of your Users where you
+          will send your data files. The DTP will pick these up and forward. These server details will not be
+          disclosed outside the DTP or to your Users. Please ensure we have access to install in the directory with
+          your Directory Details. Please see technical help in our FAQs for information about configuring your
+          systems.
+        </p>
+        <div class="form-group" style="margin-bottom: 2em;">
+          <div class="form-group">
+            <input id="location_serverURL" name="location_serverURL" class="form-control" required
+              placeholder="Server URL" type="text" [(ngModel)]="contract.location_serverURL"
+              #location_serverURL="ngModel">
+          </div>
+
+          <div *ngIf="location_serverURL.invalid && (location_serverURL.dirty || location_serverURL.touched)"
+            class="alert alert-danger">
+            <div *ngIf="location_serverURL.errors.required">
+              Server URL is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input id="username" name="username" class="form-control" required placeholder="Username" type="text"
+              [(ngModel)]="contract.username" #username="ngModel">
+          </div>
+
+          <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+            <div *ngIf="username.errors.required">
+              Username is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input id="password" name="password" class="form-control" required placeholder="Password" type="password"
+              [(ngModel)]="contract.password" #password="ngModel">
+          </div>
+
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input id="passwordConfirm" name="passwordConfirm" class="form-control" required
+              placeholder="Confirm Password" type="password" [(ngModel)]="contract.passwordConfirm"
+              #passwordConfirm="ngModel">
+          </div>
+
+          <div *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)"
+            class="alert alert-danger">
+            <div *ngIf="passwordConfirm.errors.required">
+              Password Confirm is required.
+            </div>
+          </div>
+        </div>
+
+        <h5>TEST - Server Details to Receive Data</h5>
+        <p>When the Contract is accepted the Data Trading Platform will build a Data Transfer Gateway (DTG) to
+          install
+          on your server. The DTG will facilitate fast reliable data transfers, updates to your account records and
+          where payment is dependent on file transfers provide Proof of Work to authorise payments.</p>
+        <p>You will need access to a server with a unique www address with Docker installed. (If you don’t have
+          these
+          facilities there are many cloud based solutions that provide virtual servers with pre installed Docker
+          such
+          as digital Ocean). You will need to provide a directory for your DTG, the DTG of your Users where you will
+          send your data files. The DTP will pick these up and forward. These server details will not be disclosed
+          outside the DTP or to your Users. Please ensure we have access to install in the directory with your
+          Directory Details. Please see technical help in our FAQs for information about configuring your systems.
+        </p>
+        <div class="form-group" style="margin-bottom: 2em;">
+          
+          <div class="form-group">
+            <input id="test_serverURL" name="test_serverURL" class="form-control" required placeholder="Server URL"
+              type="text" [(ngModel)]="contract.test_serverURL" #test_serverURL="ngModel">
+          </div>
+
+          <div *ngIf="test_serverURL.invalid && (test_serverURL.dirty || test_serverURL.touched)"
+            class="alert alert-danger">
+            <div *ngIf="test_serverURL.errors.required">
+              Server URL is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input id="test_email" name="test_email" class="form-control" required
+              placeholder="Email to Receive Data" type="text" [(ngModel)]="contract.test_email"
+              #test_email="ngModel">
+          </div>
+
+          <div class="form-group">
+            <input id="test_username" name="test_username" class="form-control" required placeholder="Username"
+              type="text" [(ngModel)]="contract.test_username" #test_username="ngModel">
+          </div>
+
+          <div *ngIf="test_username.invalid && (test_username.dirty || test_username.touched)"
+            class="alert alert-danger">
+            <div *ngIf="test_username.errors.required">
+              Username is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input id="test_password" name="test_password" class="form-control" required placeholder="Password"
+              type="password" [(ngModel)]="contract.test_password" #test_password="ngModel">
+          </div>
+
+          <div *ngIf="test_password.invalid && (test_password.dirty || test_password.touched)"
+            class="alert alert-danger">
+            <div *ngIf="test_password.errors.required">
+              Password is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input id="test_passwordConfirm" name="test_passwordConfirm" class="form-control" required
+              placeholder="Confirm Password" type="password" [(ngModel)]="contract.test_passwordConfirm"
+              #test_passwordConfirm="ngModel">
+          </div>
+
+          <div *ngIf="test_passwordConfirm.invalid && (test_passwordConfirm.dirty || test_passwordConfirm.touched)"
+            class="alert alert-danger">
+            <div *ngIf="test_passwordConfirm.errors.required">
+              Password Confirm is required.
+            </div>
           </div>
 
         </div>
-
-        <nb-card>
-          <nb-card-header>Server Details to Send Data</nb-card-header>
-          <nb-card-body>
-
-            <p>When the Contract is created the Data Trading Platform will build a Data Transfer Gateway (DTG) to
-              install
-              on your server. The DTG will facilitate fast reliable data transfers, updates to your account records and
-              where payment is dependent on file transfers provide Proof of Work to authorise payments.</p>
-            <p>You will need access to a server with a unique www address with Docker installed. (If you don’t have
-              these facilities there are many cloud based solutions that provide virtual servers with pre installed
-              Docker
-              such as digital Ocean). You will need to provide a directory for your DTG, the DTG of your Users where you
-              will send your data files. The DTP will pick these up and forward. These server details will not be
-              disclosed outside the DTP or to your Users. Please ensure we have access to install in the directory with
-              your Directory Details. Please see technical help in our FAQs for information about configuring your
-              systems.
-            </p>
-
-            <div class="form-group">
-              <input id="location_serverURL" name="location_serverURL" class="form-control" required
-                placeholder="Server URL" type="text" [(ngModel)]="contract.location_serverURL"
-                #location_serverURL="ngModel">
-            </div>
-
-            <div *ngIf="location_serverURL.invalid && (location_serverURL.dirty || location_serverURL.touched)"
-              class="alert alert-danger">
-              <div *ngIf="location_serverURL.errors.required">
-                Server URL is required.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input id="username" name="username" class="form-control" required placeholder="Username" type="text"
-                [(ngModel)]="contract.username" #username="ngModel">
-            </div>
-
-            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
-              <div *ngIf="username.errors.required">
-                Username is required.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input id="password" name="password" class="form-control" required placeholder="Password" type="password"
-                [(ngModel)]="contract.password" #password="ngModel">
-            </div>
-
-            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-              <div *ngIf="password.errors.required">
-                Password is required.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input id="passwordConfirm" name="passwordConfirm" class="form-control" required
-                placeholder="Confirm Password" type="password" [(ngModel)]="contract.passwordConfirm"
-                #passwordConfirm="ngModel">
-            </div>
-
-            <div *ngIf="passwordConfirm.invalid && (passwordConfirm.dirty || passwordConfirm.touched)"
-              class="alert alert-danger">
-              <div *ngIf="passwordConfirm.errors.required">
-                Password Confirm is required.
-              </div>
-            </div>
-
-          </nb-card-body>
-        </nb-card>
-
-        <nb-card>
-          <nb-card-header>Transaction Info</nb-card-header>
-          <nb-card-body>
-
-            <div class="form-group">
-              <nb-checkbox name="limit_contracts" [(ngModel)]="limit_contracts" #name="ngModel">Limit Contracts?
-              </nb-checkbox>
-            </div>
-
-            <div class="form-group">
-              <input type="number" class="form-control" id="contract_limit" placeholder="Contract Limit"
-                name="contract_limit" [(ngModel)]="contract.contract_limit" #name="ngModel" *ngIf="limitContracts()">
-            </div>
-
-            <p>Each contract can have a unique wallet address to accept payment for this Contract. By default this is
-              set
-              to your receipt account wallet address.</p>
-
-            <div class="form-group">
-              <nb-checkbox name="use_primary_wallet" [(ngModel)]="contract.use_primary_wallet" #name="ngModel">Use My
-                Primary Wallet</nb-checkbox>
-            </div>
-
-            <div class="form-group">
-              <nb-checkbox name="fixed_currency" [(ngModel)]="contract.fixed_currency" #name="ngModel">Fixed Currency
-              </nb-checkbox>
-            </div>
-
-            <div class="form-group">
-              <label for="exampleInputPassword1">Token Rate</label>
-              <input type="number" step="0.01" class="form-control" id="tokenRateInput" placeholder="Token Rate"
-                name="token_rate" [(ngModel)]="contract.token_rate" #name="ngModel">
-            </div>
-
-            <label for="exampleInputPassword1">Currency</label>
-            <nb-select placeholder="Selected Currency" [(selected)]="selectedCurrency" name="currency"
-              [(ngModel)]="contract.currency" #name="ngModel">
-              <nb-option value="usd">United States Dollar</nb-option>
-              <nb-option value="gbp">British Pound</nb-option>
-              <nb-option value="eur">Euro</nb-option>
-            </nb-select>
-
-            <div class="form-group">
-              <label for="exampleInputPassword1" style="margin-top: 1em;">Currency Rate</label>
-              <input type="number" step="0.01" class="form-control" id="currencyRateInput" placeholder="Currency Rate"
-                name="currency_rate" [(ngModel)]="contract.currency_rate" #name="ngModel">
-            </div>
-
-          </nb-card-body>
-        </nb-card>
-
-        <nb-card>
-          <nb-card-header>TEST - Server Details to Receive Data</nb-card-header>
-          <nb-card-body>
-
-            <p>When the Contract is accepted the Data Trading Platform will build a Data Transfer Gateway (DTG) to
-              install
-              on your server. The DTG will facilitate fast reliable data transfers, updates to your account records and
-              where payment is dependent on file transfers provide Proof of Work to authorise payments.</p>
-            <p>You will need access to a server with a unique www address with Docker installed. (If you don’t have
-              these
-              facilities there are many cloud based solutions that provide virtual servers with pre installed Docker
-              such
-              as digital Ocean). You will need to provide a directory for your DTG, the DTG of your Users where you will
-              send your data files. The DTP will pick these up and forward. These server details will not be disclosed
-              outside the DTP or to your Users. Please ensure we have access to install in the directory with your
-              Directory Details. Please see technical help in our FAQs for information about configuring your systems.
-            </p>
-
-            <div class="form-group">
-              <input id="test_directory" name="test_directory" class="form-control" required
-                placeholder="Directory Path" type="text" [(ngModel)]="contract.test_directory"
-                #test_directory="ngModel">
-            </div>
-
-            <div *ngIf="test_directory.invalid && (test_directory.dirty || test_directory.touched)"
-              class="alert alert-danger">
-              <div *ngIf="test_directory.errors.required">
-                Directory Path is required.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input id="test_serverURL" name="test_serverURL" class="form-control" required placeholder="Server URL"
-                type="text" [(ngModel)]="contract.test_serverURL" #test_serverURL="ngModel">
-            </div>
-
-            <div *ngIf="test_serverURL.invalid && (test_serverURL.dirty || test_serverURL.touched)"
-              class="alert alert-danger">
-              <div *ngIf="test_serverURL.errors.required">
-                Server URL is required.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input id="test_username" name="test_username" class="form-control" required placeholder="Username"
-                type="text" [(ngModel)]="contract.test_username" #test_username="ngModel">
-            </div>
-
-            <div *ngIf="test_username.invalid && (test_username.dirty || test_username.touched)"
-              class="alert alert-danger">
-              <div *ngIf="test_username.errors.required">
-                Username is required.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input id="test_password" name="test_password" class="form-control" required placeholder="Password"
-                type="password" [(ngModel)]="contract.test_password" #test_password="ngModel">
-            </div>
-
-            <div *ngIf="test_password.invalid && (test_password.dirty || test_password.touched)"
-              class="alert alert-danger">
-              <div *ngIf="test_password.errors.required">
-                Password is required.
-              </div>
-            </div>
-
-            <div class="form-group">
-              <input id="test_passwordConfirm" name="test_passwordConfirm" class="form-control" required
-                placeholder="Confirm Password" type="password" [(ngModel)]="contract.test_passwordConfirm"
-                #test_passwordConfirm="ngModel">
-            </div>
-
-            <div *ngIf="test_passwordConfirm.invalid && (test_passwordConfirm.dirty || test_passwordConfirm.touched)"
-              class="alert alert-danger">
-              <div *ngIf="test_passwordConfirm.errors.required">
-                Password Confirm is required.
-              </div>
-            </div>
-
-          </nb-card-body>
-        </nb-card>
 
       </form>
     </nb-card-body>
