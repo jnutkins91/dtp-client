@@ -14,11 +14,16 @@
     "last 2 versions",
     "IE 11"
   ],
+  "engines": {
+    "node": "6.9.1",
+    "npm": "3.10.8"
+  },
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
-    "start": "ng serve",
     "build": "ng build",
+    "start": "http-server dist/",
+    "preinstall": "npm install -g http-server",
     "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
