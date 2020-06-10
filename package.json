@@ -21,7 +21,7 @@
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
-    "build": "ng build",
+    "build": "ng build --prod",
     "start": "http-server dist/",
     "preinstall": "npm install -g http-server",
     "build:prod": "npm run build -- --prod --aot",
