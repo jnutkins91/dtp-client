@@ -1,10 +1,34 @@
+.my-container {
+  position: relative;
+  overflow: hidden;
+}
+/* You could use :after - it doesn't really matter */
+.my-container:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.05;
+  background-image: url('logo_no_text.png');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: contain;
+}
 iframe{
   transform: translate3d(0,0,0);
 }
 
 .clockColumn { 
 
-  text-align: center;
+  text-align: left;
 }
 
 .cityLabel { 
@@ -13,18 +37,22 @@ iframe{
   font-size: 1.5em;
   color: black;
   font-weight: bold;
+  font-family: Oswald,Effra,Arial,Helvetica,sans-serif;
 }
 
 .dataReceivedLabel { 
 
   margin-top: 1em;
   font-size: 1.25em;
-  color: #BC0547;
+  // color: #BC0547;
+  color: black;
+  font-family: Oswald,Effra,Arial,Helvetica,sans-serif;
 }
 
 .platformNotifiedLabel { 
 
   margin-top: 1em;
   font-size: 1.25em;
-  color: #BC0547;
+  color: black;
+  font-family: Oswald,Effra,Arial,Helvetica,sans-serif;
 }

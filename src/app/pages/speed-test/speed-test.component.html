@@ -1,105 +1,119 @@
-<div style="margin-bottom: 2em; width:100%;
+<div class="my-container">
+    <div style="margin-bottom: 2em; width:100%;
 display:table;">
 
-    <span style="color: black; font-size: 1.5em; display:table-cell;
-    vertical-align:middle;">Data Transfer Gateway - Global Network Response Time</span>
+        <span style="color: black; font-size: 5em; display:table-cell;
+    vertical-align:middle;font-family: Oswald,Effra,Arial,Helvetica,sans-serif;">Data Transfer Gateway: Global
+            Benchmark</span>
 
-    <button type="button" class="btn btn-success" style="float: right; background-color: #BC0547" (click)="sendData()">
-        Send Data
-    </button>
+        <button type="button" class="btn btn-success btn-icon"
+            style="float: right; background-color: #BC0547;width:150px;height:150px;" (click)="sendData()">
+            <i class="nb-layout-right nb-paper-plane" style="font-size: 6rem;"></i>
+        </button>
 
-</div>
-
-<div style="margin-bottom: 2em; width:100%;
-display:table; text-align: center; font-size: large;">
-
-This is a benchmarking page so that users can get a sense of the data transfer rates they can achieve.
-
-</div>
-
-<div style="margin-bottom: 2em; width:100%;
-display:table; text-align: center; font-size: large; color: black;">
-
-The Test
-
-</div>
-
-<div style="margin-bottom: 2em; width:100%;
-display:table; text-align: center; font-size: large;">
-
-The file is a 10k text file (?) sent from Iowa (US) to multiple recipients world wide.
-
-</div>
-
-<div style="margin-bottom: 2em; width:100%;
-display:table; text-align: center; font-size: large; color: black;">
-
-Data Last Sent:
-
-</div>
-
-<div style="margin-bottom: 2em; width:100%;
-display:table; text-align: center; font-size: large; color: #BC0547">
-
-17/03/2020 00:50:01
-
-</div>
-
-<div style="display: flex; justify-content: space-between;">
-
-    <div class="clockColumn">
-        <iframe
-            src="http://free.timeanddate.com/clock/i770qxl2/n137/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
-            frameborder="0" width="160" height="160"></iframe>
-        <p class="cityLabel">Los Angeles</p>
-        <p class="dataReceivedLabel">Data Received</p>
-        <p>{{ losAngelesMessage?.received_at }}</p>
-        <p class="platformNotifiedLabel">DTP Notified</p>
-        <p>{{ losAngelesMessage?.creation_time }}</p>
     </div>
 
-    <div class="clockColumn">
-        <iframe
-            src="http://free.timeanddate.com/clock/i770qxl2/n179/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
-            frameborder="0" width="160" height="160"></iframe>
-        <p class="cityLabel">New York</p>
-        <p class="dataReceivedLabel">Data Received</p>
-        <p>{{ newYorkMessage?.received_at }}</p>
-        <p class="platformNotifiedLabel">DTP Notified</p>
-        <p>{{ newYorkMessage?.creation_time }}</p>
+    <div style="margin-bottom: 2em; width:100%;
+display:table; text-align: left; font-size: large; color: black;font-family: Oswald,Effra,Arial,Helvetica,sans-serif;">
+
+        <p style="font-size: 2em;">Data Last Sent: <span style="color: #BC0547;">17/03/2020 00:50:01</span></p>
+
     </div>
 
-    <div class="clockColumn">
-        <iframe
-            src="http://free.timeanddate.com/clock/i76y70tr/n136/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
-            frameborder="0" width="160" height="160"></iframe>
-        <p class="cityLabel">London</p>
-        <p class="dataReceivedLabel">Data Received</p>
-        <p>{{ londonMessage?.received_at }}</p>
-        <p class="platformNotifiedLabel">DTP Notified</p>
-        <p>{{ londonMessage?.creation_time }}</p>
+
+    <div style="display: flex; justify-content: space-between;margin-bottom: 12em;">
+
+        <div class="clockColumn">
+            <p class="cityLabel">Los Angeles</p>
+            <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:380px;height:80px;"
+                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=USA_LosAngeles&color=black&size=380&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p class="dataReceivedLabel">Data Received: <span
+                    style="color: #BC0547;">{{ losAngelesMessage?.received_at_string }}</span></p>
+            <p class="platformNotifiedLabel">DTP Notified: <span
+                    style="color: #BC0547;">{{ losAngelesMessage?.creation_time_string }}</span></p>
+        </div>
+
+        <div class="clockColumn">
+            <p class="cityLabel">New York</p>
+            <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:380px;height:80px;"
+                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=USA_NewYork&color=black&size=380&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p class="dataReceivedLabel">Data Received: <span
+                    style="color: #BC0547;">{{ newYorkMessage?.received_at_string }}</span></p>
+            <p class="platformNotifiedLabel">DTP Notified: <span
+                    style="color: #BC0547;">{{ newYorkMessage?.creation_time_string }}</span></p>
+        </div>
+
+        <div class="clockColumn">
+            <p class="cityLabel">London</p>
+            <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:380px;height:80px;"
+                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=UnitedKingdom_London&color=black&size=380&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p class="dataReceivedLabel">Data Received: <span
+                    style="color: #BC0547;">{{ londonMessage?.received_at_string }}</span></p>
+            <p class="platformNotifiedLabel">DTP Notified: <span
+                    style="color: #BC0547;">{{ londonMessage?.creation_time_string }}</span></p>
+        </div>
+
     </div>
 
-    <div class="clockColumn">
-        <iframe
-            src="http://free.timeanddate.com/clock/i770qxl2/n367/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
-            frameborder="0" width="160" height="160"></iframe>
-        <p class="cityLabel">Kyiv</p>
-        <p class="dataReceivedLabel">Data Received</p>
-        <p>{{ kyivMessage?.received_at }}</p>
-        <p class="platformNotifiedLabel">DTP Notified</p>
-        <p>{{ kyivMessage?.creation_time }}</p>
-    </div>
+    <div style="display: flex; justify-content: space-between;">
 
-    <div class="clockColumn">
-        <iframe
-            src="http://free.timeanddate.com/clock/i770qxl2/n248/szw160/szh160/hfcbc0547/cf100/hgr0/fas24/facfff/mqcfff/mhcfff/mmcfff/hscfff"
-            frameborder="0" width="160" height="160"></iframe>
-        <p class="cityLabel">Tokyo</p>
-        <p class="dataReceivedLabel">Data Received</p>
-        <p>{{ tokyoMessage?.received_at }}</p>
-        <p class="platformNotifiedLabel">DTP Notified</p>
-        <p>{{ tokyoMessage?.creation_time }}</p>
-    </div>
+        <div class="clockColumn">
+            <p class="cityLabel">Kuala Lumpur</p>
+            <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
+                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Malaysia_KualaLumpur&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p class="dataReceivedLabel">Data Received: <span
+                    style="color: #BC0547;">{{ losAngelesMessage?.received_at_string }}</span></p>
+            <p class="platformNotifiedLabel">DTP Notified: <span
+                    style="color: #BC0547;">{{ losAngelesMessage?.creation_time_string }}</span></p>
+        </div>
 
+        <div class="clockColumn">
+            <p class="cityLabel">Tokyo</p>
+            <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
+                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Japan_Tokyo&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p class="dataReceivedLabel">Data Received: <span
+                    style="color: #BC0547;">{{ newYorkMessage?.received_at_string }}</span></p>
+            <p class="platformNotifiedLabel">DTP Notified: <span
+                    style="color: #BC0547;">{{ newYorkMessage?.creation_time }}</span></p>
+        </div>
+
+        <div class="clockColumn">
+            <p class="cityLabel">Singapore</p>
+            <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
+                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Singapore_SingaporeCity&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p class="dataReceivedLabel">Data Received: <span
+                    style="color: #BC0547;">{{ londonMessage?.received_at_string }}</span></p>
+            <p class="platformNotifiedLabel">DTP Notified: <span
+                    style="color: #BC0547;">{{ londonMessage?.creation_time_string }}</span></p>
+        </div>
+
+        <div class="clockColumn">
+            <p class="cityLabel">Sau Paulo</p>
+            <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
+                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Brazil_SaoPaulo&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p class="dataReceivedLabel">Data Received: <span
+                    style="color: #BC0547;">{{ londonMessage?.received_at_string }}</span></p>
+            <p class="platformNotifiedLabel">DTP Notified: <span
+                    style="color: #BC0547;">{{ londonMessage?.creation_time_string }}</span></p>
+        </div>
+
+        <div class="clockColumn">
+            <p class="cityLabel">Moscow</p>
+            <iframe scrolling="no" frameborder="no" clocktype="html5"
+                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
+                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Russia_Moscow&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p class="dataReceivedLabel">Data Received: <span
+                    style="color: #BC0547;">{{ londonMessage?.received_at_string }}</span></p>
+            <p class="platformNotifiedLabel">DTP Notified: <span
+                    style="color: #BC0547;">{{ londonMessage?.creation_time_string }}</span></p>
+        </div>
+
+    </div>
 </div>

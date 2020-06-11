@@ -26,6 +26,8 @@ export class SpeedTestComponent implements OnInit {
 
   ngOnInit() {
 
+    // this.getResults();
+
     this.sub = Observable.interval(3000)
       .subscribe((val) => { this.getResults(); });
   }

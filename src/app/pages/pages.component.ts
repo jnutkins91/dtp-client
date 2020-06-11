@@ -8,9 +8,14 @@ import { filter } from 'rxjs/operators';
 @Component({
   selector: 'ngx-pages',
   styleUrls: ['pages.component.scss'],
+  // template: `
+  //   <ngx-sample-layout>
+  //     <nb-menu [items]="menu"></nb-menu>
+  //     <router-outlet></router-outlet>
+  //   </ngx-sample-layout>
+  // `,
   template: `
     <ngx-sample-layout>
-      <nb-menu [items]="menu"></nb-menu>
       <router-outlet></router-outlet>
     </ngx-sample-layout>
   `,
