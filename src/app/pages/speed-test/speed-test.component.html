@@ -1,22 +1,23 @@
 <div class="my-container">
     <div style="margin-bottom: 2em; width:100%;
-display:table;">
+    display:table;">
 
         <span style="color: black; font-size: 5em; display:table-cell;
-    vertical-align:middle;font-family: Oswald,Effra,Arial,Helvetica,sans-serif;">Data Transfer Gateway: Global
+        vertical-align:middle;font-family: Oswald,Effra,Arial,Helvetica,sans-serif;">Data Transfer Gateway: Global
             Benchmark</span>
 
         <button type="button" class="btn btn-success btn-icon"
-            style="float: right; background-color: #BC0547;width:150px;height:150px;" (click)="sendData()">
+            style="float: right; background-color: #BC0547;width:150px;height:150px;z-index: 2;" (click)="sendData()">
             <i class="nb-layout-right nb-paper-plane" style="font-size: 6rem;"></i>
         </button>
 
     </div>
 
-    <div style="margin-bottom: 2em; width:100%;
-display:table; text-align: left; font-size: large; color: black;font-family: Oswald,Effra,Arial,Helvetica,sans-serif;">
+    <div
+        style="margin-bottom: 2em; width:100%;
+    display:table; text-align: left; font-size: large; color: black;font-family: Oswald,Effra,Arial,Helvetica,sans-serif;">
 
-        <p style="font-size: 2em;">Data Last Sent: <span style="color: #BC0547;">17/03/2020 00:50:01</span></p>
+        <p style="font-size: 2em;">Data Last Sent: <span style="color: #BC0547;">{{ dataLastSent }}</span></p>
 
     </div>
 
@@ -25,9 +26,7 @@ display:table; text-align: left; font-size: large; color: black;font-family: Osw
 
         <div class="clockColumn">
             <p class="cityLabel">Los Angeles</p>
-            <iframe scrolling="no" frameborder="no" clocktype="html5"
-                style="overflow:hidden;border:0;margin:0;padding:0;width:380px;height:80px;"
-                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=USA_LosAngeles&color=black&size=380&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p style="font-size: 5em; color: black;">{{ losAngelesMessage?.difference_time_string }}</p>
             <p class="dataReceivedLabel">Data Received: <span
                     style="color: #BC0547;">{{ losAngelesMessage?.received_at_string }}</span></p>
             <p class="platformNotifiedLabel">DTP Notified: <span
@@ -36,9 +35,7 @@ display:table; text-align: left; font-size: large; color: black;font-family: Osw
 
         <div class="clockColumn">
             <p class="cityLabel">New York</p>
-            <iframe scrolling="no" frameborder="no" clocktype="html5"
-                style="overflow:hidden;border:0;margin:0;padding:0;width:380px;height:80px;"
-                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=USA_NewYork&color=black&size=380&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p style="font-size: 5em; color: black;">{{ newYorkMessage?.difference_time_string }}</p>
             <p class="dataReceivedLabel">Data Received: <span
                     style="color: #BC0547;">{{ newYorkMessage?.received_at_string }}</span></p>
             <p class="platformNotifiedLabel">DTP Notified: <span
@@ -47,9 +44,7 @@ display:table; text-align: left; font-size: large; color: black;font-family: Osw
 
         <div class="clockColumn">
             <p class="cityLabel">London</p>
-            <iframe scrolling="no" frameborder="no" clocktype="html5"
-                style="overflow:hidden;border:0;margin:0;padding:0;width:380px;height:80px;"
-                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=UnitedKingdom_London&color=black&size=380&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p style="font-size: 5em; color: black;">{{ londonMessage?.difference_time_string }}</p>
             <p class="dataReceivedLabel">Data Received: <span
                     style="color: #BC0547;">{{ londonMessage?.received_at_string }}</span></p>
             <p class="platformNotifiedLabel">DTP Notified: <span
@@ -61,32 +56,26 @@ display:table; text-align: left; font-size: large; color: black;font-family: Osw
     <div style="display: flex; justify-content: space-between;">
 
         <div class="clockColumn">
-            <p class="cityLabel">Kuala Lumpur</p>
-            <iframe scrolling="no" frameborder="no" clocktype="html5"
-                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
-                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Malaysia_KualaLumpur&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p class="cityLabel">Kyiv</p>
+            <p style="font-size: 3em; color: black;">{{ kyivMessage?.difference_time_string }}</p>
             <p class="dataReceivedLabel">Data Received: <span
-                    style="color: #BC0547;">{{ losAngelesMessage?.received_at_string }}</span></p>
+                    style="color: #BC0547;">{{ kyivMessage?.received_at_string }}</span></p>
             <p class="platformNotifiedLabel">DTP Notified: <span
-                    style="color: #BC0547;">{{ losAngelesMessage?.creation_time_string }}</span></p>
+                    style="color: #BC0547;">{{ kyivMessage?.creation_time_string }}</span></p>
         </div>
 
         <div class="clockColumn">
             <p class="cityLabel">Tokyo</p>
-            <iframe scrolling="no" frameborder="no" clocktype="html5"
-                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
-                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Japan_Tokyo&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p style="font-size: 3em; color: black;">{{ tokyoMessage?.difference_time_string }}</p>
             <p class="dataReceivedLabel">Data Received: <span
-                    style="color: #BC0547;">{{ newYorkMessage?.received_at_string }}</span></p>
+                    style="color: #BC0547;">{{ tokyoMessage?.received_at_string }}</span></p>
             <p class="platformNotifiedLabel">DTP Notified: <span
-                    style="color: #BC0547;">{{ newYorkMessage?.creation_time }}</span></p>
+                    style="color: #BC0547;">{{ tokyoMessage?.creation_time_string }}</span></p>
         </div>
 
         <div class="clockColumn">
             <p class="cityLabel">Singapore</p>
-            <iframe scrolling="no" frameborder="no" clocktype="html5"
-                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
-                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Singapore_SingaporeCity&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p style="font-size: 3em; color: black;">{{ londonMessage?.difference_time_string }}</p>
             <p class="dataReceivedLabel">Data Received: <span
                     style="color: #BC0547;">{{ londonMessage?.received_at_string }}</span></p>
             <p class="platformNotifiedLabel">DTP Notified: <span
@@ -95,9 +84,7 @@ display:table; text-align: left; font-size: large; color: black;font-family: Osw
 
         <div class="clockColumn">
             <p class="cityLabel">Sau Paulo</p>
-            <iframe scrolling="no" frameborder="no" clocktype="html5"
-                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
-                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Brazil_SaoPaulo&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p style="font-size: 3em; color: black;">{{ londonMessage?.difference_time_string }}</p>
             <p class="dataReceivedLabel">Data Received: <span
                     style="color: #BC0547;">{{ londonMessage?.received_at_string }}</span></p>
             <p class="platformNotifiedLabel">DTP Notified: <span
@@ -106,9 +93,7 @@ display:table; text-align: left; font-size: large; color: black;font-family: Osw
 
         <div class="clockColumn">
             <p class="cityLabel">Moscow</p>
-            <iframe scrolling="no" frameborder="no" clocktype="html5"
-                style="overflow:hidden;border:0;margin:0;padding:0;width:190px;height:40px;"
-                src="https://www.clocklink.com/html5embed.php?clock=047&timezone=Russia_Moscow&color=black&size=190&Title=&Message=&Target=&From=2020,1,1,0,0,0&Color=black"></iframe>
+            <p style="font-size: 3em; color: black;">{{ londonMessage?.difference_time_string }}</p>
             <p class="dataReceivedLabel">Data Received: <span
                     style="color: #BC0547;">{{ londonMessage?.received_at_string }}</span></p>
             <p class="platformNotifiedLabel">DTP Notified: <span

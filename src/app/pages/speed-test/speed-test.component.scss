@@ -21,6 +21,7 @@
   -moz-background-size: cover;
   -webkit-background-size: cover;
   background-size: contain;
+  pointer-events:none;
 }
 iframe{
   transform: translate3d(0,0,0);
