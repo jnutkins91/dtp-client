@@ -6,6 +6,7 @@ export interface package_builer_message {
     message: string;
     received_at: Date;
     creation_time: Date;
-    received_at_string: Date;
-    creation_time_string: Date;
+    received_at_string: string;
+    creation_time_string: string;
+    difference_time_string: string;
   }
